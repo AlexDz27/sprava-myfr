@@ -1,6 +1,9 @@
 <?php
 
-$routes = require __DIR__ . '/routes.php';
+// $routes = require __DIR__ . '/routes.php';
+$routes = require 'routes.php';
+// var_dump($routes);
+// die();
 
 $uri = explode('?', $_SERVER['REQUEST_URI'])[0];  // explode to respect GET requests
 if ($uri !== '/' && substr($uri, -1) === '/') {  // respect trailing slash, but delete it when doing checking
