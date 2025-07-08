@@ -1,3 +1,3 @@
 <?php
 
-echo 123;
+require 'engine/routing/routing.php';
