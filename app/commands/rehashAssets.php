@@ -6,7 +6,7 @@
 // TODO: update the files in the View
 // TODO: separate rehashing of one file and another (currently all files are rehashed)
 
-$cssFile = 'front-end/assets/css/main.h-1.css';
+$cssFile = 'front-end/assets/css/style.h-1.css';
 $jsFile = 'front-end/assets/js/main.h-1.js';
 
 foreach ([$cssFile, $jsFile] as $file) {
