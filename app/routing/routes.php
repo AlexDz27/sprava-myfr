@@ -16,7 +16,7 @@ return [
     'title' => $sitePresenter->companyName. ' | О нас',
     'pathToPage' => 'front-end/pages/about-company.php'
   ]],
-  '/asd' => [$sitePresenter, 'simplePage', [
+  '/todo-catalog' => [$sitePresenter, 'simplePage', [
     'title' => 'some asd title',
     'pathToPage' => 'front-end/pages/asd.php'
   ]],
