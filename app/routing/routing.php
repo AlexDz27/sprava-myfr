@@ -9,7 +9,8 @@ if ($uri !== '/' && substr($uri, -1) === '/') {  // respect trailing slash, but 
 
 // Actually do matching of incoming uri to routes
 if (isset($routes[$uri])) {
-  require $routes[$uri];
+  $uriActionArgs = $routes[$uri];
+  call_user_func([$uriActionArgs[0], $uriActionArgs[1]], ...$uriActionArgs[2]);
   exit;
 }
 
