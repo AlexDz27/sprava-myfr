@@ -1,5 +1,5 @@
 <?php
 
 class BasePresenter {
-  protected $companyName = 'SPRAVA';
+  public $companyName = 'SPRAVA';
 }
