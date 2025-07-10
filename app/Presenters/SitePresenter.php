@@ -3,8 +3,8 @@
 require 'BasePresenter.php';
 
 class SitePresenter extends BasePresenter {
-  public function simplePage($title = 'Some title') {
-    echo $title;
+  public function simplePage($pathToPage, $title = 'Some title') {
+    require $pathToPage;
     die();
   }
 }

@@ -14,6 +14,6 @@ if (isset($routes[$uri])) {
   exit;
 }
 
-$route404 = array_pop($routes);
+$route404ActionArgs = array_pop($routes);
 http_response_code(404);
-require $route404;
+call_user_func([$route404ActionArgs[0], $route404ActionArgs[1]], ...$route404ActionArgs[2]);
