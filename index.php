@@ -1,4 +1,3 @@
 <?php
 
-require 'engine/internals/loadFunction.php';
-require 'engine/routing/routing.php';
+require 'app/routing/routing.php';
