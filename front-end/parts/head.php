@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <link rel="stylesheet" href="./front-end/assets/css/style.h-1.css">
   <?php foreach ($extraAssets as $asset): ?>
-    <?= $asset ?>
+    <?= $asset . "\n" ?>
   <?php endforeach ?>
   <script src="./front-end/assets/js/main.h-2.js" defer></script>
   <script src="./front-end/assets/js/search.h-2.js" defer></script>
