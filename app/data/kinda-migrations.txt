@@ -1,5 +1,6 @@
 Create texts:
-CREATE TABLE texts (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  text VARCHAR(255)
-);
+create table texts (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, text TEXT)
+Insert:
+INSERT INTO texts (text) VALUES 
+('+37543848'),
+('some_addr_qwekqwe');

@@ -28,8 +28,8 @@
     <div class="text-with-icon header__text-with-icon--row-2-col-2">
       <img class="text-with-icon__icon" src="./front-end/assets/img/icons/phone.svg" width="18" height="18">
       <div class="text-with-icon__text-cont">
-        <a href="tel:+375445006080" class="link--no-underline text--bold">+375 (44) 500-60-80</a><br>
-        <a href="tel:+375172257637" class="link--no-underline text--bold">+375 (17) 225-76-37 (31)</a>
+        <a href="tel:<?= $phones['header'][0][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][0][1] ?></a><br>
+        <a href="tel:<?= $phones['header'][1][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][1][1] ?></a>
       </div>
     </div>
     <div class="link-social-cont">
