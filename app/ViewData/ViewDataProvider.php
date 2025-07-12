@@ -1,19 +1,19 @@
 <?php
 
 require 'app/Data/DataProvider.php';
-require 'transformations.php';
+require 'transformationFunctions.php';
 
 class ViewDataProvider {
   public function getTexts() {
     $dataProvider = new DataProvider();
     $texts = $dataProvider->getTexts();
 
-    // var_dump($texts);
+    var_dump($texts);
 
     $textsTransformed = [
       'phones' => [
         'header' => [],
-        'mapSection' => [],
+        'contacts' => [],
       ],
       'address' => '',
     ];
@@ -26,10 +26,19 @@ class ViewDataProvider {
     }, $phonesForHeaderRaw);
     $textsTransformed['phones']['header'] = $phonesForHeader;
 
-    $textsTransformed['phones']['mapSection'] = '';
+    $phonesForContactsRaw = array_filter($texts, function($text) {
+      return str_contains($text['name_internal'], 'phone');
+    });
+    addDerivativePhones2($phonesForContactsRaw);
+    var_dump($phonesForContactsRaw);
+    die();
+    $phonesForContacts = array_map(function($phone) {
+      return [humanReadablePhoneToTel($phone['text']), $phone['text']];
+    }, $phonesForHeaderRaw);
+    $textsTransformed['phones']['contacts'] = $phonesForContacts;
 
-    // var_dump($textsTransformed);
-    // die();
+    var_dump($textsTransformed);
+    die();
 
     return $textsTransformed;
   }
