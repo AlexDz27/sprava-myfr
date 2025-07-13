@@ -1,5 +1,5 @@
-<?php require 'front-end/parts/head.php' ?>
-<?php require 'front-end/parts/header.php' ?>
+<?php require 'front-end/site/parts/head.php' ?>
+<?php require 'front-end/site/parts/header.php' ?>
 
 <section class="page-title-cont section-design--about">
   <div class="cont yellow">
@@ -56,10 +56,10 @@
       Лучшие в своем деле!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Лучшие в своем деле!
     </div>
     <div class="logo-line">
-      <img src="./front-end/assets/img/logo--line.svg">
-      <img src="./front-end/assets/img/logo--line.svg">
-      <img src="./front-end/assets/img/logo--line.svg">
-      <img src="./front-end/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
     </div>
   </div>
 </section>
@@ -130,7 +130,7 @@
           <li class="text--larger">Оснастку, с которой каждая задача становится приятным делом.</li>
         </ul>
       </div>
-      <img src="./front-end/assets/img/logo--trust--brown.svg" width="236" height="236" alt="Логотип Sprava">
+      <img src="./front-end/site/assets/img/logo--trust--brown.svg" width="236" height="236" alt="Логотип Sprava">
     </div>
   </div>
 </section>
@@ -194,4 +194,4 @@
   }
 </script>
 
-<?php require 'front-end/parts/footer.php' ?>
+<?php require 'front-end/site/parts/footer.php' ?>

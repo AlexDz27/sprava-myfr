@@ -27,7 +27,7 @@ class ViewDataProvider {
     $textsTransformed['phones']['header'] = $phonesForHeader;
 
     $phonesForContactsRaw = array_filter($texts, function($text) {
-      return str_contains($text['name_internal'], 'phone');
+      return str_contains($text['name_internal'] ?? '', 'phone');
     });
     addDerivativePhones($phonesForContactsRaw);
     $phonesForContacts = array_map(function($phone) {

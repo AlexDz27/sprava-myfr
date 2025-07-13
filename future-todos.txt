@@ -3,3 +3,6 @@
 
 - BasePresenter::companyName via db
 
+- НАСТРОИТЬ БЭКАПЫ
+
+- namespaces - и это пофиксит мою проблему с классами?

@@ -1,6 +1,6 @@
 <?php
 
-$siteRoutes = require 'routes.php';
+$siteRoutes = require 'siteRoutes.php';
 $adminRoutes = require 'adminRoutes.php';
 $routes = $siteRoutes + $adminRoutes;
 

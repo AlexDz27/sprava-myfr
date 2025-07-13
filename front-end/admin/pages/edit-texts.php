@@ -10,12 +10,18 @@
 </head>
 <body class="admin">
 
-<header class="header">
-  <h1 class="heading--index tac">Администратор, редактировать тексты</h1>
-</header>  
+<header class="header cont">
+  <h2>Редактирование текстов</h2>
+</header>
 
 <main class="main cont">
-  <p>qwew</p>
+  <section class="editable-info-section">
+    <h3>Телефоны</h3>
+    <p>Телефон первый: &nbsp;<input></p>
+    <p>Телефон второй: &nbsp;<input></p>
+  </section>
+
+  <h3>Адрес</h3>
 </main>
   
 </body>

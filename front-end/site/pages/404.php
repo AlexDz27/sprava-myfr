@@ -1,5 +1,5 @@
-<?php require 'front-end/parts/head.php' ?>
-<?php require 'front-end/parts/header.php' ?>
+<?php require 'front-end/site/parts/head.php' ?>
+<?php require 'front-end/site/parts/header.php' ?>
 
 <style>
   .section-404 {
@@ -22,6 +22,6 @@
   </div>
 </section>
 
-<?php require 'front-end/parts/contacts.php' ?>
+<?php require 'front-end/site/parts/contacts.php' ?>
 
-<?php require 'front-end/parts/footer.php' ?>
+<?php require 'front-end/site/parts/footer.php' ?>

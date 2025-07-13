@@ -1,25 +1,25 @@
-<?php require 'front-end/parts/head.php' ?>
-<?php require 'front-end/parts/header.php' ?>
+<?php require 'front-end/site/parts/head.php' ?>
+<?php require 'front-end/site/parts/header.php' ?>
 
 <section class="section-design--about">
   <div class="cont section-design--about__cont">
     <b class="text-design">ЛУЧШИЕ В СВОЕМ ДЕЛЕ!</b>
-    <img class="section-design--about__logo" src="./front-end/assets/img/logo--big-2.svg" width="756" height="110" alt="Логотип Sprava">
-    <img class="section-design--about__logo--mob" src="./front-end/assets/img/logo--mob.svg" width="313" height="48" alt="Логотип Sprava">
+    <img class="section-design--about__logo" src="./front-end/site/assets/img/logo--big-2.svg" width="756" height="110" alt="Логотип Sprava">
+    <img class="section-design--about__logo--mob" src="./front-end/site/assets/img/logo--mob.svg" width="313" height="48" alt="Логотип Sprava">
     <h1 class="text--big section-design--about__text--big">Оптовые поставки строительных материалов</h1>
   </div>
 </section>
 
 <section class="section-design--trust">
   <div class="cont">
-    <img class="section-design--trust__logo" src="./front-end/assets/img/logo--trust.svg" width="162" height="162" alt="Логотип Sprava">
+    <img class="section-design--trust__logo" src="./front-end/site/assets/img/logo--trust.svg" width="162" height="162" alt="Логотип Sprava">
   </div>
   <div class="cont--mob section-design--trust--mob__btn__cont">
     <button id="btnDownloadPriceMob" class="section-design--trust--mob__btn btn btn--dropdown" type="button">
       <b>СКАЧАТЬ ПРАЙС</b>
-      <img class="btn--dropdown__icon section-design--trust--mob__btn__icon" src="./front-end/assets/img/icons/arrow-down.svg" width="17" height="10">
+      <img class="btn--dropdown__icon section-design--trust--mob__btn__icon" src="./front-end/site/assets/img/icons/arrow-down.svg" width="17" height="10">
       <div class="btn--dropdown__list">
-        <a class="btn--dropdown__list__item" href="/price-lists/<?= $lowDb['currentPriceList'] ?>"><b>Скачать прайс</b></a>
+        <a class="btn--dropdown__list__item" href="/price-lists/todo-pricelist-link"><b>Скачать прайс</b></a>
         <a class="btn--dropdown__list__item" href="table.php"><b>Посмотреть прайс</b></a>
       </div>
     </button>
@@ -40,7 +40,7 @@
         <div id="track" class="slider__track">
           <div class="card" data-card-id="1">
             <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="./front-end/assets/img/products/kisti/0110-0000-25_2.jpg" alt="Кисти малярные">
+              <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/kisti/0110-0000-25_2.jpg" alt="Кисти малярные">
             </div>
             <h3 class="card__title">Кисти малярные</h3>
             <ul class="card__list">
@@ -53,7 +53,7 @@
 
           <div class="card" data-card-id="2">
             <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="./front-end/assets/img/products/valiki/0302-22400000_1.jpg" alt="Валики малярные">
+              <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/valiki/0302-22400000_1.jpg" alt="Валики малярные">
             </div>
             <h3 class="card__title">Валики малярные</h3>
             <ul class="card__list">
@@ -66,7 +66,7 @@
 
           <div class="card" data-card-id="3">
             <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="./front-end/assets/img/products/abraziv/2897-0125-10_1.jpg" alt="Абразивные алмазные материалы и оснастка">
+              <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/abraziv/2897-0125-10_1.jpg" alt="Абразивные алмазные материалы и оснастка">
             </div>
             <h3 class="card__title card__title--w-2nd-line">Абразивные алмазные <span class="card__title__2nd-line card__title__2nd-line--abraziv">материалы и оснастка</span></h3>
             <ul class="card__list card__list--w-2nd-line">
@@ -81,7 +81,7 @@
 
           <div class="card" data-card-id="4">
             <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="./front-end/assets/img/products/nozhi/0890-0000-18_6.jpg" alt="Ножи и лезвия">
+              <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/nozhi/0890-0000-18_6.jpg" alt="Ножи и лезвия">
             </div>
             <h3 class="card__title">Ножи и лезвия</h3>
             <ul class="card__list">
@@ -93,7 +93,7 @@
 
           <div class="card card--bad-pr" data-card-id="5">
             <div class="card__img-cont">
-              <img class="card__img card__img--bad" src="./front-end/assets/img/products/vspomogat/0990-0600-12_2.jpg" alt="Вспомогательный инструмент">
+              <img class="card__img card__img--bad" src="./front-end/site/assets/img/products/vspomogat/0990-0600-12_2.jpg" alt="Вспомогательный инструмент">
             </div>
             <h3 class="card__title card__title--w-2nd-line">Вспомогательный <span class="card__title__2nd-line card__title__2nd-line--abraziv">инструмент</span></h3>
             <ul class="card__list card__list--w-2nd-line">
@@ -243,15 +243,15 @@
       Лучшие в своем деле!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Лучшие в своем деле!
     </div>
     <div class="logo-line">
-      <img src="./front-end/assets/img/logo--line.svg">
-      <img src="./front-end/assets/img/logo--line.svg">
-      <img src="./front-end/assets/img/logo--line.svg">
-      <img src="./front-end/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
+      <img src="./front-end/site/assets/img/logo--line.svg">
     </div>
   </div>
 </section>
 
-<?php require 'front-end/parts/contacts.php' ?>
+<?php require 'front-end/site/parts/contacts.php' ?>
 
 <script>
   const learnMoreLink = document.getElementById('learnMoreLink')
@@ -309,4 +309,4 @@
   }
 </script>
 
-<?php require 'front-end/parts/footer.php' ?>
+<?php require 'front-end/site/parts/footer.php' ?>
