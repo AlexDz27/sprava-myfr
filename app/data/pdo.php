@@ -1,6 +1,6 @@
 <?php
 
-$pdo = new PDO('sqlite:app/data/sprava.db');
+$pdo = new PDO('sqlite:app/Data/sprava.db');
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
