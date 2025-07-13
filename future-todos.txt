@@ -2,3 +2,5 @@
 - more testing on phones
 
 - BasePresenter::companyName via db
+
+- есть НЕКИЕ проблемы с деплоем, связанные с тем, что в гите остаётся папка data/ вместо Data/
