@@ -1,3 +1,5 @@
+console.log('hello')
+
 /** DOWNLOAD PRICE BUTTON **/
 const btnDownloadPrice = document.getElementById('btnDownloadPrice')
 btnDownloadPrice.addEventListener('click', () => {
