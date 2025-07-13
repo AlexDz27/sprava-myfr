@@ -1,5 +1,3 @@
-console.log('hello')
-
 /** DOWNLOAD PRICE BUTTON **/
 const btnDownloadPrice = document.getElementById('btnDownloadPrice')
 btnDownloadPrice.addEventListener('click', () => {
@@ -97,7 +95,7 @@ async function main() {
     map.addChild(marker);
     content.innerHTML = `
       <section class="pin">
-        <img class="pin" src="./front-end/assets/img/icons/pin-ymap.svg" style="position: relative; top: -63.5px; left: -28px;">
+        <img class="pin" src="/front-end/assets/img/icons/pin-ymap.svg" style="position: relative; top: -63.5px; left: -28px;">
         <span>ООО “Рошма”</span>
       </section>
     `;

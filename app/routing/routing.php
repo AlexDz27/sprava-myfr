@@ -1,6 +1,8 @@
 <?php
 
-$routes = require 'routes.php';
+$siteRoutes = require 'routes.php';
+$adminRoutes = require 'adminRoutes.php';
+$routes = $siteRoutes + $adminRoutes;
 
 $uri = explode('?', $_SERVER['REQUEST_URI'])[0];  // explode to respect GET requests
 if ($uri !== '/' && substr($uri, -1) === '/') {  // respect trailing slash, but delete it when doing checking
@@ -14,6 +16,6 @@ if (isset($routes[$uri])) {
   exit;
 }
 
-$route404ActionArgs = array_pop($routes);
+$route404ActionArgs = $routes['404'];
 http_response_code(404);
 call_user_func([$route404ActionArgs[0], $route404ActionArgs[1]], ...$route404ActionArgs[2]);

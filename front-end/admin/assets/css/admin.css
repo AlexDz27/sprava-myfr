@@ -1,0 +1,76 @@
+/** FONTS **/
+@font-face {
+  font-family: "Open Sans";
+  src: url("../fonts/OpenSans-VariableFont_wdth,wght.ttf") format('truetype');
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/** BASE **/
+:root {
+  --link-color: #0d6efd;
+}
+
+body {
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 18px;
+  margin: 0;
+}
+
+a {
+  color: var(--link-color);
+}
+
+input {
+  font-family: inherit;
+  font-size: 0.8em;
+  padding: 0.4em;
+}
+
+/** STYLES **/
+.tac {
+  text-align: center;
+}
+
+/** COMPONENTS **/
+.admin {
+  font-size: 150%;
+}
+
+.cont {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.header {
+  padding-top: 3rem;
+}
+
+.heading--index {
+  font-size: 150%;
+}
+
+.main {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.actions-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1.5rem;
+}
+.actions-list__link {
+  text-decoration: none;
+}
+.actions-list__link:hover {
+  text-decoration: underline;
+}
+
+.editable-info-section {
+  margin-bottom: 4rem;
+}
