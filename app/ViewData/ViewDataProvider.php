@@ -8,7 +8,7 @@ class ViewDataProvider {
     $dataProvider = new DataProvider();
     $texts = $dataProvider->getTexts();
 
-    var_dump($texts);
+    // var_dump($texts);
 
     $textsTransformed = [
       'phones' => [
@@ -29,16 +29,14 @@ class ViewDataProvider {
     $phonesForContactsRaw = array_filter($texts, function($text) {
       return str_contains($text['name_internal'], 'phone');
     });
-    addDerivativePhones2($phonesForContactsRaw);
-    var_dump($phonesForContactsRaw);
-    die();
+    addDerivativePhones($phonesForContactsRaw);
     $phonesForContacts = array_map(function($phone) {
       return [humanReadablePhoneToTel($phone['text']), $phone['text']];
-    }, $phonesForHeaderRaw);
+    }, $phonesForContactsRaw);
     $textsTransformed['phones']['contacts'] = $phonesForContacts;
 
-    var_dump($textsTransformed);
-    die();
+    // var_dump($textsTransformed);
+    // die();
 
     return $textsTransformed;
   }

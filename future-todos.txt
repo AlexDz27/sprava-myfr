@@ -1,3 +1,4 @@
-- телефон 4, телефон 5: .. + сделать так, чтобы дериватив был ПЕРВЫЙ, который имеет скобки, а не по полю
-phone_with_other_phones?(?)
+- телефон 4, телефон 5: .. 
+- more testing on phones
+
 - BasePresenter::companyName via db
