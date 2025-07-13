@@ -1,8 +1,6 @@
 <?php
 
-require 'stringFunctions.php';
-
-// kinda global var to be used in glueParentPhoneAndDerivativeNumberPair(). Bc i was lazy
+// kinda global var to be used in main func addDerivativePhones() and glueParentPhoneAndDerivativeNumberPair(). Bc i was lazy
 $derivativePhoneNumbersLength = null;
 
 function humanReadablePhoneToTel($string) {
@@ -21,7 +19,6 @@ function addDerivativePhones(&$phonesRaw) {
       $numberPairs = explodePhoneLastParentheses($phone['text']);
 
       $originalPhoneParentText = $phone['text'];
-      // TODO: remove the parents from $phone['text']
       global $derivativePhoneNumbersLength;
       $additionalCharsCount = 2 + 1;  // two parentheses, one space at end
       $phone['text'] = substr($phone['text'], 0, -$derivativePhoneNumbersLength - $additionalCharsCount);
