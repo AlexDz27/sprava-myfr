@@ -26,6 +26,7 @@ input {
   font-family: inherit;
   font-size: 0.8em;
   padding: 0.4em;
+  min-width: 300px;
 }
 
 /** STYLES **/

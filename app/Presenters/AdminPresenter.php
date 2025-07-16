@@ -20,8 +20,6 @@ class AdminPresenter extends BasePresenter {
     $editableTexts = $this->viewDataProvider->getTextsForAdmin();
     extract($editableTexts);
 
-    $editableTextsJson = json_encode($editableTexts, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
     require $pathToPage;
   }
   public function editTextsApi() {
@@ -29,5 +27,7 @@ class AdminPresenter extends BasePresenter {
     $editedTexts = $_POST;
 
     $resultMessage = $dataUpdater->editTexts($editedTexts);
+
+    echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
 }

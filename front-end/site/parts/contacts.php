@@ -7,8 +7,8 @@
       <p class="text--big p--lower-margin">Адрес офиса и склада:</p>
       <div class="text-with-icon">
         <img class="text-with-icon__icon text-with-icon__icon--more-centered" src="/front-end/site/assets/img/icons/pin--larger.svg" width="17" height="23">
-        <div class="text-with-icon__text-cont text-with-icon--pin__text-cont">
-          <a href="https://yandex.by/maps/29630/minsk-district/house/Zk4YcwBmSUYEQFtpfXRxeXxnYg==/?ll=27.576034%2C53.808047&z=16.62" class="link--no-underline text--larger">223056, Минская обл., Минский р-н, Сеницкий с/с,<br>д. 64, оф. 8</a>
+        <div class="admin-hack__address--contacts text-with-icon__text-cont text-with-icon--pin__text-cont">
+          <a href="https://yandex.by/maps/29630/minsk-district/house/Zk4YcwBmSUYEQFtpfXRxeXxnYg==/?ll=27.576034%2C53.808047&z=16.62" class="link--no-underline text--larger"><?= $address ?></a>
         </div>
       </div>
       <p class="text--big p--lower-margin">Режим работы:</p>

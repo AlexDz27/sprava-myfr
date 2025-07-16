@@ -23,8 +23,7 @@
     </section>
 
     <section class="editable-info-section">
-      <h3>Адрес</h3>
-      <p>Адрес:</p>
+      <h3>Адрес:</h3>
       <textarea name="<?= $address['id'] ?>" class="textarea"><?= $address['text'] ?></textarea>
     </section>
 
@@ -32,10 +31,5 @@
   </form>
 </main>
 
-<!-- TODO: d?) -->
-<script id="editableTexts" type="application/json">
-  <?= $editableTextsJson ?>
-</script>
-  
 </body>
 </html>

@@ -8,8 +8,6 @@ class ViewDataProvider {
     $dataProvider = new DataProvider();
     $texts = $dataProvider->getTexts();
 
-    // var_dump($texts);
-
     $textsTransformed = [
       'phones' => [
         'header' => [],
@@ -18,22 +16,22 @@ class ViewDataProvider {
       'address' => '',
     ];
 
-    $phonesForHeaderRaw = array_filter($texts, function($text) {
-      return str_contains($text['name'], 'Телефон 1') || str_contains($text['name'], 'Телефон 2');
-    });
     $phonesForHeader = array_map(function($phone) {
       return [humanReadablePhoneToTel($phone['text']), $phone['text']];
-    }, $phonesForHeaderRaw);
-    $textsTransformed['phones']['header'] = $phonesForHeader;
+    }, $texts['phones']);
 
-    $phonesForContactsRaw = array_filter($texts, function($text) {
-      return str_contains($text['name_internal'] ?? '', 'phone');
-    });
-    addDerivativePhones($phonesForContactsRaw);
+    addDerivativePhones($texts['phones']);
     $phonesForContacts = array_map(function($phone) {
       return [humanReadablePhoneToTel($phone['text']), $phone['text']];
-    }, $phonesForContactsRaw);
-    $textsTransformed['phones']['contacts'] = $phonesForContacts;
+    }, $texts['phones']);
+
+    $textsTransformed = [
+      'phones' => [
+        'header' => $phonesForHeader,
+        'contacts' => $phonesForContacts,
+      ],
+      'address' => $texts['address']['text'],
+    ];
 
     // var_dump($textsTransformed);
     // die();

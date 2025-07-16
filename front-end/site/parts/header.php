@@ -4,7 +4,7 @@
   <div class="text-with-icon text-with-icon--pin">
     <img class="text-with-icon__icon" src="/front-end/site/assets/img/icons/pin.svg" width="14" height="18">
     <div class="text-with-icon__text-cont text-with-icon--pin__text-cont">
-      <a class="link--no-underline text--small" href="https://yandex.by/maps/29630/minsk-district/house/Zk4YcwBmSUYEQFtpfXRxeXxnYg==/?ll=27.576034%2C53.808047&z=16.62">223056, Минская обл., Минский р-н, Сеницкий с/с, д. 64, оф. 8</a>
+      <a class="link--no-underline text--small" href="https://yandex.by/maps/29630/minsk-district/house/Zk4YcwBmSUYEQFtpfXRxeXxnYg==/?ll=27.576034%2C53.808047&z=16.62"><?= $address ?></a>
     </div>
   </div>
   <span class="header__text">Режим работы: Пн-Пт: 8:30-17:00, вых.: Сб-Вс</span>
