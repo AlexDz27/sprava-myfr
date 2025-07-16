@@ -2,7 +2,8 @@
 
 $siteRoutes = require 'siteRoutes.php';
 $adminRoutes = require 'adminRoutes.php';
-$routes = $siteRoutes + $adminRoutes;
+$apiRoutes = require 'apiRoutes.php';
+$routes = $siteRoutes + $adminRoutes + $apiRoutes;
 
 $uri = explode('?', $_SERVER['REQUEST_URI'])[0];  // explode to respect GET requests
 if ($uri !== '/' && substr($uri, -1) === '/') {  // respect trailing slash, but delete it when doing checking

@@ -13,8 +13,17 @@ class DataProvider {
     return $stmt->fetchAll();
   }
   public function getTextsForAdmin() {
-    $stmt = $this->repository->query("SELECT * FROM texts");
+    $stmtPhones = $this->repository->query("SELECT * FROM texts WHERE name_internal LIKE '%phone%'");
+    $phones = $stmtPhones->fetchAll();
+
+    $stmtAddress = $this->repository->query("SELECT * FROM texts WHERE name = 'Адрес'");
+    $address = $stmtAddress->fetch();
+
+    $texts = [
+      'phones' => $phones,
+      'address' => $address,
+    ];
     
-    return $stmt->fetchAll();
+    return $texts;
   }
 }

@@ -74,3 +74,31 @@ input {
 .editable-info-section {
   margin-bottom: 4rem;
 }
+
+.textarea {
+  width: 27rem;
+  height: 10rem;
+  font-family: inherit;
+  padding: 0.6rem;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.btn--admin {
+  background-color: #FEDE32;
+  font-weight: bold;
+  padding: 9px 0;
+}
+.btn--admin:hover {
+  background-color: #eaca16;
+}
+.btn--admin:active {
+  background-color: #d7ba11;
+}
