@@ -35,4 +35,19 @@ class DataProvider {
     
     return $texts;
   }
+
+  public function getPriceListTexts() {
+    $stmtPriceList = $this->repository->query("SELECT * FROM texts_tech WHERE name_internal = 'current_price_list'");
+    $priceList = $stmtPriceList->fetch();
+
+    $stmtPriceListDateOfUpload = $this->repository->query("SELECT * FROM texts_tech WHERE name_internal = 'current_price_list_date_when_uploaded'");
+    $priceListDateOfUpload = $stmtPriceListDateOfUpload->fetch();
+
+    $priceListTexts = [
+      'priceListFileName' => $priceList['text'],
+      'priceListDateOfUpload' => $priceListDateOfUpload['text'],
+    ];
+
+    return $priceListTexts;
+  }
 }

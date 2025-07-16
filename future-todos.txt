@@ -2,7 +2,7 @@
 - more testing on phones
 - карта. Мб сделать секцию/подсекцию 'View' в админке, и чтоб оно автоматически подставляло "примерный" HTML
 
-- BasePresenter::companyName via db
+- BasePresenter::companyName via db [x]
 
 - НАСТРОИТЬ БЭКАПЫ
 

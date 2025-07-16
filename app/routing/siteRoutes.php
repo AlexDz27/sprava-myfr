@@ -20,6 +20,8 @@ return [
     'title' => 'some asd title',
     'pathToPage' => 'front-end/site/pages/asd.php'
   ]],
+  '/download-price' => [$sitePresenter, 'downloadPriceList', []],
+
   '404' => [$sitePresenter, 'simplePage', [
     'title' => $sitePresenter->companyName. ' | Страница не найдена',
     'extraAssets' => [
