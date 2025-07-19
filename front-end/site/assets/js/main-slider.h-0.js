@@ -192,9 +192,14 @@ class Slider {
   }
 }
 
-const slider = new Slider('track', 'btnPrev', 'btnNext', 'btnPrevMob', 'btnNextMob', 'dots')
+// const slider = new Slider('track', 'btnPrev', 'btnNext', 'btnPrevMob', 'btnNextMob', 'dots')
 
 /* Utilities for Slider */
 function getNonNegative(num) {
   return Math.max(0, num);
 }
+
+
+// SPLIDE
+const splide = new Splide('.splide', {type: 'loop', perPage: 3})
+splide.mount()
