@@ -30,4 +30,10 @@ class AdminPresenter extends BasePresenter {
 
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
+
+  public function manageCategories($pathToPage, $title = 'Панель администратора') {
+    // TODO: editableCats
+
+    require $pathToPage;
+  }
 }

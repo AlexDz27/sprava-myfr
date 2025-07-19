@@ -103,7 +103,7 @@ class Slider {
 
       console.log(`trans: ${this.windowPos} === ${this.initCardsCount}`)
       if (this.windowPos === this.initCardsCount) {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < this.initCardsCount; i++) {
           this.track.firstElementChild.remove()
         }
         this.track.style.transition = 'none'
@@ -172,7 +172,7 @@ class Slider {
 
     if (this.windowPos === this.WINDOW_POS_MAX) {
       console.log(this.track.children.length)
-      if (this.track.children.length >= 10) return  // fix bug: if clicking on last dot, unnecessary cards are created which then could make the slider lag
+      if (this.track.children.length >= this.initCardsCount * 2) return  // fix bug: if clicking on last dot, unnecessary cards are created which then could make the slider lag
       const fragment = document.createDocumentFragment()
       for (const card of this.cards) {
         const clone = card.cloneNode(true)
@@ -184,7 +184,7 @@ class Slider {
     // console.log(this.windowPos, this._windowPos)
     let numberForDot = this.windowPos
     if (this.windowPos > this.WINDOW_POS_MAX) {
-      numberForDot = 2
+      numberForDot = 2  // TODO: do t with this
     }
     const neededDot = this.dots[numberForDot]
     this.dotsCont.querySelector('.slider__dots__dot--active').classList.remove('slider__dots__dot--active')

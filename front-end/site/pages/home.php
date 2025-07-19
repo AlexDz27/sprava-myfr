@@ -38,7 +38,7 @@
           </svg>
         </button>
         <div id="track" class="slider__track">
-          <div class="card" data-card-id="1">
+          <div class="card">
             <div class="card__img-cont">
               <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/kisti/0110-0000-25_2.jpg" alt="Кисти малярные">
             </div>
@@ -51,7 +51,7 @@
             <a class="btn card__btn" href="/catalog#kisti"><b>В КАТАЛОГ</b></a>
           </div>
 
-          <div class="card" data-card-id="2">
+          <div class="card">
             <div class="card__img-cont">
               <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/valiki/0302-22400000_1.jpg" alt="Валики малярные">
             </div>
@@ -64,7 +64,7 @@
             <a class="btn card__btn" href="/catalog#valiki"><b>В КАТАЛОГ</b></a>
           </div>
 
-          <div class="card" data-card-id="3">
+          <div class="card">
             <div class="card__img-cont">
               <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/abraziv/2897-0125-10_1.jpg" alt="Абразивные алмазные материалы и оснастка">
             </div>
@@ -79,7 +79,7 @@
             <a class="btn card__btn" href="/catalog#abraziv"><b>В КАТАЛОГ</b></a>
           </div>
 
-          <div class="card" data-card-id="4">
+          <div class="card">
             <div class="card__img-cont">
               <img class="card__img card__img--down--mob" src="./front-end/site/assets/img/products/nozhi/0890-0000-18_6.jpg" alt="Ножи и лезвия">
             </div>
@@ -91,7 +91,7 @@
             <a class="btn card__btn" href="/catalog#nozhi"><b>В КАТАЛОГ</b></a>
           </div>
 
-          <div class="card card--bad-pr" data-card-id="5">
+          <div class="card card--bad-pr">
             <div class="card__img-cont">
               <img class="card__img card__img--bad" src="./front-end/site/assets/img/products/vspomogat/0990-0600-12_2.jpg" alt="Вспомогательный инструмент">
             </div>
