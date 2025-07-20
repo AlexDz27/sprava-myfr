@@ -12,7 +12,7 @@ class Slider {
     this.initCardsCount = this.cards.length
 
     this._windowPos = 0 // Notion of 'window' represents viewing window for the cards, e.g. [[1, 2, 3], 4, 5,], and it could be [[1, 2], 3, 4, 5] for mobile
-    this.WINDOW_POS_MAX = 2 // FIXME: bad. i understand now that the notion is ruined when started working with dots. I need to rewrite the whole code
+    this.WINDOW_POS_MAX = this.initCardsCount - 3
 
     // FIXME: mb i can do the same as _windowPos kinda..
     this.changeSlideDistance = 407.5 // .slider__track's children grid-auto-columns + column-gap
@@ -87,6 +87,10 @@ class Slider {
       this.btnNextMob.disabled = true
     }
 
+    // create dots based on count of slides and set event listeners
+    for (let i = 4; i <= this.initCardsCount; i++) {
+      this.dotsCont.insertAdjacentHTML('beforeend', '<span class="slider__dots__dot"></span>')
+    }
     for (let i = 0; i < this.dots.length; i++) {
       const dot = this.dots[i]
       dot.onclick = () => {
@@ -182,9 +186,10 @@ class Slider {
     }
 
     // console.log(this.windowPos, this._windowPos)
+    // This is for when clicking on arrows, and not on dots themselves
     let numberForDot = this.windowPos
     if (this.windowPos > this.WINDOW_POS_MAX) {
-      numberForDot = 2  // TODO: do t with this
+      numberForDot = this.initCardsCount - 3  // last dot element
     }
     const neededDot = this.dots[numberForDot]
     this.dotsCont.querySelector('.slider__dots__dot--active').classList.remove('slider__dots__dot--active')
@@ -192,14 +197,9 @@ class Slider {
   }
 }
 
-// const slider = new Slider('track', 'btnPrev', 'btnNext', 'btnPrevMob', 'btnNextMob', 'dots')
+const slider = new Slider('track', 'btnPrev', 'btnNext', 'btnPrevMob', 'btnNextMob', 'dots')
 
 /* Utilities for Slider */
 function getNonNegative(num) {
   return Math.max(0, num);
 }
-
-
-// SPLIDE
-const splide = new Splide('.splide', {type: 'loop', perPage: 3})
-splide.mount()

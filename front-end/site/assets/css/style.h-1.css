@@ -238,8 +238,8 @@ the buttons will not be shown. TODO: maybe i can make it better */
 }
 .slider__dots {
   display: flex;
-  justify-content: space-between;
-  width: 110px;
+  justify-content: center;
+  column-gap: 10px;
   margin: 0 auto;
 }
 .slider__dots--cat {
