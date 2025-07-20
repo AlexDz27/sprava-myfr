@@ -195,6 +195,9 @@ input {
 .btn-slider--mob {
   outline: none;
 }
+.slider {
+  position: relative;
+}
 .slider--cat {
   overflow-x: hidden;
 }
