@@ -87,6 +87,10 @@ class Slider {
       this.btnNextMob.disabled = true
     }
 
+    // create dots based on count of slides and set event listeners
+    for (let i = 4; i <= this.initCardsCount; i++) {
+      this.dotsCont.insertAdjacentHTML('beforeend', '<span class="slider__dots__dot"></span>')
+    }
     for (let i = 0; i < this.dots.length; i++) {
       const dot = this.dots[i]
       dot.onclick = () => {
@@ -182,9 +186,10 @@ class Slider {
     }
 
     // console.log(this.windowPos, this._windowPos)
+    // This is for when clicking on arrows, and not on dots themselves
     let numberForDot = this.windowPos
     if (this.windowPos > this.WINDOW_POS_MAX) {
-      numberForDot = 2
+      numberForDot = this.initCardsCount - 3  // last dot element
     }
     const neededDot = this.dots[numberForDot]
     this.dotsCont.querySelector('.slider__dots__dot--active').classList.remove('slider__dots__dot--active')
