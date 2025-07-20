@@ -56,28 +56,12 @@ class DataUpdater {
       6 => 'upakMal',
       7 => 'upakKrup'
     ];
-    $excelProducts = [
-      // [
-      //   'art' => '',
-      //   'price' => '',
-      //   'size' => '',
-      //   'unit' => '',
-      //   'upakMal' => '',
-      //   'upakKrup' => ''
-      // ],
-    ];
+    $excelProducts = [];
     $spreadsheet = IOFactory::load('app/Data/price-lists/' . $file['name']);
     $activeSheet = $spreadsheet->getActiveSheet();
     $date = str_replace(',', '.', $activeSheet->getCell([1, 1])->getFormattedValue());
     $lastRowNum = $activeSheet->getHighestRow();
     for ($i = 3; $i <= $lastRowNum; $i++) {
-      $row = [];
-      for ($c = 1; $c <= 8; $c++) {
-        $colVal = $activeSheet->getCell([$c, $i])->getFormattedValue();
-        if (is_numeric(@$colVal[0])) {
-          
-        }
-      }
       $colVal = $activeSheet->getCell([1, $i])->getFormattedValue();
       if (is_numeric(@$colVal[0])) {
         $excelProducts[] = [
@@ -92,6 +76,9 @@ class DataUpdater {
     }
     var_dump($excelProducts);
     die();
+
+    $this->repository->exec("UPDATE texts_tech SET text = '{$file['name']}' WHERE name_internal = 'current_price_list'");
+    $this->repository->exec("UPDATE texts_tech SET text = '$date' WHERE name_internal = 'current_price_list_date'");
 
     $resultMessage = [
       'status' => 'OK',
