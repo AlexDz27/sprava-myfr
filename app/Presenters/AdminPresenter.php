@@ -13,10 +13,47 @@ class AdminPresenter extends BasePresenter {
   }
 
   public function home($pathToPage, $title = 'Панель администратора') {
+    $uname = 'aom';
+    $pwd = '';
+    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
+      header('WWW-Authenticate: Basic realm="Restricted Area"');
+      header('HTTP/1.0 401 Unauthorized');
+      echo 'Нужно ввести верные логин и пароль.';
+      exit;
+    }
+
     require $pathToPage;
   }
 
+  public function updatePrice($pathToPage, $title = 'Панель администратора') {
+    $uname = 'aom';
+    $pwd = '';
+    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
+      header('WWW-Authenticate: Basic realm="Restricted Area"');
+      header('HTTP/1.0 401 Unauthorized');
+      echo 'Нужно ввести верные логин и пароль.';
+      exit;
+    }
+
+    require $pathToPage;
+  }
+  public function updatePriceApi() {
+    $dataUpdater = new DataUpdater();
+    $resultMessage = $dataUpdater->updatePrice();
+
+    echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+  }
+
   public function editTexts($pathToPage, $title = 'Панель администратора') {
+    $uname = 'aom';
+    $pwd = '';
+    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
+      header('WWW-Authenticate: Basic realm="Restricted Area"');
+      header('HTTP/1.0 401 Unauthorized');
+      echo 'Нужно ввести верные логин и пароль.';
+      exit;
+    }
+
     $editableTexts = $this->viewDataProvider->getTextsForAdmin();
     extract($editableTexts);
 
@@ -32,6 +69,14 @@ class AdminPresenter extends BasePresenter {
   }
 
   public function manageCategories($pathToPage, $title = 'Панель администратора') {
+    $uname = 'aom';
+    $pwd = '';
+    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
+      header('WWW-Authenticate: Basic realm="Restricted Area"');
+      header('HTTP/1.0 401 Unauthorized');
+      echo 'Нужно ввести верные логин и пароль.';
+      exit;
+    }
     // TODO: editableCats
 
     require $pathToPage;

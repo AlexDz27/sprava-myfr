@@ -95,7 +95,10 @@ input {
 .btn--admin {
   background-color: #FEDE32;
   font-weight: bold;
-  padding: 9px 0;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 1em;
+  padding-right: 1em;
 }
 .btn--admin:hover {
   background-color: #eaca16;

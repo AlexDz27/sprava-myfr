@@ -1,5 +1,7 @@
 <?php
 
+const ERR_NO_FILE_UPLOADED = 4;
+
 class DataUpdater {
   // TODO: repository -> separate file. But there might arise problems with 'same classname declared twice' when using require. Maybe finally use proper classes autoloading?
   public $repository;
@@ -7,6 +9,46 @@ class DataUpdater {
 
   public function __construct() {
     $this->repository = require 'app/Data/pdo.php';
+  }
+
+  public function updatePrice() {
+    $resultMessage = [
+      'status' => null,
+      'text' => null,
+    ];
+
+    $file = $_FILES['file'];
+    if ($file['error'] === ERR_NO_FILE_UPLOADED) {
+      $resultMessage = [
+        'status' => 'ERR',
+        'text' => 'Ошибка: файл не был выбран',
+      ];
+      return $resultMessage;
+    }
+    if ($file['type'] !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+      $resultMessage = [
+        'status' => 'ERR',
+        'text' => 'Ошибка: файл не является Excel-файлом.',
+      ];
+      return $resultMessage;
+    }
+
+    if (!move_uploaded_file($file['tmp_name'], 'app/Data/price-lists/' . $file['name'])) {
+      $resultMessage = [
+        'status' => 'ERR',
+        'text' => 'Ошибка при загрузке файла. Скорее всего, что-то не так с файлом.',
+      ];
+      return $resultMessage;
+    }
+
+    // TODO: actually change
+
+    $resultMessage = [
+      'status' => 'OK',
+      'text' => 'Прайс-лист был успешно обновлён!',
+    ];
+
+    return $resultMessage;
   }
 
   public function editTexts($editedTexts) {
