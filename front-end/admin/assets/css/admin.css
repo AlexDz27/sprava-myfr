@@ -106,3 +106,6 @@ input {
 .btn--admin:active {
   background-color: #d7ba11;
 }
+.btn--admin--loading {
+  background-color: #eaca16;
+}

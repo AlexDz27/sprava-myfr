@@ -1,5 +1,9 @@
 <?php
 
+require 'vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 const ERR_NO_FILE_UPLOADED = 4;
 
 class DataUpdater {
@@ -42,6 +46,52 @@ class DataUpdater {
     }
 
     // TODO: actually change
+    $map = [
+      0 => 'art',
+      1 => 'model',
+      2 => 'variant',
+      3 => 'some_math',
+      4 => 'price',
+      5 => 'unit',
+      6 => 'upakMal',
+      7 => 'upakKrup'
+    ];
+    $excelProducts = [
+      // [
+      //   'art' => '',
+      //   'price' => '',
+      //   'size' => '',
+      //   'unit' => '',
+      //   'upakMal' => '',
+      //   'upakKrup' => ''
+      // ],
+    ];
+    $spreadsheet = IOFactory::load('app/Data/price-lists/' . $file['name']);
+    $activeSheet = $spreadsheet->getActiveSheet();
+    $date = str_replace(',', '.', $activeSheet->getCell([1, 1])->getFormattedValue());
+    $lastRowNum = $activeSheet->getHighestRow();
+    for ($i = 3; $i <= $lastRowNum; $i++) {
+      $row = [];
+      for ($c = 1; $c <= 8; $c++) {
+        $colVal = $activeSheet->getCell([$c, $i])->getFormattedValue();
+        if (is_numeric(@$colVal[0])) {
+          
+        }
+      }
+      $colVal = $activeSheet->getCell([1, $i])->getFormattedValue();
+      if (is_numeric(@$colVal[0])) {
+        $excelProducts[] = [
+          'art' => $activeSheet->getCell([1, $i])->getFormattedValue(),
+          'variant' => $activeSheet->getCell([3, $i])->getFormattedValue(),
+          'price' => $activeSheet->getCell([5, $i])->getFormattedValue(),
+          'unit' => $activeSheet->getCell([6, $i])->getFormattedValue(),
+          'upakMal' => $activeSheet->getCell([7, $i])->getFormattedValue(),
+          'upakKrup' => $activeSheet->getCell([8, $i])->getFormattedValue(),
+        ];
+      }
+    }
+    var_dump($excelProducts);
+    die();
 
     $resultMessage = [
       'status' => 'OK',
