@@ -12,7 +12,7 @@ class Slider {
     this.initCardsCount = this.cards.length
 
     this._windowPos = 0 // Notion of 'window' represents viewing window for the cards, e.g. [[1, 2, 3], 4, 5,], and it could be [[1, 2], 3, 4, 5] for mobile
-    this.WINDOW_POS_MAX = 2 // FIXME: bad. i understand now that the notion is ruined when started working with dots. I need to rewrite the whole code
+    this.WINDOW_POS_MAX = this.initCardsCount - 3 // FIXME: fixed now? bad. i understand now that the notion is ruined when started working with dots. I need to rewrite the whole code
 
     // FIXME: mb i can do the same as _windowPos kinda..
     this.changeSlideDistance = 407.5 // .slider__track's children grid-auto-columns + column-gap
@@ -107,7 +107,7 @@ class Slider {
 
       console.log(`trans: ${this.windowPos} === ${this.initCardsCount}`)
       if (this.windowPos === this.initCardsCount) {
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < this.initCardsCount; i++) {
           this.track.firstElementChild.remove()
         }
         this.track.style.transition = 'none'

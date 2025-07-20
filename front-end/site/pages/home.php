@@ -91,7 +91,7 @@
             <a class="btn card__btn" href="/catalog#nozhi"><b>В КАТАЛОГ</b></a>
           </div>
 
-          <!-- <div class="card card--bad-pr">
+          <div class="card card--bad-pr">
             <div class="card__img-cont">
               <img class="card__img card__img--bad" src="./front-end/site/assets/img/products/vspomogat/0990-0600-12_2.jpg" alt="Вспомогательный инструмент">
             </div>
@@ -103,21 +103,7 @@
               <li class="text--larger"><span class="card__list__item-text">Прочий вспомогательный инструмент</span></li>
             </ul>
             <a class="btn card__btn" href="/catalog#vspomogat"><b>В КАТАЛОГ</b></a>
-          </div> -->
-
-          <!-- <div class="card card--bad-pr">
-            <div class="card__img-cont">
-              <img class="card__img card__img--bad" src="./front-end/site/assets/img/products/vspomogat/0990-0600-12_2.jpg" alt="Вспомогательный инструмент">
-            </div>
-            <h3 class="card__title card__title--w-2nd-line">2Вспомогательный <span class="card__title__2nd-line card__title__2nd-line--abraziv">инструмент</span></h3>
-            <ul class="card__list card__list--w-2nd-line">
-              <li class="text--larger"><span class="card__list__item-text">Шпатели</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Миксеры для смесей и краски</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Пистолеты для пены и герметиков</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Прочий вспомогательный инструмент</span></li>
-            </ul>
-            <a class="btn card__btn" href="/catalog#vspomogat"><b>В КАТАЛОГ</b></a>
-          </div> -->
+          </div>
         </div>
         <button id="btnNext" class="btn-slider slider__btn-slider btn-slider--next slider__btn-slider--next" type="button">
           <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
