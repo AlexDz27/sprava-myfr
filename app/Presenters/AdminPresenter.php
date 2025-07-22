@@ -83,8 +83,21 @@ class AdminPresenter extends BasePresenter {
     require $pathToPage;
   }
   public function manageCategoriesApi() {
-    var_dump($_POST);
-    var_dump($_FILES);
-    die();
+    $incoming = file_get_contents('php://input');
+    $decoded = json_decode($incoming, true);
+
+    $dataUpdater = new DataUpdater();
+    $resultMessage = $dataUpdater->manageCategories($decoded);
+
+    echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+    // var_dump($decoded);
+    // die();
+    
+    // $f = $decoded[1];
+    // $n = $f['imgFileName'];
+    // $b = $f['imgBase64'];
+    // $bB = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $b));
+    // file_put_contents('app/Data/test/' . $n, $bB);
   }
 }

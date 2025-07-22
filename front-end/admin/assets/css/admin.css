@@ -185,6 +185,9 @@ input[type="radio"] {
 .category-name {  /* class should be applied to <h3> */
   padding-bottom: .75em;
 }
+.category-name--hidden {
+  opacity: .4;
+}
 .js-category-name {
   cursor: pointer;
 }

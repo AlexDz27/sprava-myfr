@@ -152,4 +152,34 @@ class DataUpdater {
 
     return $resultMessage;
   }
+
+  public function manageCategories($managedCategories) {
+    try {
+      foreach ($managedCategories as $c) {
+        // var_dump($c);
+        // die();
+        $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}' WHERE id = {$c['id']}");
+
+        if (isset($c['img'])) {
+          $this->repository->exec("UPDATE categories SET img = '{$c['img']}' WHERE id = {$c['id']}");
+          $b64 = $c['imgBase64'];
+          $bB = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $b64));
+          file_put_contents($c['img'], $bB);
+        }
+      }
+    } catch (Exception $e) {
+      $resultMessage = [
+        'status' => 'Err',
+        'text' => 'Возникла ошибка базы данных при обновлении текстов. ' . $this->contactsIfError,
+      ];
+      return $resultMessage;
+    }
+
+    $resultMessage = [
+      'status' => 'OK',
+      'text' => 'Категории были обновлены успешно'
+    ];
+
+    return $resultMessage;
+  }
 }
