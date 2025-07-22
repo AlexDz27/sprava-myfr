@@ -16,7 +16,7 @@ return [
     'title' => 'Панель администратора - редактировать тексты',
     'pathToPage' => 'front-end/admin/pages/edit-texts.php'
   ]],
-  '/admin-9kasu/manage-categories' => [$adminPresenter, 'editTexts', [
+  '/admin-9kasu/manage-categories' => [$adminPresenter, 'manageCategories', [
     'title' => 'Панель администратора - управлять категориями',
     'pathToPage' => 'front-end/admin/pages/manage-categories.php'
   ]],

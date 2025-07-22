@@ -77,8 +77,14 @@ class AdminPresenter extends BasePresenter {
       echo 'Нужно ввести верные логин и пароль.';
       exit;
     }
-    // TODO: editableCats
+    
+    $categories = $this->viewDataProvider->getCategories();
 
     require $pathToPage;
+  }
+  public function manageCategoriesApi() {
+    var_dump($_POST);
+    var_dump($_FILES);
+    die();
   }
 }

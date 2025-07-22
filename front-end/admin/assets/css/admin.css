@@ -22,16 +22,38 @@ a {
   color: var(--link-color);
 }
 
+img {
+  width: 100%;
+}
+
 input {
   font-family: inherit;
   font-size: 0.8em;
   padding: 0.4em;
   min-width: 300px;
 }
+input[type="radio"] {
+  min-width: initial;
+}
 
 /** STYLES **/
 .tac {
   text-align: center;
+}
+
+.db {
+  display: block;
+}
+
+.js-dn {
+  display: none;
+}
+.js-db {
+  display: block;
+}
+
+.mb-1em {
+  margin-bottom: 1em;
 }
 
 /** COMPONENTS **/
@@ -72,8 +94,41 @@ input {
   text-decoration: underline;
 }
 
-.editable-info-section {
+.editable-datum {
   margin-bottom: 4rem;
+}
+.editable-datum__name-and-btns {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  margin-bottom: 1.5em;
+}
+.editable-datum__name {
+  margin-bottom: 0;
+}
+.editable-datum__btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 14%;
+  position: relative;
+  top: 3px;
+}
+.editable-datum__imgs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 70px;
+}
+.img-holder {
+  max-width: 300px;
+  height: 300px;
+}
+.img-holder--smaller {
+  height: 250px;
+}
+.img-holder img {
+  object-fit: contain;
+  height: 100%;
 }
 
 .textarea {
@@ -84,12 +139,24 @@ input {
   box-sizing: border-box;
   font-size: 0.9em;
 }
+.textarea--full {
+  width: 100%;
+  height: 20rem;
+}
+.textarea--w-code {
+  font-family: monospace;
+}
 
 .btn {
   background-color: transparent;
   border: none;
   cursor: pointer;
   font-size: inherit;
+  display: inline-block;
+}
+.btn-w-icon__svg {
+  position: relative;
+  top: 2px;
 }
 
 .btn--admin {
@@ -108,4 +175,33 @@ input {
 }
 .btn--admin--loading {
   background-color: #eaca16;
+}
+
+.attention {
+  background-color: #e1e94a;
+  padding: 1em;
+}
+
+.category-name {  /* class should be applied to <h3> */
+  padding-bottom: .75em;
+}
+.js-category-name {
+  cursor: pointer;
+}
+.category-name__num {
+  opacity: .4;
+}
+
+/** BOOTSTRAP-LIKE COMPONENTS **/
+.bs-like-btn {
+  padding: 6px 12px;
+}
+.bs-like-btn--warning {
+  background-color: #ffc107;
+}
+.bs-like-btn--info {
+  background-color: #0dcaf0;
+}
+.bs-like-btn--danger {
+  background-color: #dc3545;
 }

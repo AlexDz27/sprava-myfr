@@ -45,7 +45,6 @@ class DataUpdater {
       return $resultMessage;
     }
 
-    // TODO: actually change
     $map = [
       0 => 'art',
       1 => 'model',
@@ -56,6 +55,9 @@ class DataUpdater {
       6 => 'upakMal',
       7 => 'upakKrup'
     ];
+    $msgIfDiff = null;
+    $solutionIfDiff = null;
+    $fileArts = [];
     $excelProducts = [];
     $spreadsheet = IOFactory::load('app/Data/price-lists/' . $file['name']);
     $activeSheet = $spreadsheet->getActiveSheet();
@@ -64,6 +66,7 @@ class DataUpdater {
     for ($i = 3; $i <= $lastRowNum; $i++) {
       $colVal = $activeSheet->getCell([1, $i])->getFormattedValue();
       if (is_numeric(@$colVal[0])) {
+        $fileArts[] = $activeSheet->getCell([1, $i])->getFormattedValue();
         $excelProducts[] = [
           'art' => $activeSheet->getCell([1, $i])->getFormattedValue(),
           'variant' => $activeSheet->getCell([3, $i])->getFormattedValue(),
@@ -74,17 +77,53 @@ class DataUpdater {
         ];
       }
     }
-    var_dump($excelProducts);
-    die();
+    // var_dump($excelProducts);
+    $stmtArts = $this->repository->query("SELECT art FROM products");
+    $dbArts = $stmtArts->fetchAll(PDO::FETCH_COLUMN);
+    $shouldSendDiffProblem = false;
+    // var_dump($fileArts);
+    if ($diff = array_diff($fileArts, $dbArts)) {
+      $UNNEEDED_NOZH_ART = '0890-0001-18';
+      $UNNEEDED_SHETKA_ART = '1004-0000-01';
+      if (array_diff($diff, [$UNNEEDED_NOZH_ART, $UNNEEDED_SHETKA_ART])) {  // if there are more art diffs, not just the unnecessary ones
+        $shouldSendDiffProblem = true;
+        $arrKey = array_search($UNNEEDED_NOZH_ART, $diff);
+        if ($arrKey !== false) $diff[$arrKey] = $diff[$arrKey] . ' (Павел говорил, что этот нож на сайте показывать не надо)';
+        $arrKey2 = array_search($UNNEEDED_SHETKA_ART, $diff);
+        if ($arrKey2 !== false) $diff[$arrKey2] = $diff[$arrKey2] . ' (Павел говорил, что эту щетку на сайте показывать не надо)';
+        $msgIfDiff = '<b>Внимание:</b> обнаружена неконсистентность (несогласованность данных) между товарами из файла прайс-листа и товарами на сайте. Товары со следующими артикулами есть в файле, но отсутствуют на сайте:';
+        $solutionIfDiff = 'Скорее всего, в этой ситуации Вы хотите создать эти товары в админ. панели (кроме тех, о которых говорил Павел), чтобы устранить неконсистентность.';
+      }
+    }
+    // var_dump($diff);
+    // var_dump($msgIfDiff);
+    // die();
+
+    foreach ($excelProducts as $p) {
+      $this->repository->exec("UPDATE products SET price = '{$p['price']}', variant = '{$p['variant']}', unit = '{$p['unit']}', upakMal = '{$p['upakMal']}', upakKrup = '{$p['upakMal']}' WHERE art = '{$p['art']}'");
+    }
 
     $this->repository->exec("UPDATE texts_tech SET text = '{$file['name']}' WHERE name_internal = 'current_price_list'");
     $this->repository->exec("UPDATE texts_tech SET text = '$date' WHERE name_internal = 'current_price_list_date'");
 
-    $resultMessage = [
-      'status' => 'OK',
-      'text' => 'Прайс-лист был успешно обновлён!',
-    ];
+    if ($shouldSendDiffProblem) {
+      $resultMessage = [
+        'status' => 'OK',
+        'text' => 'Прайс-лист был успешно обновлён!',
+        'diffProblem' => [
+          'msgIfDiff' => $msgIfDiff,
+          'diff' => $diff,
+          'solutionIfDiff' => $solutionIfDiff,
+        ],
+      ];
+    } else {
+      $resultMessage = [
+        'status' => 'OK',
+        'text' => 'Прайс-лист был успешно обновлён!',
+      ];
+    }
 
+    // TODO: rem var_dmps
     return $resultMessage;
   }
 

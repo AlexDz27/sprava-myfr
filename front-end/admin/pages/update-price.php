@@ -16,7 +16,7 @@
 
 <main class="main cont">
   <form action="/admin-9kasu/api/edit-texts" method="POST">
-    <section class="editable-info-section">
+    <section class="editable-datum">
       <p>
         1. Выберите файл прайс-листа <span style="font-size: 25px;">👉🏻</span> &nbsp;
         <input name="file" type="file" id="file">
@@ -25,6 +25,13 @@
 
     <button class="btn btn--admin" type="submit">2. Обновить прайс-лист на сайте</button>
   </form>
+
+  <br>
+  <div id="attention" class="attention" style="display: none;">
+    <span id="attentionFirstText"></span>
+    <ul style="font-size: 85%;" id="attentionDiff"></ul>
+    <span id="attentionLastText"></span>
+  </div>
 </main>
 
 </body>

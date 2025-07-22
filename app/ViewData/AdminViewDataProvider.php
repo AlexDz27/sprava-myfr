@@ -7,4 +7,11 @@ class AdminViewDataProvider {
 
     return $texts;
   }
+
+  public function getCategories() {
+    $dataProvider = new DataProvider();
+    $categories = $dataProvider->getCategories();
+
+    return $categories;
+  }
 }

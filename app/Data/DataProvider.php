@@ -50,4 +50,11 @@ class DataProvider {
 
     return $priceListTexts;
   }
+
+  public function getCategories() {
+    $stmtCategories = $this->repository->query("SELECT * FROM categories");
+    $categories = $stmtCategories->fetchAll();
+
+    return $categories;
+  }
 }
