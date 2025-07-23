@@ -29,6 +29,9 @@ class SitePresenter extends BasePresenter {
   public function catalog($pathToPage, $title = 'Some title', $extraAssets = [], $bodyClass = '') {
     $viewDataProvider = new ViewDataProvider();
     $categories = $viewDataProvider->getCategoriesForCatalog();
+    $products = $viewDataProvider->getProductsForCatalog();
+    // var_dump($products);
+    // die();
 
     extract($this->texts);
     require $pathToPage;

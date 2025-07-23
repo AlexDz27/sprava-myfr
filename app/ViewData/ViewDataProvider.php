@@ -74,4 +74,20 @@ class ViewDataProvider {
 
     return $categoriesTransformed;
   }
+
+  public function getProductsForCatalog() {
+    $dataProvider = new DataProvider();
+    $products = $dataProvider->getProductsForCatalog();
+
+    $productsTransformed = [];
+    // TODO: где-то в форычыче сделать логику для слайдов. брать по 16, пока я не смогу этого делать)
+    foreach ($products as $p) {
+      $cat = $p['cat_name_tech'];
+      if (!isset($productsTransformed[$cat])) $productsTransformed[$cat] = [];
+      unset($p['cat_name_tech']);
+      $productsTransformed[$cat][] = $p;
+    }
+
+    return $productsTransformed;
+  }
 }

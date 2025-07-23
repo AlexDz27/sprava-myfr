@@ -19,7 +19,7 @@ return [
   '/catalog' => [$sitePresenter, 'catalog', [
     'title' => $sitePresenter->companyName. ' | Каталог',
     'extraAssets' => [
-      // '<script src="/front-end/site/assets/js/slider-2.h-2.js" defer></script>',
+      '<script src="/front-end/site/assets/js/slider-2.h-2.js" defer></script>',
     ],
     'bodyClass' => 'catalog',
     'pathToPage' => 'front-end/site/pages/catalog.php'

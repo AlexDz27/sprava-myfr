@@ -69,4 +69,11 @@ class DataProvider {
 
     return $categories;
   }
+
+  public function getProductsForCatalog() {
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, c.name_tech AS cat_name_tech FROM products p JOIN categories c ON category_id = c.id WHERE p.hidden = 0");
+    $products = $stmtProducts->fetchAll();
+
+    return $products;
+  }
 }
