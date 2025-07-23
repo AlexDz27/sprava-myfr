@@ -61,7 +61,8 @@
               <div>
                 <p style="font-size: .8em;">Текущая:</p>
                 <div class="img-holder">
-                  <img src="/<?= $c['img'] ?>">
+                  <!-- first char of $c['img'] should be slash / -->
+                  <img src="<?= $c['img'] ?>">
                 </div>
               </div>
               <div>
