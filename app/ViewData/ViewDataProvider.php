@@ -59,4 +59,19 @@ class ViewDataProvider {
 
     return $categoriesTransformed;
   }
+  public function getCategoriesForCatalog() {
+    $dataProvider = new DataProvider();
+    $categories = $dataProvider->getCategoriesForCatalog();
+
+    $categoriesTransformed = [];
+    foreach ($categories as $c) {
+      if ($c['name_view']) {
+        $c['name_view'] = explode("\n", $c['name_view']);
+      }
+
+      $categoriesTransformed[] = $c;
+    }
+
+    return $categoriesTransformed;
+  }
 }

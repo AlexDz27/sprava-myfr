@@ -30,17 +30,17 @@
   <div class="cont">
     <div id="qs" class="qs__cont">
       <?php for ($i = 0; $i < count($categories); $i++): $c = $categories[$i]; ?>
-        <a href="#<?= $c['name_tech'] ?>" id="<?= $c['name_tech'] ?>" class="q <?= $i == 0 ? 'q--active' : '' ?>" >Кисти малярные</a>
+        <a href="#<?= $c['name_tech'] ?>" id="<?= $c['name_tech'] ?>" class="q <?= $i == 0 ? 'q--active' : '' ?> <?= $c['name_view'] ? 'q--with-second-line' : '' ?>" >
+          <?php if ($c['name_view']): ?>
+            <span class="q__text--with-second-line"><?= $c['name_view'][0] ?><span class="card__title__2nd-line"> <?= $c['name_view'][1] ?></span></span>
+          <?php else: ?>
+            <?= $c['name'] ?>
+          <?php endif ?>
+        </a>
       <?php endfor ?>
-
-      <a href="#kisti" id="kisti" class="q q--active" >Кисти малярные</a>
-      <a href="#valiki" id="valiki" class="q" >Валики и ролики</a>
-      <a href="#abraziv" id="abraziv" class="q q--with-second-line" ><span class="q__text--with-second-line">Абразивные алмазные<span class="card__title__2nd-line"> материалы и оснастка</span></span></a>
-      <a href="#nozhi" id="nozhi" class="q" >Ножи и лезвия</a>
-      <a href="#vspomogat" id="vspomogat" class="q q--with-second-line" ><span class="q__text--with-second-line">Вспомогательный<span class="card__title__2nd-line"> инструмент</span></span></a>
     </div>
 
-    <h2 id="titleSection" class="title-section title-section--mob">Кисти малярные</h2>
+    <h2 id="titleSection" class="title-section title-section--mob"><?= $categories[0]['name'] ?></h2>
 
     <!-- k Slider here -->
   </div>
