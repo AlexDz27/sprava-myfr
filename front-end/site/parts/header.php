@@ -1,4 +1,4 @@
-<body>
+<body class="<?= $bodyClass ?? '' ?>">
 
 <header class="header cont">
   <div class="text-with-icon text-with-icon--pin">

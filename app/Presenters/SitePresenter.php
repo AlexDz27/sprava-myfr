@@ -18,6 +18,22 @@ class SitePresenter extends BasePresenter {
     require $pathToPage;
   }
 
+  public function home($pathToPage, $title = 'Some title', $extraAssets = []) {
+    $viewDataProvider = new ViewDataProvider();
+    $categories = $viewDataProvider->getCategoriesForHome();
+
+    extract($this->texts);
+    require $pathToPage;
+  }
+
+  public function catalog($pathToPage, $title = 'Some title', $extraAssets = [], $bodyClass = '') {
+    $dataProvider = new DataProvider();
+    $categories = $dataProvider->getCategoriesForCatalog();
+
+    extract($this->texts);
+    require $pathToPage;
+  }
+
   public function downloadPriceList() {
     $dataProvider = new DataProvider();
     $priceListTexts = $dataProvider->getPriceListTexts();

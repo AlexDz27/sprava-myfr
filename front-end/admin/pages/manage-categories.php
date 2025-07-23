@@ -52,8 +52,12 @@
             <label style="font-size: .8em;">Да <input type="radio" name="hide-<?= $c['id'] ?>" value="1"></label>
           </p>
           <label class="db mb-1em">
-            <p>Код названия и описания на главной странице в слайдере:</p>
+            <p>Описание на главной странице в слайдере:</p>
             <textarea class="textarea textarea--full textarea--w-code" name="description"><?= $c['description'] ?></textarea>
+          </label>
+          <label class="db mb-1em">
+            <p>Перенос строк в названии категории (если нужно):</p>
+            <textarea class="textarea textarea--small textarea--w-code" name="name_view"><?= $c['name_view'] ?></textarea>
           </label>
           <div class="mb-1em">
             Поменять картинку:

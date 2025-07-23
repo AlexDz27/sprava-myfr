@@ -57,4 +57,16 @@ class DataProvider {
 
     return $categories;
   }
+  public function getCategoriesForHome() {
+    $stmtCategories = $this->repository->query("SELECT id, name, description, img, name_tech, name_view FROM categories WHERE hidden = 0");
+    $categories = $stmtCategories->fetchAll();
+
+    return $categories;
+  }
+  public function getCategoriesForCatalog() {
+    $stmtCategories = $this->repository->query("SELECT id, name, name_tech FROM categories WHERE hidden = 0");
+    $categories = $stmtCategories->fetchAll();
+
+    return $categories;
+  }
 }

@@ -38,72 +38,27 @@
           </svg>
         </button>
         <div id="track" class="slider__track">
-          <div class="card">
-            <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="/front-end/site/assets/img/products/kisti/0110-0000-25_2.jpg" alt="Кисти малярные">
-            </div>
-            <h3 class="card__title">Кисти малярные</h3>
-            <ul class="card__list">
-              <li class="text--larger"><span class="card__list__item-text">Кисти плоские (флейцевые)</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Кисти лавковец (макловицы)</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Кисти радиаторные</span></li>
-            </ul>
-            <a class="btn card__btn" href="/catalog#kisti"><b>В КАТАЛОГ</b></a>
-          </div>
+          <!-- TODO: last (vspom) had class 'card--bad-pr'. Do i rly need it ? I bez nego norm na samom dele, proveril -->
+          <?php foreach ($categories as $c): ?>
+            <div class="card">
+              <div class="card__img-cont">
+                <img class="card__img card__img--down--mob" src="<?= $c['img'] ?>" alt="<?= $c['name'] ?>">
+              </div>
 
-          <div class="card">
-            <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="/front-end/site/assets/img/products/valiki/0302-22400000_1.jpg" alt="Валики малярные">
-            </div>
-            <h3 class="card__title">Валики малярные</h3>
-            <ul class="card__list">
-              <li class="text--larger"><span class="card__list__item-text">Ролики малярные (запаски, шубки)</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Ручки для роликов (запасок)</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Валики малярные</span></li>
-            </ul>
-            <a class="btn card__btn" href="/catalog#valiki"><b>В КАТАЛОГ</b></a>
-          </div>
+              <?php if ($c['name_view']): ?>
+                <h3 class="card__title card__title--w-2nd-line"><?= $c['name_view'][0] ?> <span class="card__title__2nd-line card__title__2nd-line--abraziv"><?= $c['name_view'][1] ?></span></h3>
+              <?php else: ?>
+                <h3 class="card__title"><?= $c['name'] ?></h3>
+              <?php endif ?>
 
-          <div class="card">
-            <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="/front-end/site/assets/img/products/abraziv/2897-0125-10_1.jpg" alt="Абразивные алмазные материалы и оснастка">
+              <ul class="card__list">
+                <?php foreach ($c['description'] as $d): ?>
+                  <li class="text--larger"><span class="card__list__item-text"><?= $d ?></span></li>
+                <?php endforeach ?>
+              </ul>
+              <a class="btn card__btn" href="/catalog#<?= $c['name_tech'] ?>"><b>В КАТАЛОГ</b></a>
             </div>
-            <h3 class="card__title card__title--w-2nd-line">Абразивные алмазные <span class="card__title__2nd-line card__title__2nd-line--abraziv">материалы и оснастка</span></h3>
-            <ul class="card__list card__list--w-2nd-line">
-              <li class="text--larger"><span class="card__list__item-text">Отрезные круги</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Алмазные диски</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Лепестковые круги</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Насадки</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Кордщетки</span></li>
-            </ul>
-            <a class="btn card__btn" href="/catalog#abraziv"><b>В КАТАЛОГ</b></a>
-          </div>
-
-          <div class="card">
-            <div class="card__img-cont">
-              <img class="card__img card__img--down--mob" src="/front-end/site/assets/img/products/nozhi/0890-0000-18_6.jpg" alt="Ножи и лезвия">
-            </div>
-            <h3 class="card__title">Ножи и лезвия</h3>
-            <ul class="card__list">
-              <li class="text--larger"><span class="card__list__item-text">Лезвия запасные для ножей</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Ножи обойные</span></li>
-            </ul>
-            <a class="btn card__btn" href="/catalog#nozhi"><b>В КАТАЛОГ</b></a>
-          </div>
-
-          <div class="card card--bad-pr">
-            <div class="card__img-cont">
-              <img class="card__img card__img--bad" src="/front-end/site/assets/img/products/vspomogat/0990-0600-12_2.jpg" alt="Вспомогательный инструмент">
-            </div>
-            <h3 class="card__title card__title--w-2nd-line">Вспомогательный <span class="card__title__2nd-line card__title__2nd-line--abraziv">инструмент</span></h3>
-            <ul class="card__list card__list--w-2nd-line">
-              <li class="text--larger"><span class="card__list__item-text">Шпатели</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Миксеры для смесей и краски</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Пистолеты для пены и герметиков</span></li>
-              <li class="text--larger"><span class="card__list__item-text">Прочий вспомогательный инструмент</span></li>
-            </ul>
-            <a class="btn card__btn" href="/catalog#vspomogat"><b>В КАТАЛОГ</b></a>
-          </div>
+          <?php endforeach ?>
         </div>
         <button id="btnNext" class="btn-slider slider__btn-slider btn-slider--next slider__btn-slider--next" type="button">
           <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">

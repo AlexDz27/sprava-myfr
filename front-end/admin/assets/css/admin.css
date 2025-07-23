@@ -141,7 +141,11 @@ input[type="radio"] {
 }
 .textarea--full {
   width: 100%;
-  height: 20rem;
+  height: 11.5rem;
+}
+.textarea--small {
+  width: 18rem;
+  height: 5rem;
 }
 .textarea--w-code {
   font-family: monospace;

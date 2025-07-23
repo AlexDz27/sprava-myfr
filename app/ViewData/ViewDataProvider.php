@@ -38,4 +38,25 @@ class ViewDataProvider {
 
     return $textsTransformed;
   }
+
+  public function getCategoriesForHome() {
+    $dataProvider = new DataProvider();
+    $categories = $dataProvider->getCategoriesForHome();
+
+    $categoriesTransformed = [];
+    foreach ($categories as $c) {
+      $c['description'] = explode("\n", $c['description']);
+      foreach ($c['description'] as &$i) {
+        $i = substr($i, 2);
+      }
+
+      if ($c['name_view']) {
+        $c['name_view'] = explode("\n", $c['name_view']);
+      }
+
+      $categoriesTransformed[] = $c;
+    }
+
+    return $categoriesTransformed;
+  }
 }
