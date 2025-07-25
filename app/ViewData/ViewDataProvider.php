@@ -80,14 +80,26 @@ class ViewDataProvider {
     $products = $dataProvider->getProductsForCatalog();
 
     $productsTransformed = [];
-    // TODO: где-то в форычыче сделать логику для слайдов. брать по 16, пока я не смогу этого делать)
+    $productsCatSlidesCount = [];
+    $iSlides = 0;
     foreach ($products as $p) {
       $cat = $p['cat_name_tech'];
-      if (!isset($productsTransformed[$cat])) $productsTransformed[$cat] = [];
+      if (!isset($productsTransformed[$cat])) {
+        $iSlides = 0;
+        $productsTransformed[$cat] = [];
+      }
+
       unset($p['cat_name_tech']);
       $productsTransformed[$cat][] = $p;
+      
+      $iSlides++;
+      $productsCatSlidesCount[$cat] = $iSlides;
     }
 
-    return $productsTransformed;
+    foreach ($productsCatSlidesCount as &$slidesCount) {
+      $slidesCount = ceil($slidesCount / 16);
+    }
+
+    return [$productsTransformed, $productsCatSlidesCount];
   }
 }

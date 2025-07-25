@@ -29,7 +29,9 @@ class SitePresenter extends BasePresenter {
   public function catalog($pathToPage, $title = 'Some title', $extraAssets = [], $bodyClass = '') {
     $viewDataProvider = new ViewDataProvider();
     $categories = $viewDataProvider->getCategoriesForCatalog();
-    $products = $viewDataProvider->getProductsForCatalog();
+    $viewData = $viewDataProvider->getProductsForCatalog();
+    $products = $viewData[0];
+    $productsCatSlidesCount = $viewData[1];
     // var_dump($products);
     // die();
 
