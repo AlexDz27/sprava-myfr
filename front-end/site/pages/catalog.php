@@ -5,6 +5,16 @@
 // var_dump($productsCatSlidesCount);
 // die();
 
+// TODO: test for exact required number - 32
+for ($s = 0; $s <= 1; $s++) {
+  for ($i = 0; $i <= 15; $i++) {
+    echo '<div>' . $i . '</div>';
+  }
+}
+
+
+die();
+
 ?>
 
 <?php require 'front-end/site/parts/head.php' ?>
@@ -140,7 +150,6 @@
   </div>
 </section>
 
-<!-- todo: там будет что-то уникальное?: только тот класс для второй кисти -->
  <!-- TODO: доты (php);  -->
 <!-- TODO: LINKS EVERYWHERE WHERE Подробнее -->  
 <?php foreach ($productsCatSlidesCount as $cat => $slidesCount): ?>
@@ -149,7 +158,7 @@
       <div class="t-list <?= $s > 1 ? 't-list--no-stretch' : '' ?>">
         <div class="t-list__ts">
           <?php $count = count($products[$cat]); ?>
-          <?php for ($i = 0; $i <= 15; $i++): $product = $products[$cat][$i]; ?>
+          <?php for ($i = 0 * $s * 15; $i <= 15 * $s * 1; $i++): $product = $products[$cat][$i]; ?>
             <div class="t <?= $product['isHit'] ? 't--hit' : '' ?>">
               <p class="t__iz"><?= $i + 1 ?> из <?= $count ?></p>
               <div class="t__body">
