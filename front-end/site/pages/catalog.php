@@ -3,18 +3,22 @@
 // TODO: d
 // var_dump($products);
 // var_dump($productsCatSlidesCount);
+// var_dump(count($products['valiki']));
 // die();
 
-// TODO: test for exact required number - 32
-for ($s = 0; $s <= 1; $s++) {
-  for ($i = 0; $i <= 15; $i++) {
-    echo '<div>' . $i . '</div>';
-  }
-}
+// for ($s = 0; $s <= 1; $s++) {
+//   for ($i = 0 + ($s * 16); $i < 16 * ($s + 1); $i++) {
+//     echo '<div>' . $i + 1 . '</div>';
+//   }
 
+//   // for ($i = 0 + ($s * 15); $i <= 15 * ($s + 1); $i++) {
+//   //   echo '<div>' . $i + 1 . '</div>';
+//   // }
+// }
+// die();
 
-die();
-
+// var_dump($productsCatSlidesCount[array_key_first($productsCatSlidesCount)]);
+// die();
 ?>
 
 <?php require 'front-end/site/parts/head.php' ?>
@@ -61,88 +65,53 @@ die();
 
     <h2 id="titleSection" class="title-section title-section--mob"><?= $categories[0]['name'] ?></h2>
 
-    <!-- k Slider here -->
     <div class="slider--cat">
       <div id="track" class="slider--cat__track t-list__mb">
-        <div class="t-list">
-          <div class="t-list__ts">
-            <?php $count = count($products[$categories[0]['name_tech']]); ?>
-            <?php for ($i = 0; $i <= 15; $i++): $product = $products[$categories[0]['name_tech']][$i]; ?>
-              <div class="t <?= $product['isHit'] ? 't--hit' : '' ?>">
-                <p class="t__iz"><?= $i + 1 ?> из <?= $count ?></p>
-                <div class="t__body">
-                  <div class="t__img-cont <?= $i === 1 ? 't__img-cont--kist-2' : '' ?>">  <!-- TODO: mb bad here? Yes, but later. -->
-                    <img width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
-                  </div>
-                  <div class="t__text">
-                    <p><?= $product['name'] ?></p>
-                    <p class="text--semibold"><?= $product['price'] ?> BYN<br>(с НДС 20%) / <?= $product['unit'] ?></p>
-                    <a class="btn card__btn t__btn" href="javascript:void(0)"><b>Подробнее</b></a>
-                  </div>
-                </div>
-              </div>
-            <?php endfor ?>
-          </div>
-          <div class="t-list__slider-btns">
-            <div class="slider__btns">
-              <button class="js__btn-slider-prev btn-slider btn-slider--inactive" disabled>
-                <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.15685 0.798306L0.792893 7.27983C0.402369 7.67757 0.402369 8.32243 0.792893 8.72017L7.15686 15.2017C7.54738 15.5994 8.18055 15.5994 8.57107 15.2017C8.96159 14.804 8.96159 14.1591 8.57107 13.7614L3.91421 9.01848L24.5 9.01847C25.0523 9.01847 25.5 8.56249 25.5 8C25.5 7.43751 25.0523 6.98153 24.5 6.98153L3.91421 6.98153L8.57107 2.23864C8.96159 1.84091 8.96159 1.19604 8.57107 0.798306C8.18054 0.400567 7.54738 0.400567 7.15685 0.798306Z" fill="#FEDE32"/>
-                </svg>
-              </button>
-              <div id="dots" class="js__slider-dots slider__dots slider__dots--cat">
-                <span class="slider__dots__dot slider__dots__dot--active"></span>
-                <span class="slider__dots__dot"></span>
-              </div>
-              <button class="js__btn-slider-next btn-slider">
-                <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8431 0.798306L25.2071 7.27983C25.5976 7.67757 25.5976 8.32243 25.2071 8.72017L18.8431 15.2017C18.4526 15.5994 17.8195 15.5994 17.4289 15.2017C17.0384 14.804 17.0384 14.1591 17.4289 13.7614L22.0858 9.01848L1.5 9.01847C0.947714 9.01847 0.499999 8.56249 0.499999 8C0.499999 7.43751 0.947715 6.98153 1.5 6.98153L22.0858 6.98153L17.4289 2.23864C17.0384 1.84091 17.0384 1.19604 17.4289 0.798306C17.8195 0.400567 18.4526 0.400567 18.8431 0.798306Z" fill="#FEDE32"/>
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div class="t-list__open-full-list-btn-cont">
-            <button id="collapseDesk" class="btn product__btn btn-collapse btn-collapse--desk btn-collapse--show" style=""><b>ОТКРЫТЬ ВЕСЬ СПИСОК</b></button>
-          </div>
-        </div>
-
-        <div class="t-list t-list--no-stretch">
-          <div class="t-list__ts">
-            <?php for ($i = 16; $i < $count; $i++): $product = $products[$categories[0]['name_tech']][$i]; ?>
-              <div class="t <?= $product['isHit'] ? 't--hit' : '' ?>">
-                <p class="t__iz"><?= $i + 1 ?> из <?= $count ?></p>
-                <div class="t__body">
-                  <div class="t__img-cont">
-                    <img width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
-                  </div>
-                  <div class="t__text">
-                    <p><?= $product['name'] ?></p>
-                    <p class="text--semibold"><?= $product['price'] ?> BYN<br>(с НДС 20%) / <?= $product['unit'] ?></p>
-                    <a class="btn card__btn t__btn" href="javascript:void(0)"><b>Подробнее</b></a>
+        <?php for ($s = 0; $s < $productsCatSlidesCount[array_key_first($productsCatSlidesCount)]; $s++): ?>
+          <div class="t-list <?= $s > 0 ? 't-list--no-stretch' : '' ?>">
+            <div class="t-list__ts">
+              <?php $count = count($products[array_key_first($productsCatSlidesCount)]); ?>
+              <?php $shouldAlreadyUseCount = $s == $productsCatSlidesCount[array_key_first($productsCatSlidesCount)] - 1; ?>
+              <?php for ($z = 0 + ($s * 16); $z < ($shouldAlreadyUseCount ? $count : 16 * ($s + 1)); $z++): $product = $products[array_key_first($productsCatSlidesCount)][$z]; ?>
+                <div class="t <?= $product['isHit'] ? 't--hit' : '' ?>">
+                  <p class="t__iz"><?= $z + 1 ?> из <?= $count ?></p>
+                  <div class="t__body">
+                    <div class="t__img-cont <?= $z === 1 ? 't__img-cont--kist-2' : '' ?>">
+                      <img width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
+                    </div>
+                    <div class="t__text">
+                      <p><?= $product['name'] ?></p>
+                      <p class="text--semibold"><?= $product['price'] ?> BYN<br>(с НДС 20%) / <?= $product['unit'] ?></p>
+                      <a class="btn card__btn t__btn" href="#"><b>Подробнее</b></a>
+                    </div>
                   </div>
                 </div>
+              <?php endfor ?>
+            </div>
+            <div class="t-list__slider-btns">
+              <div class="slider__btns">
+                 <button class="js__btn-slider-prev btn-slider <?= $s == 0 ? 'btn-slider--inactive' : '' ?>" <?= $s == 0 ? 'disabled' : '' ?>>
+                  <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M7.15685 0.798306L0.792893 7.27983C0.402369 7.67757 0.402369 8.32243 0.792893 8.72017L7.15686 15.2017C7.54738 15.5994 8.18055 15.5994 8.57107 15.2017C8.96159 14.804 8.96159 14.1591 8.57107 13.7614L3.91421 9.01848L24.5 9.01847C25.0523 9.01847 25.5 8.56249 25.5 8C25.5 7.43751 25.0523 6.98153 24.5 6.98153L3.91421 6.98153L8.57107 2.23864C8.96159 1.84091 8.96159 1.19604 8.57107 0.798306C8.18054 0.400567 7.54738 0.400567 7.15685 0.798306Z" fill="#FEDE32"/>
+                  </svg>
+                </button>
+                <div id="dots" class="js__slider-dots slider__dots slider__dots--cat">
+                  <?php for ($d = 0; $d < $productsCatSlidesCount[array_key_first($productsCatSlidesCount)]; $d++): ?>
+                    <span class="slider__dots__dot <?= $s == $d ? 'slider__dots__dot--active' : '' ?>"></span>
+                  <?php endfor ?>
+                </div>
+                <button data-f="<?= $s ?>" data-s="<?= $productsCatSlidesCount[array_key_first($productsCatSlidesCount)] ?>" class="js__btn-slider-next btn-slider <?= $s == $productsCatSlidesCount[array_key_first($productsCatSlidesCount)] - 1 ? 'btn-slider--inactive' : '' ?>" <?= $s == $productsCatSlidesCount[array_key_first($productsCatSlidesCount)] - 1 ? 'disabled' : '' ?>>
+                  <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8431 0.798306L25.2071 7.27983C25.5976 7.67757 25.5976 8.32243 25.2071 8.72017L18.8431 15.2017C18.4526 15.5994 17.8195 15.5994 17.4289 15.2017C17.0384 14.804 17.0384 14.1591 17.4289 13.7614L22.0858 9.01848L1.5 9.01847C0.947714 9.01847 0.499999 8.56249 0.499999 8C0.499999 7.43751 0.947715 6.98153 1.5 6.98153L22.0858 6.98153L17.4289 2.23864C17.0384 1.84091 17.0384 1.19604 17.4289 0.798306C17.8195 0.400567 18.4526 0.400567 18.8431 0.798306Z" fill="#FEDE32"/>
+                  </svg>
+                </button>
               </div>
-            <?php endfor ?>
-          </div>
-          <div class="t-list__slider-btns">
-            <div class="slider__btns">
-              <button class="js__btn-slider-prev btn-slider">
-                <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M7.15685 0.798306L0.792893 7.27983C0.402369 7.67757 0.402369 8.32243 0.792893 8.72017L7.15686 15.2017C7.54738 15.5994 8.18055 15.5994 8.57107 15.2017C8.96159 14.804 8.96159 14.1591 8.57107 13.7614L3.91421 9.01848L24.5 9.01847C25.0523 9.01847 25.5 8.56249 25.5 8C25.5 7.43751 25.0523 6.98153 24.5 6.98153L3.91421 6.98153L8.57107 2.23864C8.96159 1.84091 8.96159 1.19604 8.57107 0.798306C8.18054 0.400567 7.54738 0.400567 7.15685 0.798306Z" fill="#FEDE32"/>
-                </svg>
-              </button>
-              <div id="dots" class="js__slider-dots slider__dots slider__dots--cat">
-                <span class="slider__dots__dot"></span>
-                <span class="slider__dots__dot slider__dots__dot--active"></span>
-              </div>
-              <button class="js__btn-slider-next btn-slider btn-slider--inactive" disabled>
-                <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8431 0.798306L25.2071 7.27983C25.5976 7.67757 25.5976 8.32243 25.2071 8.72017L18.8431 15.2017C18.4526 15.5994 17.8195 15.5994 17.4289 15.2017C17.0384 14.804 17.0384 14.1591 17.4289 13.7614L22.0858 9.01848L1.5 9.01847C0.947714 9.01847 0.499999 8.56249 0.499999 8C0.499999 7.43751 0.947715 6.98153 1.5 6.98153L22.0858 6.98153L17.4289 2.23864C17.0384 1.84091 17.0384 1.19604 17.4289 0.798306C17.8195 0.400567 18.4526 0.400567 18.8431 0.798306Z" fill="#FEDE32"/>
-                </svg>
-              </button>
+            </div>
+            <div class="t-list__open-full-list-btn-cont">
+              <button id="collapseDesk" class="btn product__btn btn-collapse btn-collapse--desk btn-collapse--show" style=""><b>ОТКРЫТЬ ВЕСЬ СПИСОК</b></button>
             </div>
           </div>
-        </div>
+        <?php endfor ?>
       </div>
 
       <button id="collapse" class="btn product__btn btn-collapse btn-collapse--show"><b>ОТКРЫТЬ ВЕСЬ СПИСОК</b></button>
@@ -154,16 +123,17 @@ die();
 <!-- TODO: LINKS EVERYWHERE WHERE Подробнее -->  
 <?php foreach ($productsCatSlidesCount as $cat => $slidesCount): ?>
   <template id="tmpl-<?= $cat ?>">
-    <?php for ($s = 1; $s <= $slidesCount; $s++): ?>
-      <div class="t-list <?= $s > 1 ? 't-list--no-stretch' : '' ?>">
+    <?php for ($s = 0; $s < $slidesCount; $s++): ?>
+      <div class="t-list <?= $s > 0 ? 't-list--no-stretch' : '' ?>">
         <div class="t-list__ts">
           <?php $count = count($products[$cat]); ?>
-          <?php for ($i = 0 * $s * 15; $i <= 15 * $s * 1; $i++): $product = $products[$cat][$i]; ?>
+          <?php $shouldAlreadyUseCount = $s == $slidesCount - 1; ?>
+          <?php for ($z = 0 + ($s * 16); $z < ($shouldAlreadyUseCount ? $count : 16 * ($s + 1)); $z++): $product = $products[$cat][$z]; ?>
             <div class="t <?= $product['isHit'] ? 't--hit' : '' ?>">
-              <p class="t__iz"><?= $i + 1 ?> из <?= $count ?></p>
+              <p class="t__iz"><?= $z + 1 ?> из <?= $count ?></p>
               <div class="t__body">
-                <div class="t__img-cont <?= $i === 1 ? 't__img-cont--kist-2' : '' ?>">
-                  <img width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
+                <div class="t__img-cont <?= $z === 1 ? 't__img-cont--kist-2' : '' ?>">
+                  <img class="t__img" width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
                 </div>
                 <div class="t__text">
                   <p><?= $product['name'] ?></p>
@@ -176,16 +146,17 @@ die();
         </div>
         <div class="t-list__slider-btns">
           <div class="slider__btns">
-            <button class="js__btn-slider-prev btn-slider btn-slider--inactive" disabled>
+            <button class="js__btn-slider-prev btn-slider <?= $s == 0 ? 'btn-slider--inactive' : '' ?>" <?= $s == 0 ? 'disabled' : '' ?>>
               <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.15685 0.798306L0.792893 7.27983C0.402369 7.67757 0.402369 8.32243 0.792893 8.72017L7.15686 15.2017C7.54738 15.5994 8.18055 15.5994 8.57107 15.2017C8.96159 14.804 8.96159 14.1591 8.57107 13.7614L3.91421 9.01848L24.5 9.01847C25.0523 9.01847 25.5 8.56249 25.5 8C25.5 7.43751 25.0523 6.98153 24.5 6.98153L3.91421 6.98153L8.57107 2.23864C8.96159 1.84091 8.96159 1.19604 8.57107 0.798306C8.18054 0.400567 7.54738 0.400567 7.15685 0.798306Z" fill="#FEDE32"/>
               </svg>
             </button>
             <div id="dots" class="js__slider-dots slider__dots slider__dots--cat">
-              <span class="slider__dots__dot <?= $s === 1 ? 'slider__dots__dot--active' : '' ?>"></span>
-              <span class="slider__dots__dot <?= $s === 2 ? 'slider__dots__dot--active' : '' ?>"></span>
+              <?php for ($d = 0; $d < $slidesCount; $d++): ?>
+                <span class="slider__dots__dot <?= $s == $d ? 'slider__dots__dot--active' : '' ?>"></span>
+              <?php endfor ?>
             </div>
-            <button class="js__btn-slider-next btn-slider">
+            <button class="js__btn-slider-next btn-slider <?= $s == $slidesCount - 1 ? 'btn-slider--inactive' : '' ?>" <?= $s == $slidesCount - 1 ? 'disabled' : '' ?>>
               <svg width="26" height="26" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8431 0.798306L25.2071 7.27983C25.5976 7.67757 25.5976 8.32243 25.2071 8.72017L18.8431 15.2017C18.4526 15.5994 17.8195 15.5994 17.4289 15.2017C17.0384 14.804 17.0384 14.1591 17.4289 13.7614L22.0858 9.01848L1.5 9.01847C0.947714 9.01847 0.499999 8.56249 0.499999 8C0.499999 7.43751 0.947715 6.98153 1.5 6.98153L22.0858 6.98153L17.4289 2.23864C17.0384 1.84091 17.0384 1.19604 17.4289 0.798306C17.8195 0.400567 18.4526 0.400567 18.8431 0.798306Z" fill="#FEDE32"/>
               </svg>
