@@ -16,7 +16,7 @@
 <main class="main cont">
   <div class="actions-list">
     <a class="actions-list__link" href="/admin-9kasu/update-price">Обновить прайс-лист</a>
-    <a class="actions-list__link" href="#">Управление товарами</a>
+    <a class="actions-list__link" href="/admin-9kasu/manage-products">Управление товарами</a>
     <a class="actions-list__link" href="/admin-9kasu/manage-categories">Управление категориями</a>
     <a class="actions-list__link" href="/admin-9kasu/edit-texts">Редактировать текст на сайте</a>
   </div>

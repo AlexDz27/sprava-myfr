@@ -176,11 +176,6 @@
 
   /** CATALOG CATEGORIES TOGGLE **/
   let currentCategory = null
-  const btnKisti = document.getElementById('kisti')
-  const btnAbraziv = document.getElementById('abraziv')
-  const btnValiki = document.getElementById('valiki')
-  const btnVspomogat = document.getElementById('vspomogat')
-  const btnNozhi = document.getElementById('nozhi')
   const titleSection = document.getElementById('titleSection')
   const catBtns = Array.from(document.getElementById('qs').children)
   for (const btn of catBtns) {
@@ -211,7 +206,6 @@
   }
   let listViewState = LIST_VIEW_STATE.SHOW_IN_SLIDER
 
-  // TODO: mb this won't work cuz now i use qsAll(.t-list)
   let collapseBtn = document.getElementById('collapse')
   let collapseDeskBtn = document.getElementById('collapseDesk')
   let CATALOG_sliderBtns = document.querySelector('.slider__btns')

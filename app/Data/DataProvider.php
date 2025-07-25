@@ -76,4 +76,13 @@ class DataProvider {
 
     return $products;
   }
+  public function getProductsForAdmin() {
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden FROM products p JOIN categories c ON category_id = c.id");
+    $products = $stmtProducts->fetchAll();
+
+    var_dump($products);
+    die();
+
+    return $products;
+  }
 }
