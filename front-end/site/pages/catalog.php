@@ -119,8 +119,7 @@
   </div>
 </section>
 
- <!-- TODO: доты (php);  -->
-<!-- TODO: LINKS EVERYWHERE WHERE Подробнее -->  
+<!-- TODO: LINKS EVERYWHERE WHERE Подробнее -->
 <?php foreach ($productsCatSlidesCount as $cat => $slidesCount): ?>
   <template id="tmpl-<?= $cat ?>">
     <?php for ($s = 0; $s < $slidesCount; $s++): ?>
@@ -132,7 +131,7 @@
             <div class="t <?= $product['isHit'] ? 't--hit' : '' ?>">
               <p class="t__iz"><?= $z + 1 ?> из <?= $count ?></p>
               <div class="t__body">
-                <div class="t__img-cont <?= $z === 1 ? 't__img-cont--kist-2' : '' ?>">
+                <div class="t__img-cont <?= ($z === 1 && $cat === 'kisti') ? 't__img-cont--kist-2' : '' ?>">
                   <img class="t__img" width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
                 </div>
                 <div class="t__text">
@@ -175,7 +174,6 @@
   // TODO: put this into main.js and then think how to handle TypeErrors when an element is absent
   const CATALOG_track = document.getElementById('track')
 
-  // TODO: def need work here with the logic. check line 149)))
   /** CATALOG CATEGORIES TOGGLE **/
   let currentCategory = null
   const btnKisti = document.getElementById('kisti')
@@ -184,7 +182,7 @@
   const btnVspomogat = document.getElementById('vspomogat')
   const btnNozhi = document.getElementById('nozhi')
   const titleSection = document.getElementById('titleSection')
-  const catBtns = [btnKisti, btnAbraziv, btnValiki, btnVspomogat, btnNozhi]
+  const catBtns = Array.from(document.getElementById('qs').children)
   for (const btn of catBtns) {
     btn.onclick = (e) => {
       e.preventDefault()
