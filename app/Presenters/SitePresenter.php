@@ -53,4 +53,13 @@ class SitePresenter extends BasePresenter {
 
     exit;
   }
+
+  public function product($pathToPage, $title = 'Some title', $extraAssets = [], $bodyClass = '') {
+    // скорее всего
+    // $viewDataProvider = new ViewDataProvider();
+    // $product = $viewDataProvider->getProduct($slug);
+
+    extract($this->texts);
+    require $pathToPage;
+  }
 }
