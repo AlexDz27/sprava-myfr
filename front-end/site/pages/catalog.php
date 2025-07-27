@@ -82,7 +82,7 @@
                     <div class="t__text">
                       <p><?= $product['name'] ?></p>
                       <p class="text--semibold"><?= $product['price'] ?> BYN<br>(с НДС 20%) / <?= $product['unit'] ?></p>
-                      <a class="btn card__btn t__btn" href="#"><b>Подробнее</b></a>
+                      <a class="btn card__btn t__btn" href="/catalog/<?= $product['cat_slug'] . '/' . $product['slug'] ?>"><b>Подробнее</b></a>
                     </div>
                   </div>
                 </div>
@@ -137,7 +137,7 @@
                 <div class="t__text">
                   <p><?= $product['name'] ?></p>
                   <p class="text--semibold"><?= $product['price'] ?> BYN<br>(с НДС 20%) / <?= $product['unit'] ?></p>
-                  <a class="btn card__btn t__btn" href="#"><b>Подробнее</b></a>
+                  <a class="btn card__btn t__btn" href="/catalog/<?= $product['cat_slug'] . '/' . $product['slug'] ?>"><b>Подробнее</b></a>
                 </div>
               </div>
             </div>

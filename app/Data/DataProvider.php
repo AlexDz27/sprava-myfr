@@ -71,7 +71,7 @@ class DataProvider {
   }
 
   public function getProductsForCatalog() {
-    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, c.name_tech AS cat_name_tech FROM products p JOIN categories c ON category_id = c.id WHERE p.hidden = 0");
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, p.slug, c.name_tech AS cat_name_tech, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.hidden = 0");
     $products = $stmtProducts->fetchAll();
 
     return $products;
@@ -87,12 +87,12 @@ class DataProvider {
   }
 
   public function getProductRoutes() {
-    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.slug, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id");
+    $stmtProducts = $this->repository->query("SELECT p.id, p.art, p.price, p.unit, p.upakMal, p.upakKrup, p.name, p.img, p.galleryImgs, p.slug, p.isHit, p.description, p.details, c.slug AS cat_slug, c.name_tech AS cat_name_tech, c.name AS cat_name FROM products p JOIN categories c ON category_id = c.id");
     $products = $stmtProducts->fetchAll();
 
     $routes = [];
     foreach ($products as $p) {
-      $routes['/catalog/' . $p['cat_slug'] . '/' . $p['slug']] = $p['name'];
+      $routes['/catalog/' . $p['cat_slug'] . '/' . $p['slug']] = $p;
     }
 
     return $routes;

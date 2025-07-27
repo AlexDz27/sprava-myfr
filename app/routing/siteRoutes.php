@@ -3,6 +3,7 @@
 require 'app/Presenters/SitePresenter.php';
 $sitePresenter = new SitePresenter();
 
+// TODO: download price
 $siteRoutes = [
   '/' => [$sitePresenter, 'home', [
     'title' => $sitePresenter->companyName . ' - строительный инструмент',
@@ -40,9 +41,16 @@ $myF = function(&$siteRoutes) use ($sitePresenter) {
 
   foreach ($routes as $slug => $r) {
     $siteRoutes[$slug] = [$sitePresenter, 'product', [
-      'title' =>  $sitePresenter->companyName. ' | ' . $r,
+      'title' =>  $sitePresenter->companyName. ' | ' . $r['name'],
+      'extraAssets' => [
+        '<link rel="stylesheet" href="/front-end/site/assets/css/splide-core.min.css">',
+        '<script src="/front-end/site/assets/js/splide.min.js" defer></script>',
+        '<script src="/front-end/site/assets/js/slider-product-h4.js" defer></script>',
+      ],
       'bodyClass' => 'page--product',
-      'pathToPage' => 'front-end/site/pages/product.php'
+      'pathToPage' => 'front-end/site/pages/product.php',
+      'product' => $r,
+      'slug' => $slug,
     ]];
   }
   // var_dump($routes);
