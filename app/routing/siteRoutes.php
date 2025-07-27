@@ -3,7 +3,7 @@
 require 'app/Presenters/SitePresenter.php';
 $sitePresenter = new SitePresenter();
 
-return [
+$siteRoutes = [
   '/' => [$sitePresenter, 'home', [
     'title' => $sitePresenter->companyName . ' - строительный инструмент',
     'extraAssets' => [
@@ -24,12 +24,6 @@ return [
     'bodyClass' => 'catalog',
     'pathToPage' => 'front-end/site/pages/catalog.php'
   ]],
-  // '/catalog/category-slug/product-slug' => [$sitePresenter, 'product', [
-  //   'title' => $sitePresenter->companyName. ' | ',  // TODO: как-то вставлять name. мб в самом методе?
-  //   'bodyClass' => 'page--product',
-  //   'pathToPage' => 'front-end/site/pages/product.php'
-  // ]],
-  // '/download-price' => [$sitePresenter, 'downloadPriceList', []],
 
   '404' => [$sitePresenter, 'simplePage', [
     'title' => $sitePresenter->companyName. ' | Страница не найдена',
@@ -39,3 +33,22 @@ return [
     'pathToPage' => 'front-end/site/pages/404.php'
   ]]
 ];
+
+$myF = function(&$siteRoutes) use ($sitePresenter) {
+  $dataProvider = new DataProvider();
+  $routes = $dataProvider->getProductRoutes();
+
+  foreach ($routes as $slug => $r) {
+    $siteRoutes[$slug] = [$sitePresenter, 'product', [
+      'title' =>  $sitePresenter->companyName. ' | ' . $r,
+      'bodyClass' => 'page--product',
+      'pathToPage' => 'front-end/site/pages/product.php'
+    ]];
+  }
+  // var_dump($routes);
+  // die();
+};
+
+$myF($siteRoutes);
+
+return $siteRoutes;

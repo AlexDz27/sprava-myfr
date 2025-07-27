@@ -85,4 +85,16 @@ class DataProvider {
 
     return $products;
   }
+
+  public function getProductRoutes() {
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.slug, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id");
+    $products = $stmtProducts->fetchAll();
+
+    $routes = [];
+    foreach ($products as $p) {
+      $routes['/catalog/' . $p['cat_slug'] . '/' . $p['slug']] = $p['name'];
+    }
+
+    return $routes;
+  }
 }
