@@ -24,12 +24,12 @@ return [
     'bodyClass' => 'catalog',
     'pathToPage' => 'front-end/site/pages/catalog.php'
   ]],
-  '/product' => [$sitePresenter, 'product', [
-    'title' => $sitePresenter->companyName. ' | ',  // TODO: как-то вставлять name. мб в самом методе?
-    'bodyClass' => 'page--product',
-    'pathToPage' => 'front-end/site/pages/product.php'
-  ]],
-  '/download-price' => [$sitePresenter, 'downloadPriceList', []],
+  // '/catalog/category-slug/product-slug' => [$sitePresenter, 'product', [
+  //   'title' => $sitePresenter->companyName. ' | ',  // TODO: как-то вставлять name. мб в самом методе?
+  //   'bodyClass' => 'page--product',
+  //   'pathToPage' => 'front-end/site/pages/product.php'
+  // ]],
+  // '/download-price' => [$sitePresenter, 'downloadPriceList', []],
 
   '404' => [$sitePresenter, 'simplePage', [
     'title' => $sitePresenter->companyName. ' | Страница не найдена',

@@ -58,6 +58,7 @@ class SitePresenter extends BasePresenter {
     // скорее всего
     // $viewDataProvider = new ViewDataProvider();
     // $product = $viewDataProvider->getProduct($slug);
+    // $title = 'my-title'; // TODO: set proper title
 
     extract($this->texts);
     require $pathToPage;
