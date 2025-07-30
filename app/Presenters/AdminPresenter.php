@@ -5,6 +5,7 @@
 require 'app/ViewData/AdminViewDataProvider.php';
 require 'app/Data/DataUpdater.php';
 
+// TODO: guard via magic methods
 class AdminPresenter extends BasePresenter {
   public $viewDataProvider;
 
@@ -12,31 +13,6 @@ class AdminPresenter extends BasePresenter {
     $this->viewDataProvider = new AdminViewDataProvider();
   }
 
-  public function home($pathToPage, $title = 'Панель администратора') {
-    $uname = 'aom';
-    $pwd = '';
-    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
-      header('WWW-Authenticate: Basic realm="Restricted Area"');
-      header('HTTP/1.0 401 Unauthorized');
-      echo 'Нужно ввести верные логин и пароль.';
-      exit;
-    }
-
-    require $pathToPage;
-  }
-
-  public function updatePrice($pathToPage, $title = 'Панель администратора') {
-    $uname = 'aom';
-    $pwd = '';
-    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
-      header('WWW-Authenticate: Basic realm="Restricted Area"');
-      header('HTTP/1.0 401 Unauthorized');
-      echo 'Нужно ввести верные логин и пароль.';
-      exit;
-    }
-
-    require $pathToPage;
-  }
   public function updatePriceApi() {
     $dataUpdater = new DataUpdater();
     $resultMessage = $dataUpdater->updatePrice();
@@ -45,19 +21,11 @@ class AdminPresenter extends BasePresenter {
   }
 
   public function editTexts($pathToPage, $title = 'Панель администратора') {
-    $uname = 'aom';
-    $pwd = '';
-    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
-      header('WWW-Authenticate: Basic realm="Restricted Area"');
-      header('HTTP/1.0 401 Unauthorized');
-      echo 'Нужно ввести верные логин и пароль.';
-      exit;
-    }
+    // $editableTexts = $this->viewDataProvider->getTextsForAdmin();
+    // extract($editableTexts);
 
-    $editableTexts = $this->viewDataProvider->getTextsForAdmin();
-    extract($editableTexts);
-
-    require $pathToPage;
+    // require $pathToPage;
+    parent::page($pathToPage, $title = 'Панель администратора', $extraAssets = [], $editableTexts);
   }
   public function editTextsApi() {
     $dataUpdater = new DataUpdater();
@@ -69,15 +37,6 @@ class AdminPresenter extends BasePresenter {
   }
 
   public function manageCategories($pathToPage, $title = 'Панель администратора') {
-    $uname = 'aom';
-    $pwd = '';
-    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
-      header('WWW-Authenticate: Basic realm="Restricted Area"');
-      header('HTTP/1.0 401 Unauthorized');
-      echo 'Нужно ввести верные логин и пароль.';
-      exit;
-    }
-    
     $categories = $this->viewDataProvider->getCategories();
 
     require $pathToPage;
@@ -102,15 +61,6 @@ class AdminPresenter extends BasePresenter {
   }
 
   public function manageProducts($pathToPage, $title = 'Панель администратора') {
-    $uname = 'aom';
-    $pwd = '';
-    if (@$_SERVER['PHP_AUTH_USER'] !== $uname) {
-      header('WWW-Authenticate: Basic realm="Restricted Area"');
-      header('HTTP/1.0 401 Unauthorized');
-      echo 'Нужно ввести верные логин и пароль.';
-      exit;
-    }
-    
     $products = $this->viewDataProvider->getProducts();
 
     require $pathToPage;

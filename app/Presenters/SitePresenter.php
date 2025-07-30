@@ -13,30 +13,46 @@ class SitePresenter extends BasePresenter {
     $this->texts = $viewDataProvider->getTexts();
   }
 
-  public function simplePage($pathToPage, $title = 'Some title', $extraAssets = []) {
-    extract($this->texts);
-    require $pathToPage;
-  }
-
-  public function home($pathToPage, $title = 'Some title', $extraAssets = []) {
+  public function home(...$pageArgs) {
     $viewDataProvider = new ViewDataProvider();
     $categories = $viewDataProvider->getCategoriesForHome();
 
-    extract($this->texts);
-    require $pathToPage;
+    $this->page(
+      ['categories' => $categories],
+      ...$pageArgs
+    );
   }
 
-  public function catalog($pathToPage, $title = 'Some title', $extraAssets = [], $bodyClass = '') {
+  public function catalog($bodyClass, ...$pageArgs) {
     $viewDataProvider = new ViewDataProvider();
     $categories = $viewDataProvider->getCategoriesForCatalog();
     $viewData = $viewDataProvider->getProductsForCatalog();
+
     $products = $viewData[0];
     $productsCatSlidesCount = $viewData[1];
-    // var_dump($products);
-    // die();
 
-    extract($this->texts);
-    require $pathToPage;
+    $this->page(
+      [
+        'categories' => $categories,
+        'products' => $products,
+        'productsCatSlidesCount' => $productsCatSlidesCount,
+
+        'bodyClass' => $bodyClass,
+      ],
+      ...$pageArgs
+    );
+  }
+
+  public function product($product, $slug, $bodyClass, ...$pageArgs) {
+    $this->page(
+      [
+        'product' => $product,
+        'slug' => $slug,
+
+        'bodyClass' => $bodyClass,
+      ],
+      ...$pageArgs
+    );
   }
 
   public function downloadPriceList() {
@@ -54,13 +70,7 @@ class SitePresenter extends BasePresenter {
     exit;
   }
 
-  public function product($product, $slug, $pathToPage, $title = 'Some title', $extraAssets = [], $bodyClass = '') {
-    // скорее всего
-    // $viewDataProvider = new ViewDataProvider();
-    // $product = $viewDataProvider->getProduct($slug);
-    // $title = 'my-title'; // TODO: set proper title
-
-    extract($this->texts);
-    require $pathToPage;
+  public function page($vars = [], ...$pageArgs) {
+    parent::page($this->texts + $vars, ...$pageArgs);
   }
 }

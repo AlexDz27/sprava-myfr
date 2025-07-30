@@ -10,8 +10,6 @@ if ($uri !== '/' && substr($uri, -1) === '/') {  // respect trailing slash, but 
   $uri = rtrim($uri, '/');
 }
 
-// var_dump($uri);
-// die();
 // Actually do matching of incoming uri to routes
 if (isset($routes[$uri])) {
   $uriActionArgs = $routes[$uri];

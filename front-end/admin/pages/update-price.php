@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="http://localhost/front-end/admin/assets/">
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="/front-end/admin/assets/css/admin.css">
   <script src="js/updatePrice.js" defer></script>
   <title><?= $title ?></title>
 </head>
