@@ -1,6 +1,8 @@
 <?php
 
-require 'app/Presenters/SitePresenter.php';
+use app\Presenters\SitePresenter;
+use app\Data\DataProvider;
+
 $sitePresenter = new SitePresenter();
 
 $siteRoutes = [
@@ -26,11 +28,11 @@ $siteRoutes = [
   ]],
 
   '404' => [$sitePresenter, 'page', [
+    'path' => 'front-end/site/pages/404.php',
     'title' => $sitePresenter->companyName. ' | Страница не найдена',
     'extraAssets' => [
       '<script src="https://api-maps.yandex.ru/v3/?apikey=2b7d9147-4a30-4c29-9a2f-594b90fa8c59&lang=ru_RU" defer></script>',
     ],
-    'pathToPage' => 'front-end/site/pages/404.php'
   ]]
 ];
 

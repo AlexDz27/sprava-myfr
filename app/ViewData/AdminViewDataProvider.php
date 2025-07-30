@@ -1,5 +1,9 @@
 <?php
 
+namespace app\ViewData;
+
+use app\Data\DataProvider;
+
 class AdminViewDataProvider {
   public function getTextsForAdmin() {
     $dataProvider = new DataProvider();

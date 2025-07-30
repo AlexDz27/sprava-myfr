@@ -5,7 +5,7 @@
 </section>
 
 <main class="main cont">
-  <form action="/admin-9kasu/api/manage-categories" method="POST">
+  <form method="POST">
     <?php for ($i = 0; $i < count($categories); $i++): $c = $categories[$i]; ?>
       <section data-id="<?= $c['id'] ?>" class="js-editable-datum editable-datum">
         <div class="editable-datum__name-and-btns">

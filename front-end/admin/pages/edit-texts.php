@@ -5,7 +5,7 @@
 </section>
 
 <main class="main cont">
-  <form action="/admin-9kasu/api/edit-texts" method="POST">
+  <form method="POST">
     <section class="editable-datum">
       <h3>Телефоны</h3>
       <p>Телефон первый: &nbsp;<input name="<?= $phones[0]['id'] ?>" value="<?= $phones[0]['text'] ?>"></p>

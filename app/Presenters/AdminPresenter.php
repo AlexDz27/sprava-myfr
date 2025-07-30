@@ -1,9 +1,10 @@
 <?php
 
-// NOTE: not requiring BasePresenter and DataProvider here, bc otherwise there will be Error stating that BasePresenter is already defined due to it being required is SitePresenter as well,
-// and SitePresenter is used in routing (it's bad, I know)
-require 'app/ViewData/AdminViewDataProvider.php';
-require 'app/Data/DataUpdater.php';
+namespace app\Presenters;
+
+use app\Presenters\BasePresenter;
+use app\ViewData\AdminViewDataProvider;
+use app\Data\DataUpdater;
 
 // TODO: guard via magic methods
 class AdminPresenter extends BasePresenter {

@@ -1,5 +1,7 @@
 <?php
 
+namespace app\Presenters;
+
 class BasePresenter {
   public $companyName = 'SPRAVA';
 

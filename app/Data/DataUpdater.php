@@ -1,13 +1,14 @@
 <?php
 
-require 'vendor/autoload.php';
+namespace app\Data;
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use PDO;
 
 const ERR_NO_FILE_UPLOADED = 4;
 
 class DataUpdater {
-  // TODO: repository -> separate file. But there might arise problems with 'same classname declared twice' when using require. Maybe finally use proper classes autoloading?
   public $repository;
   public $contactsIfError = 'Свяжитесь с программистом Алексеем по тел/вайбер/вацап/тг: +375 29 819 16 24; тг: @rain_xxxx';
 
@@ -77,11 +78,9 @@ class DataUpdater {
         ];
       }
     }
-    // var_dump($excelProducts);
     $stmtArts = $this->repository->query("SELECT art FROM products");
     $dbArts = $stmtArts->fetchAll(PDO::FETCH_COLUMN);
     $shouldSendDiffProblem = false;
-    // var_dump($fileArts);
     if ($diff = array_diff($fileArts, $dbArts)) {
       $UNNEEDED_NOZH_ART = '0890-0001-18';
       $UNNEEDED_SHETKA_ART = '1004-0000-01';
@@ -95,9 +94,6 @@ class DataUpdater {
         $solutionIfDiff = 'Скорее всего, в этой ситуации Вы хотите создать эти товары в админ. панели (кроме тех, о которых говорил Павел), чтобы устранить неконсистентность.';
       }
     }
-    // var_dump($diff);
-    // var_dump($msgIfDiff);
-    // die();
 
     foreach ($excelProducts as $p) {
       $this->repository->exec("UPDATE products SET price = '{$p['price']}', variant = '{$p['variant']}', unit = '{$p['unit']}', upakMal = '{$p['upakMal']}', upakKrup = '{$p['upakMal']}' WHERE art = '{$p['art']}'");
@@ -123,7 +119,6 @@ class DataUpdater {
       ];
     }
 
-    // TODO: rem var_dmps
     return $resultMessage;
   }
 
@@ -156,8 +151,6 @@ class DataUpdater {
   public function manageCategories($managedCategories) {
     try {
       foreach ($managedCategories as $c) {
-        // var_dump($c);
-        // die();
         $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}' WHERE id = {$c['id']}");
 
         if (isset($c['img'])) {

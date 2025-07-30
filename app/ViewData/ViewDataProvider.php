@@ -1,6 +1,8 @@
 <?php
 
-require 'app/Data/DataProvider.php';
+namespace app\ViewData;
+
+use app\Data\DataProvider;
 require 'transformationFunctions.php';
 
 class ViewDataProvider {

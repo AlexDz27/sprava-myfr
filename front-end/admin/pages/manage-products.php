@@ -5,7 +5,7 @@
 </section>
 
 <main class="main cont">
-  <form action="/admin-9kasu/api/manage-categories" method="POST">
+  <form method="POST">
     <?php foreach ($products as $catName => $p): ?>
       <section class="mb-7-5rem">
         <h3 class="category-name"></h3>

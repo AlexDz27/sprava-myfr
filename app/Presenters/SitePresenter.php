@@ -1,9 +1,9 @@
 <?php
 
-require 'BasePresenter.php';
-require 'app/ViewData/ViewDataProvider.php';
-// require 'app/Data/DataProvider.php'; -- getting Cannot declare class DataProvider, because the name is already in use
-// thus, omitting the require statement
+namespace app\Presenters;
+
+use app\Presenters\BasePresenter;
+use app\ViewData\ViewDataProvider;
 
 class SitePresenter extends BasePresenter {
   public $texts = [];

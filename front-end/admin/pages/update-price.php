@@ -5,7 +5,7 @@
 </section>
 
 <main class="main cont">
-  <form action="/admin-9kasu/api/edit-texts" method="POST">
+  <form method="POST">
     <section class="editable-datum">
       <p>
         1. Выберите файл прайс-листа <span style="font-size: 25px;">👉🏻</span> &nbsp;
