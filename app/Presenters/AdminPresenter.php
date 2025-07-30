@@ -20,12 +20,16 @@ class AdminPresenter extends BasePresenter {
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
 
-  public function editTexts($pathToPage, $title = 'Панель администратора') {
-    // $editableTexts = $this->viewDataProvider->getTextsForAdmin();
-    // extract($editableTexts);
+  public function editTexts(...$pageArgs) {
+    $editableTexts = $this->viewDataProvider->getTextsForAdmin();
 
-    // require $pathToPage;
-    parent::page($pathToPage, $title = 'Панель администратора', $extraAssets = [], $editableTexts);
+    $this->page(
+      [
+        'phones' => $editableTexts['phones'],
+        'address' => $editableTexts['address'],
+      ],
+      ...$pageArgs
+    );
   }
   public function editTextsApi() {
     $dataUpdater = new DataUpdater();
@@ -36,10 +40,13 @@ class AdminPresenter extends BasePresenter {
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
 
-  public function manageCategories($pathToPage, $title = 'Панель администратора') {
+  public function manageCategories(...$pageArgs) {
     $categories = $this->viewDataProvider->getCategories();
 
-    require $pathToPage;
+    $this->page(
+      ['categories' => $categories],
+      ...$pageArgs
+    );
   }
   public function manageCategoriesApi() {
     $incoming = file_get_contents('php://input');
@@ -60,9 +67,12 @@ class AdminPresenter extends BasePresenter {
     // file_put_contents('app/Data/test/' . $n, $bB);
   }
 
-  public function manageProducts($pathToPage, $title = 'Панель администратора') {
+  public function manageProducts(...$pageArgs) {
     $products = $this->viewDataProvider->getProducts();
 
-    require $pathToPage;
+    $this->page(
+      ['products' => $products],
+      ...$pageArgs
+    );
   }
 }

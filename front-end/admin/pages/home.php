@@ -1,8 +1,8 @@
-<?php require 'front-end/admin/parts/head.php' ?>
+<?php require 'front-end/admin/parts/header.php' ?>
 
 <header class="header">
   <h1 class="heading--index tac">Администратор, что Вы хотите сделать?</h1>
-</header>  
+</header>
 
 <main class="main cont">
   <div class="actions-list">

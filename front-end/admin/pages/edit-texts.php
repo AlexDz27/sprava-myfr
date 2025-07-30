@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/admin.css">
-  <script src="js/editTexts.js" defer></script>
-  <title><?= $title ?></title>
-</head>
-<body class="admin">
+<?php require 'front-end/admin/parts/header.php' ?>
 
-<header class="header cont">
+<section class="page-name cont">
   <h2>Редактирование текстов</h2>
-</header>
+</section>
 
 <main class="main cont">
   <form action="/admin-9kasu/api/edit-texts" method="POST">
@@ -30,5 +21,4 @@
   </form>
 </main>
 
-</body>
-</html>
+<?php require 'front-end/admin/parts/footer.php' ?>

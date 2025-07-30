@@ -73,11 +73,28 @@ input[type="radio"] {
 }
 
 .header {
+  padding-top: 1.7rem;
+  font-size: 1.1rem;
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+.back-home-icon {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 1rem;
+  transform: rotate(-90deg);
+  top: 1px;
+}
+
+.page-name {
   padding-top: 3rem;
 }
 
 .heading--index {
-  font-size: 150%;
+  font-size: 180%;
+  margin-bottom: 2rem;
 }
 
 .main {
