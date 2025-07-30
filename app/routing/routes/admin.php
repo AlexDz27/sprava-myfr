@@ -5,12 +5,12 @@ use app\Presenters\AdminPresenter;
 $adminPresenter = new AdminPresenter();
 
 return [
-  '/admin-9kasu' => [$adminPresenter, 'page', [
+  '/admin-9kasu' => [$adminPresenter, 'guardedPage', [
     'path' => 'front-end/admin/pages/home.php',
     'title' => 'Панель администратора - ' . $adminPresenter->companyName,
     'pageName' => 'home',
   ]],
-  '/admin-9kasu/update-price' => [$adminPresenter, 'page', [
+  '/admin-9kasu/update-price' => [$adminPresenter, 'guardedPage', [
     'path' => 'front-end/admin/pages/update-price.php',
     'title' => 'Панель администратора - обновить прайс',
     'extraAssets' => [

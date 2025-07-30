@@ -1,11 +1,6 @@
 const form = document.querySelector('form')
 const submitBtn = document.querySelector('button[type=submit]')
 
-// TODO: d
-// const attentionBlock = document.getElementById('attention')
-//       const attentionBlockDiffList = attentionBlock.querySelector('ul')
-// attentionBlockDiffList.insertAdjacentHTML('beforeend', `<li>hello</li>`)
-
 form.onsubmit = (e) => {
   e.preventDefault()
 

@@ -1,26 +1,3 @@
-<?php
-
-// TODO: d
-// var_dump($products);
-// var_dump($productsCatSlidesCount);
-// var_dump(count($products['valiki']));
-// die();
-
-// for ($s = 0; $s <= 1; $s++) {
-//   for ($i = 0 + ($s * 16); $i < 16 * ($s + 1); $i++) {
-//     echo '<div>' . $i + 1 . '</div>';
-//   }
-
-//   // for ($i = 0 + ($s * 15); $i <= 15 * ($s + 1); $i++) {
-//   //   echo '<div>' . $i + 1 . '</div>';
-//   // }
-// }
-// die();
-
-// var_dump($productsCatSlidesCount[array_key_first($productsCatSlidesCount)]);
-// die();
-?>
-
 <?php require 'front-end/site/parts/head.php' ?>
 <?php require 'front-end/site/parts/header.php' ?>
 
@@ -119,7 +96,6 @@
   </div>
 </section>
 
-<!-- TODO: LINKS EVERYWHERE WHERE Подробнее -->
 <?php foreach ($productsCatSlidesCount as $cat => $slidesCount): ?>
   <template id="tmpl-<?= $cat ?>">
     <?php for ($s = 0; $s < $slidesCount; $s++): ?>

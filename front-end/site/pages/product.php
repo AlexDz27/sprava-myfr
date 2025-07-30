@@ -1,11 +1,3 @@
-<?php
-
-// TODO: d
-// var_dump($product);
-// die();
-
-?>
-
 <?php require 'front-end/site/parts/head.php' ?>
 <?php require 'front-end/site/parts/header.php' ?>
 

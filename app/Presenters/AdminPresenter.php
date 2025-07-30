@@ -6,7 +6,6 @@ use app\Presenters\BasePresenter;
 use app\ViewData\AdminViewDataProvider;
 use app\Data\DataUpdater;
 
-// TODO: guard via magic methods
 class AdminPresenter extends BasePresenter {
   public $viewDataProvider;
 
@@ -42,6 +41,8 @@ class AdminPresenter extends BasePresenter {
   }
 
   public function manageCategories(...$pageArgs) {
+    guard();
+
     $categories = $this->viewDataProvider->getCategories();
 
     $this->page(
@@ -69,11 +70,28 @@ class AdminPresenter extends BasePresenter {
   }
 
   public function manageProducts(...$pageArgs) {
+    guard();
+    
     $products = $this->viewDataProvider->getProducts();
 
     $this->page(
       ['products' => $products],
       ...$pageArgs
     );
+  }
+
+  public function guardedPage($vars = [], ...$pageArgs) {
+    guard();
+    parent::page($vars, ...$pageArgs);
+  }
+}
+
+
+function guard() {
+  if (@$_SERVER['PHP_AUTH_USER'] !== 'aom') {
+    header('WWW-Authenticate: Basic realm="Restricted Area"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'Нужно ввести верные логин и пароль.';
+    exit;
   }
 }
