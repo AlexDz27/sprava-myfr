@@ -6,7 +6,7 @@ $adminPresenter = new AdminPresenter();
 return [
   '/admin-9kasu' => [$adminPresenter, 'page', [
     'title' => 'Панель администратора - ' . $adminPresenter->companyName,
-    'pathToPage' => 'front-end/admin/pages/home.php'
+    'path' => 'front-end/admin/pages/home.php'
   ]],
   '/admin-9kasu/update-price' => [$adminPresenter, 'page', [
     'title' => 'Панель администратора - обновить прайс',

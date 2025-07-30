@@ -1,8 +1,8 @@
 <?php
 
-$siteRoutes = require 'siteRoutes.php';
-$adminRoutes = require 'adminRoutes.php';
-$apiRoutes = require 'apiRoutes.php';
+$siteRoutes = require 'routes/site.php';
+$adminRoutes = require 'routes/admin.php';
+$apiRoutes = require 'routes/api.php';
 $routes = $siteRoutes + $adminRoutes + $apiRoutes;
 
 $uri = explode('?', $_SERVER['REQUEST_URI'])[0];  // explode to respect GET requests
