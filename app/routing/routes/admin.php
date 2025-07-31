@@ -1,10 +1,11 @@
 <?php
 
 use app\Presenters\AdminPresenter;
+use app\Data\DataProvider;
 
 $adminPresenter = new AdminPresenter();
 
-return [
+$adminRoutes = [
   '/admin-9kasu' => [$adminPresenter, 'guardedPage', [
     'path' => 'front-end/admin/pages/home.php',
     'title' => 'Панель администратора - ' . $adminPresenter->companyName,
@@ -39,3 +40,26 @@ return [
     ],
   ]],
 ];
+
+if (str_contains($_SERVER['REQUEST_URI'], 'manage-products/')) {
+  $myF = function(&$adminRoutes) use ($adminPresenter) {
+  $dataProvider = new DataProvider();
+  $ps = $dataProvider->getProductsForAdmin();
+
+  foreach ($ps as $p) {
+    $adminRoutes['/admin-9kasu/manage-products/' . $p['art']] = [$adminPresenter, 'editProduct', [
+      'path' => 'front-end/admin/pages/edit-product.php',
+      'title' =>  'Редактирование продукта',
+      'extraAssets' => [
+        '<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>',
+        '<script src="/front-end/admin/assets/js/editProduct.js" defer></script>',
+      ],
+      'product' => $p,
+    ]];
+  }
+};
+
+$myF($adminRoutes);
+}
+
+return $adminRoutes;

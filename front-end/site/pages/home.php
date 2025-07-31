@@ -1,3 +1,10 @@
+<?php
+
+var_dump(get_defined_vars());
+die();
+
+?>
+
 <?php require 'front-end/site/parts/head.php' ?>
 <?php require 'front-end/site/parts/header.php' ?>
 

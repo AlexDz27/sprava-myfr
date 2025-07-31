@@ -28,12 +28,24 @@ img {
 
 input {
   font-family: inherit;
-  font-size: 0.8em;
-  padding: 0.4em;
+  font-size: .8em;
+  padding: .4em;
   min-width: 300px;
 }
 input[type="radio"] {
   min-width: initial;
+}
+.input--full-w {
+  width: 100%;
+}
+.input--small-w {
+  min-width: initial;
+  width: 5rem;
+}
+
+select {
+  font-size: .8em;
+  padding: .35em;
 }
 
 /** STYLES **/
@@ -60,7 +72,28 @@ input[type="radio"] {
   margin-bottom: 7.5rem;
 }
 
+.fz-init {
+  font-size: initial;
+}
+
+.d-flex-ai-center {
+  display: flex;
+  align-items: center;
+}
+
+.pos-fix-1 {
+  position: relative;
+  top: 1px;
+}
+
 /** COMPONENTS **/
+.text--smaller {
+  font-size: 0.75em;
+}
+.text--smaller-2 {
+  font-size: 0.85em;
+}
+
 .admin {
   font-size: 150%;
 }
@@ -90,6 +123,9 @@ input[type="radio"] {
 
 .page-name {
   padding-top: 3rem;
+}
+.page-name--pt-0 {
+  padding-top: 0;
 }
 
 .heading--index {
@@ -218,6 +254,87 @@ input[type="radio"] {
 }
 .category-name__num {
   opacity: .4;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 20px;
+  row-gap: 55px;
+}
+.products-grid__product {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  text-align: center;
+  color: inherit;
+  text-decoration: none;
+  padding: 10px;
+}
+.products-grid__product__btn--admin {
+  margin-top: auto;
+}
+
+.product-name-cont {
+  margin-top: 2.5rem;
+}
+.product-name {
+  display: inline-block;
+  font-weight: 600;
+  border-bottom: 1px solid black;
+}
+
+.edit-product-header-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 30%;
+  grid-template-rows: 1fr 1fr;
+  padding-top: 3rem;
+}
+.edit-product-header-section-grid__img {
+  width: 285px;
+  width: 161px;
+  height: 188px;
+  height: auto;
+  grid-row: span 2;
+  max-width: 100%;
+  place-self: center;
+}
+
+/* наглый копи-паст */
+.form__section {
+  margin-bottom: 35px;
+}
+.form__section--breaker {
+  margin-bottom: 65px;
+}
+.form__section--imgs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 70px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 27px;
+  background-color: #e2e2e2;
+  padding: 15px;
+}
+.gallery__item {
+  position: relative;
+}
+.gallery__item__x {
+  display: inline-block;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(231, 146, 146, .7);
+  text-align: center;
+  font-size: 24px;
+  line-height: 25px;
+  cursor: pointer;
 }
 
 /** BOOTSTRAP-LIKE COMPONENTS **/

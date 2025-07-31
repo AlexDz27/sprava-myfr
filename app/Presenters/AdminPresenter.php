@@ -72,12 +72,21 @@ class AdminPresenter extends BasePresenter {
   public function manageProducts(...$pageArgs) {
     guard();
     
-    $products = $this->viewDataProvider->getProducts();
+    $productGroups = $this->viewDataProvider->getProductGroups();
+    // var_dump($productGroups);
+    // die();
 
     $this->page(
-      ['products' => $products],
+      ['productGroups' => $productGroups],
       ...$pageArgs
     );
+  }
+  public function editProduct(...$pageArgs) {
+    guard();
+
+    // TODO: доставать не только продукт, но и категории и впихивать их в select
+
+    $this->page(...$pageArgs);
   }
 
   public function guardedPage($vars = [], ...$pageArgs) {
