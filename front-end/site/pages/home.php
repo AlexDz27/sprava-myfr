@@ -20,7 +20,7 @@
       <img class="btn--dropdown__icon section-design--trust--mob__btn__icon" src="./front-end/site/assets/img/icons/arrow-down.svg" width="17" height="10">
       <div class="btn--dropdown__list">
         <a class="btn--dropdown__list__item" href="/download-price"><b>Скачать прайс</b></a>
-        <a class="btn--dropdown__list__item" href="table.php"><b>Посмотреть прайс</b></a>
+        <a class="btn--dropdown__list__item" href="/table"><b>Посмотреть прайс</b></a>
       </div>
     </button>
   </div>

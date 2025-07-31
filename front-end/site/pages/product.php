@@ -209,7 +209,7 @@
         <?php endif ?>
         <p class="product__mb">
           <a class="btn product__btn" href="/download-price"><b>СКАЧАТЬ ПРАЙС</b></a>
-          <a class="btn product__btn product__btn--outlined t__btn" target="_blank" href="/table.php"><b>ПОСМОТРЕТЬ ПРАЙС</b></a>
+          <a class="btn product__btn product__btn--outlined t__btn" target="_blank" href="/table"><b>ПОСМОТРЕТЬ ПРАЙС</b></a>
         </p>
         <a class="product__go-to-cat text--larger" href="/catalog">Перейти в каталог</a>
       </div>

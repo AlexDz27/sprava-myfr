@@ -26,6 +26,10 @@ $siteRoutes = [
     ],
     'bodyClass' => 'catalog',
   ]],
+  '/table' => [$sitePresenter, 'table', [
+    'path' => 'front-end/site/pages/table.php',
+    'title' => $sitePresenter->companyName. ' | Прайс-лист',
+  ]],
   '/download-price' => [$sitePresenter, 'downloadPrice', []],
 
   '404' => [$sitePresenter, 'page', [

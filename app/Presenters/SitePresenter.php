@@ -56,6 +56,13 @@ class SitePresenter extends BasePresenter {
     );
   }
 
+  public function table(...$pageArgs) {
+    // TODO: providers..
+    // TODO: дату брать из texts_tech
+
+    parent::page(...$pageArgs);
+  }
+
   public function downloadPrice() {
     $dataProvider = new DataProvider();
     $priceListTexts = $dataProvider->getPriceListTexts();
