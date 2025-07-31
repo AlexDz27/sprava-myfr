@@ -190,7 +190,7 @@
               <li class="splide__slide"><img src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>"></li>
               <?php if (!empty($product['galleryImgs'])): ?>
                 <?php foreach (explode(', ', $product['galleryImgs']) as $galImg): ?>
-                  <li class="splide__slide"><img src="/front-end/site/assets<?= $galImg ?>" alt="<?= $product['name'] ?>"></li>
+                  <li class="splide__slide"><img src="<?= $galImg ?>" alt="<?= $product['name'] ?>"></li>
                 <?php endforeach ?>
               <?php endif ?>
             </ul>
