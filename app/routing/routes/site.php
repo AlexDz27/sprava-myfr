@@ -26,6 +26,7 @@ $siteRoutes = [
     ],
     'bodyClass' => 'catalog',
   ]],
+  '/download-price' => [$sitePresenter, 'downloadPrice', []],
 
   '404' => [$sitePresenter, 'page', [
     'path' => 'front-end/site/pages/404.php',

@@ -4,6 +4,7 @@ namespace app\Presenters;
 
 use app\Presenters\BasePresenter;
 use app\ViewData\ViewDataProvider;
+use app\Data\DataProvider;
 
 class SitePresenter extends BasePresenter {
   public $texts = [];
@@ -55,11 +56,11 @@ class SitePresenter extends BasePresenter {
     );
   }
 
-  public function downloadPriceList() {
+  public function downloadPrice() {
     $dataProvider = new DataProvider();
     $priceListTexts = $dataProvider->getPriceListTexts();
 
-    $filePath = 'app/Data/price-lists/' . $priceListTexts['priceListFileName'];
+    $filePath = 'data/price-lists/' . $priceListTexts['priceListFileName'];
 
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');

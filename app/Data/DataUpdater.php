@@ -38,7 +38,7 @@ class DataUpdater {
       return $resultMessage;
     }
 
-    if (!move_uploaded_file($file['tmp_name'], 'app/Data/price-lists/' . $file['name'])) {
+    if (!move_uploaded_file($file['tmp_name'], 'data/price-lists/' . $file['name'])) {
       $resultMessage = [
         'status' => 'ERR',
         'text' => 'Ошибка при загрузке файла. Скорее всего, что-то не так с файлом.',
@@ -60,7 +60,7 @@ class DataUpdater {
     $solutionIfDiff = null;
     $fileArts = [];
     $excelProducts = [];
-    $spreadsheet = IOFactory::load('app/Data/price-lists/' . $file['name']);
+    $spreadsheet = IOFactory::load('data/price-lists/' . $file['name']);
     $activeSheet = $spreadsheet->getActiveSheet();
     $date = str_replace(',', '.', $activeSheet->getCell([1, 1])->getFormattedValue());
     $lastRowNum = $activeSheet->getHighestRow();
