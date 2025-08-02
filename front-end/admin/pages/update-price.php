@@ -6,7 +6,7 @@
 
 <main class="main cont">
   <form method="POST">
-    <section class="editable-datum">
+    <section class="field-section">
       <p>
         1. Выберите файл прайс-листа <span style="font-size: 25px;">👉🏻</span> &nbsp;
         <input name="file" type="file" id="file">

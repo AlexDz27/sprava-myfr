@@ -146,19 +146,22 @@ select {
   text-decoration: underline;
 }
 
-.editable-datum {
+.field-section {
   margin-bottom: 4rem;
 }
-.editable-datum__name-and-btns {
+.editable-entity {
+  margin-bottom: 4rem;
+}
+.editable-entity__name-and-btns {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid black;
   margin-bottom: 1.5em;
 }
-.editable-datum__name {
+.editable-entity__name {
   margin-bottom: 0;
 }
-.editable-datum__btns {
+.editable-entity__btns {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -166,7 +169,7 @@ select {
   position: relative;
   top: 3px;
 }
-.editable-datum__imgs-grid {
+.editable-entity__imgs-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 70px;
@@ -287,13 +290,13 @@ select {
   padding: 4px 8px;
 }
 
-.edit-product-header-section-grid {
+.edit-product-header-grid {
   display: grid;
   grid-template-columns: 1fr 30%;
   grid-template-rows: 1fr 1fr;
   padding-top: 3rem;
 }
-.edit-product-header-section-grid__img {
+.edit-product-header-grid__img {
   width: 285px;
   width: 161px;
   height: 188px;

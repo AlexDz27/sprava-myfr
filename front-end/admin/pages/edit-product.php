@@ -2,12 +2,12 @@
 
 <?php require 'front-end/admin/parts/header.php' ?>
 
-<div class="edit-product-header-section-grid cont">
+<div class="edit-product-header-grid cont">
   <section class="page-name page-name--pt-0">
     <h2>Редактирование товара</h2>
   </section>
 
-  <img class="edit-product-header-section-grid__img" src="<?= $product['img'] ?>">
+  <img class="edit-product-header-grid__img" src="<?= $product['img'] ?>">
 
   <section class="product-name-cont">
     <div class="product-name <?= $product['hidden'] ? 'category-name--hidden' : '' ?> <?= $product['cat_hidden'] ? 'category-name--hidden' : '' ?>">
@@ -36,7 +36,7 @@
   <form method="POST">
     <input type="hidden" name="id" value="<?= $product['id'] ?>">
 
-    <section class="editable-datum">
+    <section class="field-section">
       <p class="d-flex-ai-center"><span>Название:</span> &nbsp;&nbsp;<input name="name" value="<?= htmlspecialchars($product['name']) ?>" class="input--full-w"></p>
       <p class="d-flex-ai-center"><span>Цена:</span> &nbsp;&nbsp;<input name="price" value="<?= $product['price'] ?>" class="input--small-w"> &nbsp; <span class="text--smaller">бел. рублей</span></p>
       <p class="d-flex-ai-center">

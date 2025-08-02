@@ -1,8 +1,8 @@
-const categories = document.querySelectorAll('.js-editable-datum')
+const categories = document.querySelectorAll('.js-editable-entity')
 for (const category of categories) {
   const editBtn = category.querySelector('.js-edit-btn')
   editBtn.onclick = () => {
-    const categorySection = category.querySelector('.js-editable-datum__subsection')
+    const categorySection = category.querySelector('.js-editable-entity__subsection')
     categorySection.classList.contains('js-dn') ? categorySection.classList.remove('js-dn') : categorySection.classList.add('js-dn')
   }
   category.querySelector('.js-category-name').onclick = editBtn.onclick
@@ -41,7 +41,7 @@ form.onsubmit = (e) => {
   const payload = []
   for (const cat of categories) {
     const id = Number(cat.dataset.id)
-    const datum = {
+    const entity = {
       id: id,
       name: cat.querySelector('input[name="name"]').value,
       name_tech: cat.querySelector('input[name="name_tech"]').value,
@@ -49,10 +49,10 @@ form.onsubmit = (e) => {
       description: cat.querySelector('textarea[name="description"]').value,
     }
     if (cat.querySelector('input[name="img"]').value) {
-      datum.img = 'app/Data/downloaded-imgs/' + getLastPathSegment(cat.querySelector('input[name="img"]').value)
-      datum.imgBase64 = cat.querySelector('#changeCatImgHolder').querySelector('img').src
+      entity.img = 'app/Data/downloaded-imgs/' + getLastPathSegment(cat.querySelector('input[name="img"]').value)
+      entity.imgBase64 = cat.querySelector('#changeCatImgHolder').querySelector('img').src
     }
-    payload.push(datum)
+    payload.push(entity)
   }
 
   submitBtn.disabled = true
