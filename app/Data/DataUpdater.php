@@ -5,6 +5,7 @@ namespace app\Data;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PDO;
+use app\Data\DataProvider;
 
 const ERR_NO_FILE_UPLOADED = 4;
 
@@ -177,6 +178,10 @@ class DataUpdater {
   }
 
   public function editProduct() {
+    $id = intval($_POST['id']);
+    $dataProvider = new DataProvider();
+    $product = $dataProvider->getProduct($id);
+
     if (empty($_POST)) {
       $incoming = json_decode(file_get_contents('php://input'), true);
       $id = $incoming['id'];
@@ -194,7 +199,6 @@ class DataUpdater {
       'payload' => null,
     ];
 
-    $id = $_POST['id'];
     $name = $_POST['name'];
     $slug = slugify($name);
     $price = $_POST['price'];
@@ -209,17 +213,36 @@ class DataUpdater {
     $description = $_POST['description'];
     $currentOrder = $_POST['currentOrder'];
 
+    // var_dump($currentOrder);
+    // die();
+
+    $imgPath = $product['img'];
+    if ($_FILES['mainImg']['error'] !== ERR_NO_FILE_UPLOADED) {
+      $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
+      move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
+    }
+    $galleryImgPaths = explode(', ', $currentOrder);
+    if (empty($galleryImgPaths[0])) $galleryImgPaths[0] = null;  // omg))))
+    if ($_FILES['galleryImgs']['error'][0] !== ERR_NO_FILE_UPLOADED) {  // bad
+      foreach ($_FILES['galleryImgs']['name'] as $idx => $galImg) {
+        $galleryImgPaths[] = '/data/product-imgs/downloaded/' . $_FILES['galleryImgs']['name'][$idx];
+        move_uploaded_file($_FILES['galleryImgs']['tmp_name'][$idx], 'data/product-imgs/downloaded/' . $_FILES['galleryImgs']['name'][$idx]);
+      }
+    }
+    $galleryImgPathsStr = implode(', ', $galleryImgPaths);
+
     try {
        $this->repository->exec(
         "UPDATE products SET
         name = '$name',
         price = '$price',
+        img = '$imgPath',
+        galleryImgs = '$galleryImgPathsStr',
         category_id = $category,
         isHit = $hit,
         unit = '$unit',
         upakMal = '$upakMal',
         upakKrup = '$upakKrup',
-        galleryImgs = '$currentOrder',
         details = '$details',
         description = '$description',
         slug = '$slug'

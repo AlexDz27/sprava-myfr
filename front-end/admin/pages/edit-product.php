@@ -1,5 +1,3 @@
-<?php // var_dump($product); die();  // TODO: d ?>
-
 <?php require 'front-end/admin/parts/header.php' ?>
 
 <div class="edit-product-header-grid cont">
@@ -92,12 +90,16 @@
 
           <h3>Галерея:</h3>
           <div id="currentGalleryImgs" class="gallery">
-            <?php foreach (explode(',', $product['galleryImgs']) as $galImg): ?>
-              <div class="gallery__item">
-                <img src="<?= $galImg ?>" alt="">
-                <div class="gallery__item__x">x</div>
-              </div>
-            <?php endforeach ?>
+            <?php if (empty($product['galleryImgs'])): ?>
+              <span class="text--smaller">На текущий момент товар не имеет картинок в галерее</span>
+            <?php else: ?>
+              <?php foreach (explode(', ', $product['galleryImgs']) as $galImg): ?>
+                <div class="gallery__item">
+                  <img src="<?= $galImg ?>" alt="">
+                  <div class="gallery__item__x">x</div>
+                </div>
+              <?php endforeach ?>
+            <?php endif ?>
           </div>
         </div>
       </section> 

@@ -7,6 +7,9 @@
     height: 100%;
     object-fit: contain;
   }
+  .t__img--fix-bad-first-valik {
+    height: 97%;
+  }
 </style>
 
 <section class="page-title-cont section-design--about">
@@ -108,7 +111,7 @@
               <p class="t__iz"><?= $z + 1 ?> из <?= $count ?></p>
               <div class="t__body">
                 <div class="t__img-cont <?= ($z === 1 && $cat === 'kisti') ? 't__img-cont--kist-2' : '' ?>">
-                  <img class="t__img" width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
+                  <img class="t__img <?= ($z === 0 && $cat === 'valiki') ? 't__img--fix-bad-first-valik' : '' ?>" width="150" height="150" src="<?= $product['img'] ?>" alt="<?= $product['name'] ?>">
                 </div>
                 <div class="t__text">
                   <p><?= $product['name'] ?></p>

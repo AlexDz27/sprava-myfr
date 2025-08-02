@@ -163,6 +163,8 @@ new Sortable(currentGalleryImgsEl, {
 
 function getCurrentOrder() {
   const arr = []
+  if (currentGalleryImgsEl.querySelectorAll('img').length === 0) return arr
+
   Array.from(currentGalleryImgsEl.children).forEach(c => {
     const img = c.querySelector('img')
     arr.push(img.getAttribute('src'))

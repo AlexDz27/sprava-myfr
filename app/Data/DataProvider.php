@@ -78,6 +78,12 @@ class DataProvider {
     return $categories;
   }
 
+  public function getProduct($id) {
+    $stmtProduct = $this->repository->query("SELECT * FROM products WHERE id = $id");
+    $product = $stmtProduct->fetch();
+
+    return $product;
+  }
   public function getProductsForCatalog() {
     $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, p.slug, c.name_tech AS cat_name_tech, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.hidden = 0");
     $products = $stmtProducts->fetchAll();
