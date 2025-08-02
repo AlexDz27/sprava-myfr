@@ -1418,6 +1418,7 @@ the buttons will not be shown. TODO: maybe i can make it better */
   line-height: 29px;
   text-align: center;
   font-weight: 600;
+  z-index: 1;
 }
 .slider__dots--product {
   position: absolute;

@@ -175,4 +175,85 @@ class DataUpdater {
 
     return $resultMessage;
   }
+
+  public function editProduct() {
+    if (empty($_POST)) {
+      $incoming = json_decode(file_get_contents('php://input'), true);
+      $id = $incoming['id'];
+      $hidden = $incoming['hidden'];
+      $this->repository->exec("UPDATE products SET hidden = $hidden WHERE id = $id");
+      $resultMessage = [
+        'status' => 'OK',
+        'text' => $hidden ? 'Товар был скрыт успешно' : 'Товар был возвращён успешно',
+      ];
+      return $resultMessage;
+    }
+
+    $resultMessage = [
+      'status' => null,
+      'payload' => null,
+    ];
+
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $slug = slugify($name);
+    $price = $_POST['price'];
+    $category = intval($_POST['category']);
+    $hit = $_POST['hit'];
+    if ($hit === 'yes') $hit = 1;
+    else $hit = 0;
+    $unit = $_POST['unit'];
+    $upakMal = $_POST['upakMal'];
+    $upakKrup = $_POST['upakKrup'];
+    $details = $_POST['details'];
+    $description = $_POST['description'];
+    $currentOrder = $_POST['currentOrder'];
+
+    try {
+       $this->repository->exec(
+        "UPDATE products SET
+        name = '$name',
+        price = '$price',
+        category_id = $category,
+        isHit = $hit,
+        unit = '$unit',
+        upakMal = '$upakMal',
+        upakKrup = '$upakKrup',
+        galleryImgs = '$currentOrder',
+        details = '$details',
+        description = '$description',
+        slug = '$slug'
+        WHERE id = $id"
+      );
+    } catch (Exception $e) {
+      $resultMessage = [
+        'status' => 'Err',
+        'text' => 'Возникла ошибка базы данных при редактировании товара. ' . $this->contactsIfError,
+      ];
+      return $resultMessage;
+    }
+
+    $resultMessage = [
+      'status' => 'OK',
+      'text' => 'Товар был отредактирован успешно'
+    ];
+
+    return $resultMessage;
+  }
+}
+
+
+function slugify($text) {
+  $text = str_replace('х', 'x', $text);
+  $text = str_replace('ь', '', $text);
+  $text = str_replace('ъ', '', $text);
+  $text = str_replace('я', 'ya', $text);
+  // Transliterate to ASCII
+  $text = transliterator_transliterate('Any-Latin; Latin-ASCII; [\u0080-\u7fff] remove', $text);
+  // Replace non-alphanumeric with dashes
+  $text = preg_replace('/[^a-z0-9]+/i', '-', $text);
+  // Trim and lowercase
+  $text = trim($text, '-');
+  $text = strtolower($text);
+  return $text;
 }

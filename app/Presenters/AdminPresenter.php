@@ -5,6 +5,7 @@ namespace app\Presenters;
 use app\Presenters\BasePresenter;
 use app\ViewData\AdminViewDataProvider;
 use app\Data\DataUpdater;
+use app\Data\DataProvider;
 
 class AdminPresenter extends BasePresenter {
   public $viewDataProvider;
@@ -84,9 +85,19 @@ class AdminPresenter extends BasePresenter {
   public function editProduct(...$pageArgs) {
     guard();
 
-    // TODO: доставать не только продукт, но и категории и впихивать их в select
+    $dataProvider = new DataProvider();
+    $categories = $dataProvider->getCategoriesForEditProduct();
 
-    $this->page(...$pageArgs);
+    $this->page(
+      ['categories' => $categories],
+      ...$pageArgs
+    );
+  }
+  public function editProductApi() {
+    $dataUpdater = new DataUpdater();
+    $resultMessage = $dataUpdater->editProduct();
+
+    echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
 
   public function guardedPage($vars = [], ...$pageArgs) {

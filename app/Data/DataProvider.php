@@ -71,6 +71,12 @@ class DataProvider {
 
     return $categories;
   }
+  public function getCategoriesForEditProduct() {
+    $stmtCategories = $this->repository->query("SELECT id, name, name_tech FROM categories WHERE hidden = 0");
+    $categories = $stmtCategories->fetchAll();
+
+    return $categories;
+  }
 
   public function getProductsForCatalog() {
     $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, p.slug, c.name_tech AS cat_name_tech, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.hidden = 0");
@@ -79,7 +85,7 @@ class DataProvider {
     return $products;
   }
   public function getProductsForAdmin() {
-    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.price, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden FROM products p JOIN categories c ON category_id = c.id");
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.hidden, p.description, p.category_id, p.price, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden FROM products p JOIN categories c ON category_id = c.id");
     $products = $stmtProducts->fetchAll();
 
     // var_dump($products);
