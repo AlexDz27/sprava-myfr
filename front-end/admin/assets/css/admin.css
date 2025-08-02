@@ -49,10 +49,6 @@ select {
 }
 
 /** STYLES **/
-.tac {
-  text-align: center;
-}
-
 .db {
   display: block;
 }
@@ -111,6 +107,10 @@ select {
   position: relative;
   padding-left: 3.5rem;
 }
+.header--home {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
 .back-home-icon {
   position: absolute;
@@ -126,11 +126,6 @@ select {
 }
 .page-name--pt-0 {
   padding-top: 0;
-}
-
-.heading--index {
-  font-size: 180%;
-  margin-bottom: 2rem;
 }
 
 .main {

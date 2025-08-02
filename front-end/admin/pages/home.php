@@ -1,7 +1,7 @@
 <?php require 'front-end/admin/parts/header.php' ?>
 
-<header class="header">
-  <h1 class="heading--index tac">Администратор, что Вы хотите сделать?</h1>
+<header class="header header--home">
+  <h1>Администратор, что Вы хотите сделать?</h1>
 </header>
 
 <main class="main cont">
