@@ -18,6 +18,7 @@ $adminRoutes = [
       '<script src="/front-end/admin/assets/js/updatePrice.js" defer></script>',
     ],
   ]],
+
   '/admin-9kasu/manage-products' => [$adminPresenter, 'manageProducts', [
     'path' => 'front-end/admin/pages/manage-products.php',
     'title' => 'Панель администратора - управлять товарами',
@@ -25,6 +26,14 @@ $adminRoutes = [
       '<script src="/front-end/admin/assets/js/manageProducts.js" defer></script>',
     ],
   ]],
+  '/admin-9kasu/create-product' => [$adminPresenter, 'createProduct', [
+    'path' => 'front-end/admin/pages/create-product.php',
+    'title' => 'Панель администратора - создать товар',
+    'extraAssets' => [
+      '<script src="/front-end/admin/assets/js/createProduct.js" defer></script>',
+    ],
+  ]],
+
   '/admin-9kasu/manage-categories' => [$adminPresenter, 'manageCategories', [
     'path' => 'front-end/admin/pages/manage-categories.php',
     'title' => 'Панель администратора - управлять категориями',
@@ -41,13 +50,13 @@ $adminRoutes = [
   ]],
 ];
 
-if (str_contains($_SERVER['REQUEST_URI'], 'manage-products/')) {
+if (str_contains($_SERVER['REQUEST_URI'], 'edit-product')) {
   $myF = function(&$adminRoutes) use ($adminPresenter) {
   $dataProvider = new DataProvider();
   $ps = $dataProvider->getProductsForAdmin();
 
   foreach ($ps as $p) {
-    $adminRoutes['/admin-9kasu/manage-products/' . $p['art']] = [$adminPresenter, 'editProduct', [
+    $adminRoutes['/admin-9kasu/edit-product/' . $p['art']] = [$adminPresenter, 'editProduct', [
       'path' => 'front-end/admin/pages/edit-product.php',
       'title' =>  'Редактирование продукта',
       'extraAssets' => [

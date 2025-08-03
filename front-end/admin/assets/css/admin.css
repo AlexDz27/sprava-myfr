@@ -146,9 +146,46 @@ select {
   text-decoration: underline;
 }
 
-.field-section {
+.delimited-section {
   margin-bottom: 4rem;
 }
+
+.field-section {
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.field-section--required .field-section__title::after {
+  content: "*";
+  color: red;
+}
+.field-section--full-w input {
+  flex-grow: 1;
+}
+.field-section--short input {
+  min-width: initial;
+  width: 5rem;
+}
+.field-section--textarea {
+  display: block;
+}
+.field-section--textarea span {
+  display: block;
+  margin-bottom: 5px;
+}
+.field-section--textarea textarea {
+  width: 27rem;
+  height: 10rem;
+  font-family: inherit;
+  padding: 0.6rem;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+.field-section__title {
+  margin-right: 1em;
+}
+
 .editable-entity {
   margin-bottom: 4rem;
 }
@@ -212,6 +249,7 @@ select {
   cursor: pointer;
   font-size: inherit;
   display: inline-block;
+  text-decoration: none;
 }
 .btn-w-icon__svg {
   position: relative;
@@ -341,6 +379,32 @@ select {
   font-size: 24px;
   line-height: 25px;
   cursor: pointer;
+}
+
+.btn-entity-action {
+  padding: 6px 12px;
+  border-radius: .25rem;
+  color: white;
+  position: relative;
+  padding-left: 1.35em;
+}
+.btn-entity-action--create {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+.btn-entity-action--create:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+.btn-entity-action--create:active {
+  background-color: #1e7e34;
+  border-color: #1c7430;
+}
+.btn-entity-action__icon { /* display flex is better. prob won't be need to create Element (BEM) */
+  font-size: 1.2em;
+  position: absolute;
+  left: 0.3em;
+  top: 0.12em;
 }
 
 /** BOOTSTRAP-LIKE COMPONENTS **/

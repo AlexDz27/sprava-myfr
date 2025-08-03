@@ -71,8 +71,8 @@ class DataProvider {
 
     return $categories;
   }
-  public function getCategoriesForEditProduct() {
-    $stmtCategories = $this->repository->query("SELECT id, name, name_tech FROM categories WHERE hidden = 0");
+  public function getCategoriesForManagingProduct() {
+    $stmtCategories = $this->repository->query("SELECT id, name, name_tech FROM categories");
     $categories = $stmtCategories->fetchAll();
 
     return $categories;

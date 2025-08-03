@@ -74,8 +74,6 @@ class AdminPresenter extends BasePresenter {
     guard();
     
     $productGroups = $this->viewDataProvider->getProductGroups();
-    // var_dump($productGroups);
-    // die();
 
     $this->page(
       ['productGroups' => $productGroups],
@@ -86,7 +84,7 @@ class AdminPresenter extends BasePresenter {
     guard();
 
     $dataProvider = new DataProvider();
-    $categories = $dataProvider->getCategoriesForEditProduct();
+    $categories = $dataProvider->getCategoriesForManagingProduct();
 
     $this->page(
       ['categories' => $categories],
@@ -98,6 +96,22 @@ class AdminPresenter extends BasePresenter {
     $resultMessage = $dataUpdater->editProduct();
 
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+  }
+  public function createProduct(...$pageArgs) {
+    guard();
+
+    $dataProvider = new DataProvider();
+    $categories = $dataProvider->getCategoriesForManagingProduct();
+
+    $this->page(
+      ['categories' => $categories],
+      ...$pageArgs
+    );
+  }
+  public function createProductApi() {
+    var_dump($_POST);
+    var_dump($_FILES);
+    die();
   }
 
   public function guardedPage($vars = [], ...$pageArgs) {

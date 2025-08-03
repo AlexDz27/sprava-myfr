@@ -15,6 +15,10 @@ function getCurrentUrl() {
   <h2>Управление товарами</h2>
 </section>
 
+<section class="cont">
+  <a href="/admin-9kasu/create-product" class="btn btn-entity-action btn-entity-action--create"><b class="btn-entity-action__icon">+</b> Создать товар</a>
+</section>
+
 <main class="main cont">
   <?php foreach ($productGroups as $catName => $ps): ?>
     <section class="mb-7-5rem">
@@ -25,7 +29,7 @@ function getCurrentUrl() {
 
       <div class="products-grid fz-init">
         <?php foreach ($ps['products'] as $p): ?>
-          <a href="<?= getCurrentUrl() . '/' . $p['art'] ?>" class="products-grid__product">
+          <a href="/admin-9kasu/edit-product/<?= $p['art'] ?>" class="products-grid__product">
             <img class="products-grid__product__img" src="<?= $p['img'] ?>">
             <b><?= $p['name'] ?></b>
             <span class="products-grid__product__art">(<?= $p['art'] ?>)</span>

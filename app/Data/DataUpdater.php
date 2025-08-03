@@ -221,8 +221,7 @@ class DataUpdater {
       $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
       move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
     }
-    $galleryImgPaths = explode(', ', $currentOrder);
-    if (empty($galleryImgPaths[0])) $galleryImgPaths[0] = null;  // omg))))
+    $galleryImgPaths = empty($currentOrder) ? [] : explode(', ', $currentOrder);
     if ($_FILES['galleryImgs']['error'][0] !== ERR_NO_FILE_UPLOADED) {  // bad
       foreach ($_FILES['galleryImgs']['name'] as $idx => $galImg) {
         $galleryImgPaths[] = '/data/product-imgs/downloaded/' . $_FILES['galleryImgs']['name'][$idx];

@@ -31,12 +31,19 @@
 </div>
 
 <main class="main cont">
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= $product['id'] ?>">
 
-    <section class="field-section">
-      <p class="d-flex-ai-center"><span>Название:</span> &nbsp;&nbsp;<input name="name" value="<?= htmlspecialchars($product['name']) ?>" class="input--full-w"></p>
-      <p class="d-flex-ai-center"><span>Цена:</span> &nbsp;&nbsp;<input name="price" value="<?= $product['price'] ?>" class="input--small-w"> &nbsp; <span class="text--smaller">бел. рублей</span></p>
+    <section class="delimited-section">
+      <p class="field-section field-section--full-w">
+        <span class="field-section__title">Название:</span>
+        <input name="name" value="<?= htmlspecialchars($product['name']) ?>">
+      </p>
+      <p class="field-section field-section--short">
+        <span class="field-section__title">Цена:</span>
+        <input name="price" value="<?= $product['price'] ?>">
+        &nbsp;<span class="text--smaller">бел. рублей</span>
+      </p>
       <p class="d-flex-ai-center">
         <span>Принадлежит к категории:</span> &nbsp;&nbsp;
         <select name="category">
