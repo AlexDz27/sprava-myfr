@@ -5,7 +5,7 @@
 </section>
 
 <main class="main cont">
-  <form method="POST">
+  <form method="POST" action="/admin-9kasu/api/manage-categories">
     <?php for ($i = 0; $i < count($categories); $i++): $c = $categories[$i]; ?>
       <section data-id="<?= $c['id'] ?>" class="js-editable-entity editable-entity">
         <div class="editable-entity__name-and-btns">
@@ -30,28 +30,28 @@
         </div>
 
         <section class="js-editable-entity__subsection js-dn editable-entity__subsection">
-          <input type="hidden" name="id" value="<?= $c['id'] ?>">
+          <input type="hidden" name="cats[][id]" value="<?= $c['id'] ?>">
 
           <label class="db mb-1em">
             Название:&nbsp;
-            <input value="<?= $c['name'] ?>" name="name">
+            <input value="<?= $c['name'] ?>" name="cats[][name]">
           </label>
           <label class="db mb-1em">
             Техническое название:&nbsp;
-            <input style="font-family: monospace;" value="<?= $c['name_tech'] ?>" name="name_tech">
+            <input style="font-family: monospace;" value="<?= $c['name_tech'] ?>" name="cats[][name_tech]">
           </label>
           <p class="db mb-1em">
             Скрыть категорию?&nbsp;
-            <label style="font-size: .8em;">Нет <input type="radio" name="hide-<?= $c['id'] ?>" value="0" <?= $c['hidden'] ? '' : 'checked' ?>></label>
-            <label style="font-size: .8em;">Да <input type="radio" name="hide-<?= $c['id'] ?>" value="1" <?= $c['hidden'] ? 'checked' : '' ?>></label>
+            <label style="font-size: .8em;">Нет <input type="radio" name="cats[][hide]" value="0" <?= $c['hidden'] ? '' : 'checked' ?>></label>
+            <label style="font-size: .8em;">Да <input type="radio" name="cats[][hide]" value="1" <?= $c['hidden'] ? 'checked' : '' ?>></label>
           </p>
           <label class="db mb-1em">
             <p>Описание на главной странице в слайдере:</p>
-            <textarea class="textarea textarea--full textarea--w-code" name="description"><?= $c['description'] ?></textarea>
+            <textarea class="textarea textarea--full textarea--w-code" name="cats[][description]"><?= $c['description'] ?></textarea>
           </label>
           <label class="db mb-1em">
             <p>Перенос строк в названии категории (если нужно):</p>
-            <textarea class="textarea textarea--small textarea--w-code" name="name_view"><?= $c['name_view'] ?></textarea>
+            <textarea class="textarea textarea--small textarea--w-code" name="cats[][name_view]"><?= $c['name_view'] ?></textarea>
           </label>
           <div class="mb-1em">
             Поменять картинку:
@@ -66,7 +66,7 @@
               <div>
                 <p style="font-size: .8em;">Поменять:</p>
                 <label for="changeCatImg" class="btn btn--admin" style="font-size: .8em; margin-bottom: .5em; display: inline-block;">Поменять картинку категории</label>
-                <input type="file" id="changeCatImg" name="img" accept="image/png, image/jpeg">
+                <input type="file" id="changeCatImg" name="cats[][img]" accept="image/png, image/jpeg">
                 <div style="margin-bottom: 55px;" id="changeCatImgHolder" class="img-holder img-holder--smaller"></div>
               </div>
             </div>

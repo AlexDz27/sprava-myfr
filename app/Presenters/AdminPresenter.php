@@ -52,6 +52,9 @@ class AdminPresenter extends BasePresenter {
     );
   }
   public function manageCategoriesApi() {
+    var_dump($_POST);
+    die();
+
     $incoming = file_get_contents('php://input');
     $decoded = json_decode($incoming, true);
 

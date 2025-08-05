@@ -39,7 +39,7 @@ $adminRoutes = [
     'path' => 'front-end/admin/pages/manage-categories.php',
     'title' => 'Панель администратора - управлять категориями',
     'extraAssets' => [
-      '<script src="/front-end/admin/assets/js/manageCategories.js" defer></script>',
+      // '<script src="/front-end/admin/assets/js/manageCategories.js" defer></script>',
     ],
   ]],
   '/admin-9kasu/edit-texts' => [$adminPresenter, 'editTexts', [

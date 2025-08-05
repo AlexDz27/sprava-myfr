@@ -111,7 +111,11 @@ form.onsubmit = (e) => {
     method: 'POST',
     body: JSON.stringify(payload)
   })
-  .then(r => r.json())  // TODO: catch here on line 48
+  .then(r => r.json())
+  .catch(err => {
+    alert('Произошла ошибка чтения результатов операции. Свяжитесь с программистом Алексеем: тг - @rain_xxxx; телефон - +375298191624')
+    throw err
+  })
   .then(r => {
     alert(r.text)
     
