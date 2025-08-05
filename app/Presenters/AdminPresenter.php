@@ -52,17 +52,22 @@ class AdminPresenter extends BasePresenter {
     );
   }
   public function manageCategoriesApi() {
-    var_dump($_POST);
-    die();
-
-    $incoming = file_get_contents('php://input');
-    $decoded = json_decode($incoming, true);
-
     $dataUpdater = new DataUpdater();
-    $resultMessage = $dataUpdater->manageCategories($decoded);
+
+    $resultMessage = null;
+    // this means we sent JSON payload with 'justHidden' or 'is_deleted' -- bad code here
+    if (empty($_POST)) {
+      $incoming = file_get_contents('php://input');
+      $decoded = json_decode($incoming, true);
+
+      $resultMessage = $dataUpdater->manageCategories($decoded);
+    } else {
+      $resultMessage = $dataUpdater->manageCategories($_POST);
+    }
 
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+    // TODO: d when i deal with images
     // var_dump($decoded);
     // die();
     

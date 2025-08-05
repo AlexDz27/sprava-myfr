@@ -169,10 +169,14 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
+    
+    var_dump($_POST);
+    var_dump($_FILES);
+    die();
 
     try {
-      foreach ($managedCategories as $c) {
-        $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}' WHERE id = {$c['id']}");
+      foreach ($_POST as $c) {
+        $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}', name_view = '{$c['name_view']}' WHERE id = {$c['id']}");
 
         if (isset($c['img'])) {
           $this->repository->exec("UPDATE categories SET img = '{$c['img']}' WHERE id = {$c['id']}");

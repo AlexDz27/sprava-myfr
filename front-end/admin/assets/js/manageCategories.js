@@ -7,7 +7,7 @@ for (const category of categories) {
   }
   category.querySelector('.js-category-name').onclick = editBtn.onclick
   
-  const idInput = document.querySelector('input[name=id]')
+  const idInput = category.querySelector('input[name$="[id]"]')
   const hideBtn = category.querySelector('.js-hide-btn')
   if (hideBtn) hideBtn.onclick = () => {
     if (confirm('Вы уверены, что хотите скрыть эту категорию с сайта?')) {
@@ -26,7 +26,7 @@ for (const category of categories) {
       })
     }
   }
-  const unhideBtn = document.querySelector('.js-unhide-btn')
+  const unhideBtn = category.querySelector('.js-unhide-btn')
   if (unhideBtn) unhideBtn.onclick = () => {
     if (confirm('Вы уверены, что хотите вернуть эту категорию на сайт?')) {
       fetch('/admin-9kasu/api/manage-categories', {
@@ -62,54 +62,35 @@ for (const category of categories) {
       })
     }
   }
-}
-
-// main img upload
-const changeCatImgInput = document.getElementById('changeCatImg')
-const changeCatImgHolder = document.getElementById('changeCatImgHolder')
-changeCatImgInput.onchange = (e) => {
-  const file = e.target.files[0]
   
-  const reader = new FileReader();
-  reader.onload = (event) => {
-    console.log(changeCatImgHolder.querySelector('img'))
-    changeCatImgHolder.querySelector('img')?.remove()
+  const changeCatImgInput = category.querySelector('.js-changeCatImg')
+  const changeCatImgHolder = category.querySelector('.js-changeCatImgHolder')
+  changeCatImgInput.onchange = (e) => {
+    const file = e.target.files[0]
     
-    const img = document.createElement('img');
-    img.src = event.target.result;
-    changeCatImgHolder.appendChild(img);
-  };
-  reader.readAsDataURL(file);
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      changeCatImgHolder.querySelector('img')?.remove()
+      
+      const img = document.createElement('img');
+      img.src = event.target.result;
+      changeCatImgHolder.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  }
 }
 
 const form = document.querySelector('form')
 const submitBtn = document.querySelector('button[type=submit]')
-
 form.onsubmit = (e) => {
   e.preventDefault()
   
-  const payload = []
-  for (const cat of categories) {
-    const id = Number(cat.dataset.id)
-    const entity = {
-      id: id,
-      name: cat.querySelector('input[name="name"]').value,
-      name_tech: cat.querySelector('input[name="name_tech"]').value,
-      hidden: Number(cat.querySelector(`input[name="hide-${id}"]:checked`).value),
-      description: cat.querySelector('textarea[name="description"]').value,
-    }
-    if (cat.querySelector('input[name="img"]').value) {
-      entity.img = 'app/Data/downloaded-imgs/' + getLastPathSegment(cat.querySelector('input[name="img"]').value)
-      entity.imgBase64 = cat.querySelector('#changeCatImgHolder').querySelector('img').src
-    }
-    payload.push(entity)
-  }
-  
   submitBtn.disabled = true
   
+  const formData = new FormData(form)
   fetch('/admin-9kasu/api/manage-categories', {
     method: 'POST',
-    body: JSON.stringify(payload)
+    body: formData
   })
   .then(r => r.json())
   .catch(err => {
