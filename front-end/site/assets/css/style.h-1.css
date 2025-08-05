@@ -1161,17 +1161,8 @@ the buttons will not be shown. TODO: maybe i can make it better */
 }
 
 .qs__cont {
-  /* display: flex; justify-content: space-between; width: 1200px; margin: 0 auto; margin-bottom: 50px; overflow-x: auto; overflow-y: hidden; */
-
-  /* display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 230px;
-  column-gap: 22.5px;
-  overflow-x: auto;
-  overflow-y: hidden; */ /* this kinda works, but i want my initial setup */
-
   display: flex;
-  justify-content: space-between;
+  column-gap: 11px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin; /* For Firefox */
