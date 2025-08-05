@@ -32,6 +32,7 @@ $adminRoutes = [
     'extraAssets' => [
       '<script src="/front-end/admin/assets/js/createProduct.js" defer></script>',
     ],
+    'pageName' => 'create-product',
   ]],
 
   '/admin-9kasu/manage-categories' => [$adminPresenter, 'manageCategories', [
@@ -63,6 +64,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'edit-product')) {
         '<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>',
         '<script src="/front-end/admin/assets/js/editProduct.js" defer></script>',
       ],
+      'pageName' => 'edit-product',
       'product' => $p,
     ]];
   }

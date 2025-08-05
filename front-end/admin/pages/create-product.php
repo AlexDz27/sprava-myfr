@@ -51,7 +51,7 @@
 
           <label style="display: inline-block;" class="btn-edit edit-form__btn-edit edit-form__btn-edit--w-auto" for="changeMainImg">Нажмите, чтобы добавить главную картинку:</label>
           <p><input type="file" id="changeMainImg" name="mainImg" accept="image/png, image/jpeg"></p>
-          <div style="margin-bottom: 55px; min-height: 530px;" id="changeMainImgHolder" class="img-holder img-holder--smaller"></div>
+          <div style="margin-bottom: 55px;" id="changeMainImgHolder" class="img-holder img-holder--smaller"></div>
 
           <label style="display: inline-block;" class="btn-edit edit-form__btn-edit edit-form__btn-edit--w-auto" for="changeGalImg">Добавить картинки в галерею:</label>
           <p><input type="file" multiple id="changeGalImg" name="galleryImgs[]"></p>

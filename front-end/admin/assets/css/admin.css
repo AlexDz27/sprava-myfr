@@ -156,7 +156,7 @@ select {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-.field-section--required .field-section__title::after {
+.field-section--required .field-section--required__title::after {
   content: "*";
   color: red;
 }

@@ -17,10 +17,22 @@
   </svg>
 
   <?php if (!isset($pageName) || $pageName !== 'home'): ?>
-    <a href="/admin-9kasu">
+    <?php
+    $url = null;
+    if ((isset($pageName) && $pageName === 'edit-product') || (isset($pageName) && $pageName === 'create-product')) {
+      $url = '/admin-9kasu/manage-products';
+    } else {
+      $url = '/admin-9kasu';
+    }
+    ?>
+    <a href="<?= $url ?>">
       <header class="header cont">
         <svg class="back-home-icon"><use href="#arrow-left"></use></svg>
-        Назад на главную
+        <?php if ((isset($pageName) && $pageName === 'edit-product') || (isset($pageName) && $pageName === 'create-product')): ?>
+          Назад ко всем товарам
+        <?php else: ?>
+          Назад на главную
+        <?php endif ?>
       </header>
     </a>
   <?php endif ?>

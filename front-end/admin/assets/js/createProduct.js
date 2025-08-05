@@ -1,3 +1,5 @@
+// TODO: SORTABLE inside galImgs + currentOrder
+
 const form = document.querySelector('form')
 const submitBtn = document.querySelector('button[type=submit]')
 form.onsubmit = (e) => {
@@ -54,6 +56,7 @@ changeMainImgInput.onchange = (e) => {
   reader.onload = (event) => {
     console.log(changeMainImgHolder.querySelector('img'))
     changeMainImgHolder.querySelector('img')?.remove()
+    changeMainImgHolder.style.minHeight = '530px';
     
     const img = document.createElement('img');
     img.src = event.target.result;
