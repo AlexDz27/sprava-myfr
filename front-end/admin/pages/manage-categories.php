@@ -30,15 +30,15 @@
         </div>
 
         <section class="js-editable-entity__subsection js-dn editable-entity__subsection">
-          <input type="hidden" name="cats[<?= $c['id'] ?>][id]" value="<?= $c['id'] ?>">
+          <input type="hidden" name="<?= $c['id'] ?>[id]" value="<?= $c['id'] ?>">
 
           <label class="db mb-1em">
             Название:&nbsp;
-            <input value="<?= $c['name'] ?>" name="cats[<?= $c['id'] ?>][name]">
+            <input value="<?= $c['name'] ?>" name="<?= $c['id'] ?>[name]">
           </label>
           <label class="db mb-1em">
             Техническое название:&nbsp;
-            <input style="font-family: monospace;" value="<?= $c['name_tech'] ?>" name="cats[<?= $c['id'] ?>][name_tech]">
+            <input style="font-family: monospace;" value="<?= $c['name_tech'] ?>" name="<?= $c['id'] ?>[name_tech]">
           </label>
         </section>
       </section>
