@@ -6,17 +6,17 @@
 
 <main class="main cont">
   <form method="POST" enctype="multipart/form-data">
-    <section class="field-section field-section--full-w">
-      <span class="field-section__title">Название <span style="color: red;">*</span>:</span>
+    <section class="field-section field-section--required field-section--full-w">
+      <span class="field-section__title"><span class="field-section--required__title">Название</span>:</span>
       <input name="name" required placeholder="Миксер для смесей оцинкованный SDS-plus, 100х600мм">
     </section>
-    <section class="field-section field-section--short">
-      <span class="field-section__title">Цена <span style="color: red;">*</span>:</span>
+    <section class="field-section field-section--required field-section--short">
+      <span class="field-section__title"><span class="field-section--required__title">Цена</span>:</span>
       <input name="price" required placeholder="10.00">
       &nbsp;<span class="text--smaller">бел. рублей</span>
     </section>
-    <section class="field-section field-section--full-w">
-      <span class="field-section__title">Принадлежит к категории <span style="color: red;">*</span>:</span>
+    <section class="field-section field-section--required field-section--full-w">
+      <span class="field-section__title"><span class="field-section--required__title">Принадлежит к категории</span>:</span>
       <select name="category" required>
         <option value="">-- Пожалуйста, выберите категорию --</option>
         <?php foreach ($categories as $cat): ?>
@@ -24,8 +24,8 @@
         <?php endforeach ?>
       </select>
     </section>
-    <section class="field-section field-section--short">
-      <span class="field-section__title">Единица измерения <span style="color: red;">*</span>:</span>
+    <section class="field-section field-section--required field-section--short">
+      <span class="field-section__title"><span class="field-section--required__title">Единица измерения</span>:</span>
       <input name="unit" value="шт" required>
     </section>
     <section class="field-section field-section--short">
@@ -61,7 +61,7 @@
         </div>
       </section>
 
-    <button style="width: 100%;" class="btn btn--admin" type="submit">Подтвердить создание</button>
+    <button class="btn btn--admin" style="width: 100%;" type="submit">Подтвердить создание</button>
   </form>
 </main>
 
