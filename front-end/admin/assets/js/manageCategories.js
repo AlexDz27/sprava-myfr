@@ -6,11 +6,61 @@ for (const category of categories) {
     categorySection.classList.contains('js-dn') ? categorySection.classList.remove('js-dn') : categorySection.classList.add('js-dn')
   }
   category.querySelector('.js-category-name').onclick = editBtn.onclick
-
+  
+  const idInput = document.querySelector('input[name=id]')
   const hideBtn = category.querySelector('.js-hide-btn')
-  hideBtn.onclick = () => {
-    confirm('Вы уверены, что хотите скрыть эту категорию с сайта?')
-    // TODO: доделать
+  if (hideBtn) hideBtn.onclick = () => {
+    if (confirm('Вы уверены, что хотите скрыть эту категорию с сайта?')) {
+      fetch('/admin-9kasu/api/manage-categories', {
+        method: 'POST',
+        body: JSON.stringify({justHidden: true, id: idInput.value, hidden: 1})
+      })
+      .then(r => r.json())
+      .catch(err => {
+        alert('Произошла ошибка чтения результатов операции. Свяжитесь с программистом Алексеем: тг - @rain_xxxx; телефон - +375298191624')
+        throw err
+      })
+      .then(r => {
+        alert(r.text)
+        location.reload()
+      })
+    }
+  }
+  const unhideBtn = document.querySelector('.js-unhide-btn')
+  if (unhideBtn) unhideBtn.onclick = () => {
+    if (confirm('Вы уверены, что хотите вернуть эту категорию на сайт?')) {
+      fetch('/admin-9kasu/api/manage-categories', {
+        method: 'POST',
+        body: JSON.stringify({justHidden: true, id: idInput.value, hidden: 0})
+      })
+      .then(r => r.json())
+      .catch(err => {
+        alert('Произошла ошибка чтения результатов операции. Свяжитесь с программистом Алексеем: тг - @rain_xxxx; телефон - +375298191624')
+        throw err
+      })
+      .then(r => {
+        alert(r.text)
+        location.reload()
+      })
+    }
+  }
+  const deleteBtn = category.querySelector('.js-delete-btn')
+  deleteBtn.onclick = () => {
+    if (confirm('Вы уверены, что хотите удалить этоу категорию? Она больше не будет показываться на сайте и в админ. панели. Но её можно будет восстановить, если понадобится.')) {
+      fetch('/admin-9kasu/api/manage-categories', {
+        method: 'POST',
+        body: JSON.stringify({justDelete: true, id: idInput.value, is_deleted: 1})
+      })
+      .then(r => r.json())
+      .catch(err => {
+        alert('Произошла ошибка чтения результатов операции. Свяжитесь с программистом Алексеем: тг - @rain_xxxx; телефон - +375298191624')
+        throw err
+      })
+      .then(r => {
+        alert(r.text)
+        location.reload()
+      })
+    }
   }
 }
 
@@ -37,7 +87,7 @@ const submitBtn = document.querySelector('button[type=submit]')
 
 form.onsubmit = (e) => {
   e.preventDefault()
-
+  
   const payload = []
   for (const cat of categories) {
     const id = Number(cat.dataset.id)
@@ -54,9 +104,9 @@ form.onsubmit = (e) => {
     }
     payload.push(entity)
   }
-
+  
   submitBtn.disabled = true
-
+  
   fetch('/admin-9kasu/api/manage-categories', {
     method: 'POST',
     body: JSON.stringify(payload)
@@ -64,9 +114,9 @@ form.onsubmit = (e) => {
   .then(r => r.json())  // TODO: catch here on line 48
   .then(r => {
     alert(r.text)
-
+    
     submitBtn.disabled = false
-
+    
     location.reload()
     window.scrollTo(0, 0)
   })

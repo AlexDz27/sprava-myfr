@@ -44,7 +44,7 @@ class AdminPresenter extends BasePresenter {
   public function manageCategories(...$pageArgs) {
     guard();
 
-    $categories = $this->viewDataProvider->getCategories();
+    $categories = $this->viewDataProvider->getCategoriesForAdmin();
 
     $this->page(
       ['categories' => $categories],

@@ -79,29 +79,22 @@ class ViewDataProvider {
 
   public function getProductsForCatalog() {
     $dataProvider = new DataProvider();
-    $products = $dataProvider->getProductsForCatalog();
 
+    $products = $dataProvider->getProductsForCatalog();
     $productsTransformed = [];
-    $productsCatSlidesCount = [];
-    $iSlides = 0;
     foreach ($products as $p) {
       $cat = $p['cat_name_tech'];
-      if (!isset($productsTransformed[$cat])) {
-        $iSlides = 0;
-        $productsTransformed[$cat] = [];
-      }
+      if (!isset($productsTransformed[$cat])) $productsTransformed[$cat] = [];
 
-      unset($p['cat_name_tech']);
       $productsTransformed[$cat][] = $p;
-      
-      $iSlides++;
-      $productsCatSlidesCount[$cat] = $iSlides;
     }
 
-    foreach ($productsCatSlidesCount as &$slidesCount) {
-      $slidesCount = ceil($slidesCount / 16);
+    $counts = $dataProvider->getProductsCountPerCategory();
+    $countsTransformed = [];
+    foreach ($counts as $count) {
+      $countsTransformed[$count['name_tech']] = ceil($count['products_count'] / 16);
     }
 
-    return [$productsTransformed, $productsCatSlidesCount];
+    return [$productsTransformed, $countsTransformed];
   }
 }

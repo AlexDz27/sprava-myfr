@@ -86,6 +86,24 @@ if (unhideBtn) unhideBtn.onclick = () => {
     })
   }
 }
+const deleteBtn = document.getElementById('deleteBtn')
+deleteBtn.onclick = () => {
+  if (confirm('Вы уверены, что хотите удалить этот товар? Он больше не будет показываться на сайте и в админ. панели. Но его можно будет восстановить, если понадобится.')) {
+    fetch('/admin-9kasu/api/edit-product', {
+      method: 'POST',
+      body: JSON.stringify({id: idInput.value, is_deleted: 1})
+    })
+    .then(r => r.json())
+    .catch(err => {
+      alert('Произошла ошибка чтения результатов операции. Свяжитесь с программистом Алексеем: тг - @rain_xxxx; телефон - +375298191624')
+      throw err
+    })
+    .then(r => {
+      alert(r.text)
+      window.location.href = '/admin-9kasu/manage-products'
+    })
+  }
+}
 
 const changeMainImgInput = document.getElementById('changeMainImg')
 const changeMainImgHolder = document.getElementById('changeMainImgHolder')

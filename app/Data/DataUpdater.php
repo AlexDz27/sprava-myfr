@@ -150,6 +150,26 @@ class DataUpdater {
   }
 
   public function manageCategories($managedCategories) {
+    if (isset($managedCategories['justHidden'])) {
+      $id = $managedCategories['id'];
+      $hidden = $managedCategories['hidden'];
+      $this->repository->exec("UPDATE categories SET hidden = $hidden WHERE id = $id");
+      $resultMessage = [
+        'status' => 'OK',
+        'text' => $hidden ? 'Категория была скрыта успешно' : 'Категория была возвращена успешно',
+      ];
+      return $resultMessage;
+    } else if (isset($managedCategories['is_deleted'])) {
+      $id = $managedCategories['id'];
+      $isDeleted = $managedCategories['is_deleted'];
+      $this->repository->exec("UPDATE categories SET is_deleted = $isDeleted WHERE id = $id");
+      $resultMessage = [
+        'status' => 'OK',
+        'text' => 'Категория была удалена успешно',
+      ];
+      return $resultMessage;
+    }
+
     try {
       foreach ($managedCategories as $c) {
         $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}' WHERE id = {$c['id']}");
@@ -178,21 +198,31 @@ class DataUpdater {
   }
 
   public function editProduct() {
-    $id = intval($_POST['id']);
-    $dataProvider = new DataProvider();
-    $product = $dataProvider->getProduct($id);
-
     if (empty($_POST)) {
       $incoming = json_decode(file_get_contents('php://input'), true);
       $id = $incoming['id'];
-      $hidden = $incoming['hidden'];
-      $this->repository->exec("UPDATE products SET hidden = $hidden WHERE id = $id");
-      $resultMessage = [
-        'status' => 'OK',
-        'text' => $hidden ? 'Товар был скрыт успешно' : 'Товар был возвращён успешно',
-      ];
-      return $resultMessage;
+      if (isset($incoming['hidden'])) {
+        $hidden = $incoming['hidden'];
+        $this->repository->exec("UPDATE products SET hidden = $hidden WHERE id = $id");
+        $resultMessage = [
+          'status' => 'OK',
+          'text' => $hidden ? 'Товар был скрыт успешно' : 'Товар был возвращён успешно',
+        ];
+        return $resultMessage;
+      } else if (isset($incoming['is_deleted'])) {
+        $isDeleted = $incoming['is_deleted'];
+        $this->repository->exec("UPDATE products SET is_deleted = $isDeleted WHERE id = $id");
+        $resultMessage = [
+          'status' => 'OK',
+          'text' => 'Товар был удалён успешно',
+        ];
+        return $resultMessage;
+      }
     }
+
+    $id = intval($_POST['id']);
+    $dataProvider = new DataProvider();
+    $product = $dataProvider->getProduct($id);
 
     $resultMessage = [
       'status' => null,

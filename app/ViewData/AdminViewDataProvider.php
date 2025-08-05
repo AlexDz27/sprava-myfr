@@ -12,9 +12,9 @@ class AdminViewDataProvider {
     return $texts;
   }
 
-  public function getCategories() {
+  public function getCategoriesForAdmin() {
     $dataProvider = new DataProvider();
-    $categories = $dataProvider->getCategories();
+    $categories = $dataProvider->getCategoriesForAdmin();
 
     return $categories;
   }
