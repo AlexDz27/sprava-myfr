@@ -53,9 +53,12 @@
           <p><input type="file" id="changeMainImg" name="mainImg" accept="image/png, image/jpeg"></p>
           <div style="margin-bottom: 55px;" id="changeMainImgHolder" class="img-holder img-holder--smaller"></div>
 
-          <label style="display: inline-block;" class="btn-edit edit-form__btn-edit edit-form__btn-edit--w-auto" for="changeGalImg">Добавить картинки в галерею:</label>
-          <p><input type="file" multiple id="changeGalImg" name="galleryImgs[]"></p>
-          <div class="gallery" id="changeGalImgHolder">
+          <label style="display: inline-block;" class="btn-edit edit-form__btn-edit edit-form__btn-edit--w-auto" for="changeGalImg">
+            Добавить картинки в галерею:<br>
+            <span style="position: relative; top: -5px;" class="hint">(Зажмите клавишу <code class="hint__keyboard-btn">Ctrl</code>, чтобы выбрать несколько)</span>
+          </label>
+          <p style="margin-top: 0;"><input type="file" multiple id="changeGalImg" name="galleryImgs[]"></p>
+          <div id="addGalImgsCont" class="gallery">
             <span class="text--smaller">Пока что добавленных картинок нет</span>
           </div>  
         </div>

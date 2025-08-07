@@ -66,16 +66,6 @@ class AdminPresenter extends BasePresenter {
     }
 
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-    // TODO: d when i deal with images
-    // var_dump($decoded);
-    // die();
-    
-    // $f = $decoded[1];
-    // $n = $f['imgFileName'];
-    // $b = $f['imgBase64'];
-    // $bB = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $b));
-    // file_put_contents('app/Data/test/' . $n, $bB);
   }
 
   public function manageProducts(...$pageArgs) {

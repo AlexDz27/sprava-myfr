@@ -66,12 +66,12 @@ changeMainImgInput.onchange = (e) => {
 }
 
 const changeGalImgInput = document.getElementById('changeGalImg')
-const changeGalImgHolder = document.getElementById('changeGalImgHolder')
+const addGalImgsCont = document.getElementById('addGalImgsCont')
 changeGalImgInput.onchange = (e) => {
-  changeGalImgHolder.innerHTML = ''
+  addGalImgsCont.innerHTML = ''
   const files = e.target.files
   if (files.length === 0) {
-    changeGalImgHolder.textContent = 'Пока что картинок нет';
+    addGalImgsCont.textContent = 'Пока что картинок нет';
     return;
   }  
   
@@ -93,13 +93,19 @@ changeGalImgInput.onchange = (e) => {
       img.title = file.name;
       
       // Add image to preview container
-      changeGalImgHolder.appendChild(img);
+      addGalImgsCont.appendChild(img);
     }
     
     // Read the image file as a data URL
     reader.readAsDataURL(file);
   }
 }
+new Sortable(addGalImgsCont, {
+  animation: 150,
+  // onEnd: () => {
+  //   currentOrder = getCurrentOrder()
+  // }
+})
 
 document.querySelectorAll('.gallery__item__x').forEach(x => {
   x.onclick = () => {

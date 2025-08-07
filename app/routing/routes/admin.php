@@ -30,6 +30,7 @@ $adminRoutes = [
     'path' => 'front-end/admin/pages/create-product.php',
     'title' => 'Панель администратора - создать товар',
     'extraAssets' => [
+      '<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>',
       '<script src="/front-end/admin/assets/js/createProduct.js" defer></script>',
     ],
     'pageName' => 'create-product',
