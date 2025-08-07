@@ -15,14 +15,14 @@ function getCurrentUrl() {
   <h2>Управление товарами</h2>
 </section>
 
-<section class="cont">
+<section style="margin-bottom: 2rem;" class="cont">
   <a href="/admin-9kasu/create-product" class="btn btn-entity-action btn-entity-action--create"><b class="btn-entity-action__icon">+</b> Создать товар</a>
 </section>
 
 <main class="main cont">
   <?php foreach ($productGroups as $catName => $ps): ?>
     <section class="mb-7-5rem">
-      <h3 class="category-name <?= $ps['isCatHidden'] ? 'category-name--hidden' : '' ?>">
+      <h3 class="category-name category-name--manage-products <?= $ps['isCatHidden'] ? 'category-name--hidden' : '' ?>">
         <span class="category-name__num">#<?= $ps['count'] ?></span>
         <?= $catName ?> <?= $ps['isCatHidden'] ? '(скрыта)' : '' ?>
       </h3>

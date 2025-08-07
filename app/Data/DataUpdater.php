@@ -170,32 +170,34 @@ class DataUpdater {
       return $resultMessage;
     }
     
-    var_dump($_POST);
-    var_dump($_FILES);
-    die();
+    $postImgsErrors = [];
+    foreach ($_FILES as $catId => $postImg) {
+      if ($postImg['error']['img'] === 0) {
+        $imgPath = '/data/product-imgs/downloaded/' . $postImg['name']['img'];
+        move_uploaded_file($postImg['tmp_name']['img'], ltrim($imgPath, '/'));
+        $this->repository->exec("UPDATE categories SET img = '$imgPath' WHERE id = $catId");
+      } else {
+        if ($postImg['error']['img'] === ERR_NO_FILE_UPLOADED) continue;
+        $postImgsErrors[] = 'ОШИБКА: Не удалось загрузить картинку с названием "' . $postImg['name']['img'] . '"';
+      }
+    }
 
     try {
       foreach ($_POST as $c) {
         $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}', name_view = '{$c['name_view']}' WHERE id = {$c['id']}");
-
-        if (isset($c['img'])) {
-          $this->repository->exec("UPDATE categories SET img = '{$c['img']}' WHERE id = {$c['id']}");
-          $b64 = $c['imgBase64'];
-          $bB = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $b64));
-          file_put_contents($c['img'], $bB);
-        }
       }
     } catch (Exception $e) {
       $resultMessage = [
         'status' => 'Err',
-        'text' => 'Возникла ошибка базы данных при обновлении текстов. ' . $this->contactsIfError,
+        'text' => 'Возникла ошибка базы данных при редактировании категорий. ' . $this->contactsIfError,
       ];
       return $resultMessage;
     }
 
     $resultMessage = [
       'status' => 'OK',
-      'text' => 'Категории были обновлены успешно'
+      'text' => 'Категории были обновлены успешно',
+      'additionalText' => $postImgsErrors
     ];
 
     return $resultMessage;

@@ -99,11 +99,17 @@ form.onsubmit = (e) => {
   })
   .then(r => {
     alert(r.text)
+    console.log(r)
+    if (r.additionalText) {
+      for (const addTextItem of r.additionalText) {
+        alert(addTextItem)
+      }
+    }
     
     submitBtn.disabled = false
     
-    location.reload()
-    window.scrollTo(0, 0)
+    // location.reload()
+    // window.scrollTo(0, 0)
   })
 }
 
