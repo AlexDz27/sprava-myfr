@@ -9,7 +9,8 @@
     <section class="delimited-section">
       <h3>Телефоны</h3>
       <p>Телефон первый: &nbsp;<input name="<?= $phones[0]['id'] ?>" value="<?= $phones[0]['text'] ?>"></p>
-      <p>Телефон второй: &nbsp;<input name="<?= $phones[1]['id'] ?>" value="<?= $phones[1]['text'] ?>"></p>
+      <p><abbr title="Если во втором телефоне в скобках в конце добавлять ещё номера по типу (31, 33, 42), то эти новые номера будут отображаться на сайте">Телефон второй</abbr>: &nbsp;<input name="<?= $phones[1]['id'] ?>" value="<?= $phones[1]['text'] ?>"></p>
+      <p></p>
     </section>
 
     <section class="delimited-section">

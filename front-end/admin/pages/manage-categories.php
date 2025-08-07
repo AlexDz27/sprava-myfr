@@ -4,6 +4,10 @@
   <h2>Управление категориями</h2>
 </section>
 
+<section style="margin-bottom: 2rem;" class="cont">
+  <a href="/admin-9kasu/create-category" class="btn btn-entity-action btn-entity-action--create"><b class="btn-entity-action__icon">+</b> Создать категорию</a>
+</section>
+
 <main class="main cont">
   <form method="POST">
     <?php for ($i = 0; $i < count($categories); $i++): $c = $categories[$i]; ?>

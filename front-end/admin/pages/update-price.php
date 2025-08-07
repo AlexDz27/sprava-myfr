@@ -8,7 +8,7 @@
   <form method="POST">
     <section class="delimited-section">
       <p>
-        1. Выберите файл прайс-листа <span style="font-size: 25px;">👉🏻</span> &nbsp;
+        <label class="cp" for="file">1. Выберите файл прайс-листа <span style="font-size: 25px;">👉🏻</span></label> &nbsp;
         <input name="file" type="file" id="file">
       </p>
     </section>

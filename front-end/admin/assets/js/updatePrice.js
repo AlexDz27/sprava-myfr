@@ -59,7 +59,7 @@ form.onsubmit = (e) => {
     }
 
     submitBtn.disabled = false
-    submitBtn.classList.remove('btn-load--loading')
+    submitBtn.classList.remove('btn--admin--loading')
     submitBtn.innerText = '2. Обновить прайс-лист на сайте'
     counter = 0
     clearInterval(intervalId)

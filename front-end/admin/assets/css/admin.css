@@ -82,6 +82,10 @@ select {
   top: 1px;
 }
 
+.cp {
+  cursor: pointer;
+}
+
 /** COMPONENTS **/
 .text--smaller {
   font-size: 0.75em;
@@ -309,6 +313,9 @@ select {
   color: inherit;
   text-decoration: none;
   padding: 10px;
+}
+.products-grid__product:hover .btn {
+  background-color: #eaca16;
 }
 .products-grid__product__btn--admin {
   margin-top: auto;
