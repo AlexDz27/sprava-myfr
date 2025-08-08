@@ -29,10 +29,10 @@ function getCurrentUrl() {
 
       <div class="products-grid fz-init">
         <?php foreach ($ps['products'] as $p): ?>
-          <a href="/admin-9kasu/edit-product/<?= $p['art'] ?>" class="products-grid__product <?= $p['hidden'] ? 'products-grid__product--hidden' : '' ?>">
+          <a href="/admin-9kasu/edit-product/<?= $p['art'] ?? $p['id'] ?>" class="products-grid__product <?= $p['hidden'] ? 'products-grid__product--hidden' : '' ?>">
             <img class="products-grid__product__img <?= $p['hidden'] ? 'products-grid__product--hidden__img' : '' ?>" src="<?= $p['img'] ?>">
             <b class="<?= $p['hidden'] ? 'products-grid__product--hidden__name' : '' ?>"><?= $p['name'] ?> <?= $p['hidden'] ? '(скрыт)' : '' ?></b>
-            <span class="products-grid__product__art <?= $p['hidden'] ? 'products-grid__product--hidden__art' : '' ?>">(<?= $p['art'] ?>)</span>
+            <span class="products-grid__product__art <?= $p['hidden'] ? 'products-grid__product--hidden__art' : '' ?>">(<?= $p['art'] ?? 'внутр. ключ: ' . $p['id'] ?>)</span>
             <button class="btn btn--admin products-grid__product__btn--admin">Редактировать</button>
           </a>
         <?php endforeach ?>

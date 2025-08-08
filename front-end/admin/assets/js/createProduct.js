@@ -1,5 +1,4 @@
-// TODO: SORTABLE inside galImgs + currentOrder
-
+const galleryImgsOrdered = []
 const form = document.querySelector('form')
 const submitBtn = document.querySelector('button[type=submit]')
 form.onsubmit = (e) => {
@@ -25,6 +24,7 @@ form.onsubmit = (e) => {
   }, 400)
 
   const formData = new FormData(form)
+  formData.append('galleryImgsOrdered', galleryImgsOrdered)
   fetch('/admin-9kasu/api/create-product', {
     method: 'POST',
     body: formData
@@ -94,6 +94,9 @@ changeGalImgInput.onchange = (e) => {
       
       // Add image to preview container
       addGalImgsCont.appendChild(img);
+
+      // Update galleryImgsOrdered
+      galleryImgsOrdered.push(file.name)
     }
     
     // Read the image file as a data URL
@@ -102,16 +105,28 @@ changeGalImgInput.onchange = (e) => {
 }
 new Sortable(addGalImgsCont, {
   animation: 150,
-  // onEnd: () => {
-  //   currentOrder = getCurrentOrder()
-  // }
+  onEnd: () => {
+    galleryImgsOrdered = updateGalleryImgsOrdered()
+  }
 })
 
 document.querySelectorAll('.gallery__item__x').forEach(x => {
   x.onclick = () => {
     if (confirm('Удалить эту картинку?')) {
       x.parentElement.remove()
-      currentOrder = getCurrentOrder()
+      galleryImgsOrdered = updateGalleryImgsOrdered()
     }
   }
 })
+
+
+function updateGalleryImgsOrdered() {
+  const arr = []
+  if (addGalImgsCont.querySelectorAll('img').length === 0) return arr
+
+  Array.from(addGalImgsCont.children).forEach(c => {
+    const img = c.querySelector('img')
+    arr.push(img.getAttribute('src'))
+  })
+  return arr
+}

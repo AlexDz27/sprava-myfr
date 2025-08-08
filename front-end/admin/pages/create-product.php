@@ -24,6 +24,10 @@
         <?php endforeach ?>
       </select>
     </section>
+    <section class="field-section field-section--full-w">
+      <span class="field-section__title"><span class="field-section--required__title">Артикул</span>:</span>
+      <input name="art" placeholder="1051-0000-75">
+    </section>
     <section class="field-section field-section--required field-section--short">
       <span class="field-section__title"><span class="field-section--required__title">Единица измерения</span>:</span>
       <input name="unit" value="шт" required>

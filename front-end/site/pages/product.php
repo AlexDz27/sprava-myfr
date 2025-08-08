@@ -198,7 +198,9 @@
         </div> 
       <div class="product__col-text">
         <p class="product__title"><?= $product['name'] ?></p>
-        <p class="product__art text--larger">Артикул: <?= $product['art'] ?></p>
+        <?php if (!empty($product['art'])): ?>
+          <p class="product__art text--larger">Артикул: <?= $product['art'] ?></p>
+        <?php endif ?>
         <p class="product__price"><b><?= $product['price'] ?> BYN (с НДС 20%) / <?= $product['unit'] ?></b></p>
         <p class="product__detail text--larger"><span class="product__detail__1">Единица измерения</span> <span class="product__detail__2"><?= $product['unit'] ?></span></p>
         <?php if (!empty($product['upakMal'])): ?>

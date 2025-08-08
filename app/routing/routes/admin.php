@@ -58,7 +58,14 @@ if (str_contains($_SERVER['REQUEST_URI'], 'edit-product')) {
   $ps = $viewDataProvider->getProductsForAdmin();
 
   foreach ($ps as $p) {
-    $adminRoutes['/admin-9kasu/edit-product/' . $p['art']] = [$adminPresenter, 'editProduct', [
+    $res = null;
+    if (is_null($p['art'])) {
+      $res = $p['id'];
+      $res = "$res";
+    } else {
+      $res = $p['art'];
+    }
+    $adminRoutes['/admin-9kasu/edit-product/' . $res] = [$adminPresenter, 'editProduct', [
       'path' => 'front-end/admin/pages/edit-product.php',
       'title' =>  'Редактирование продукта',
       'extraAssets' => [

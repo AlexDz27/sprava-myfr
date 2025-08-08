@@ -107,9 +107,10 @@ class AdminPresenter extends BasePresenter {
     );
   }
   public function createProductApi() {
-    var_dump($_POST);
-    var_dump($_FILES);
-    die();
+    $dataUpdater = new DataUpdater();
+    $resultMessage = $dataUpdater->createProduct();
+
+    echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
 
   public function guardedPage($vars = [], ...$pageArgs) {

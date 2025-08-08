@@ -12,17 +12,17 @@ const ERR_NO_FILE_UPLOADED = 4;
 class DataUpdater {
   public $repository;
   public $contactsIfError = 'Свяжитесь с программистом Алексеем по тел/вайбер/вацап/тг: +375 29 819 16 24; тг: @rain_xxxx';
-
+  
   public function __construct() {
     $this->repository = require 'app/Data/pdo.php';
   }
-
+  
   public function updatePrice() {
     $resultMessage = [
       'status' => null,
       'text' => null,
     ];
-
+    
     $file = $_FILES['file'];
     if ($file['error'] === ERR_NO_FILE_UPLOADED) {
       $resultMessage = [
@@ -38,7 +38,7 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
-
+    
     if (!move_uploaded_file($file['tmp_name'], 'data/price-lists/' . $file['name'])) {
       $resultMessage = [
         'status' => 'ERR',
@@ -46,7 +46,7 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
-
+    
     $fileArts = [];
     $excelProducts = [];
     $spreadsheet = IOFactory::load('data/price-lists/' . $file['name']);
@@ -67,28 +67,28 @@ class DataUpdater {
         ];
       }
     }
-
+    
     foreach ($excelProducts as $p) {
       $this->repository->exec("UPDATE products SET price = '{$p['price']}', variant = '{$p['variant']}', unit = '{$p['unit']}', upakMal = '{$p['upakMal']}', upakKrup = '{$p['upakMal']}' WHERE art = '{$p['art']}'");
     }
-
+    
     $this->repository->exec("UPDATE texts_tech SET text = '{$file['name']}' WHERE name_internal = 'current_price_list'");
     $this->repository->exec("UPDATE texts_tech SET text = '$date' WHERE name_internal = 'current_price_list_date'");
-
+    
     $resultMessage = [
       'status' => 'OK',
       'text' => 'Прайс-лист был успешно обновлён!',
     ];
-
+    
     return $resultMessage;
   }
-
+  
   public function editTexts($editedTexts) {
     $resultMessage = [
       'status' => null,
       'text' => null,
     ];
-
+    
     try {
       foreach ($editedTexts as $id => $value) {
         $this->repository->exec("UPDATE texts SET text = '$value' WHERE id = $id");
@@ -100,15 +100,15 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
-
+    
     $resultMessage = [
       'status' => 'OK',
       'text' => 'Тексты были обновлены успешно'
     ];
-
+    
     return $resultMessage;
   }
-
+  
   public function manageCategories($managedCategories) {
     if (isset($managedCategories['justHidden'])) {
       $id = $managedCategories['id'];
@@ -141,7 +141,7 @@ class DataUpdater {
         $postImgsErrors[] = 'ОШИБКА: Не удалось загрузить картинку с названием "' . $postImg['name']['img'] . '"';
       }
     }
-
+    
     try {
       foreach ($_POST as $c) {
         $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}', name_view = '{$c['name_view']}' WHERE id = {$c['id']}");
@@ -153,16 +153,16 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
-
+    
     $resultMessage = [
       'status' => 'OK',
       'text' => 'Категории были обновлены успешно',
       'additionalText' => $postImgsErrors
     ];
-
+    
     return $resultMessage;
   }
-
+  
   public function editProduct() {
     if (empty($_POST)) {
       $incoming = json_decode(file_get_contents('php://input'), true);
@@ -185,16 +185,16 @@ class DataUpdater {
         return $resultMessage;
       }
     }
-
+    
     $id = intval($_POST['id']);
     $dataProvider = new DataProvider();
     $product = $dataProvider->getProduct($id);
-
+    
     $resultMessage = [
       'status' => null,
       'payload' => null,
     ];
-
+    
     $name = $_POST['name'];
     $slug = slugify($name);
     $price = $_POST['price'];
@@ -208,10 +208,10 @@ class DataUpdater {
     $details = $_POST['details'];
     $description = $_POST['description'];
     $currentOrder = $_POST['currentOrder'];
-
+    
     // var_dump($currentOrder);
     // die();
-
+    
     $imgPath = $product['img'];
     if ($_FILES['mainImg']['error'] !== ERR_NO_FILE_UPLOADED) {
       $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
@@ -225,9 +225,9 @@ class DataUpdater {
       }
     }
     $galleryImgPathsStr = implode(', ', $galleryImgPaths);
-
+    
     try {
-       $this->repository->exec(
+      $this->repository->exec(
         "UPDATE products SET
         name = '$name',
         price = '$price',
@@ -250,12 +250,62 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
-
+    
     $resultMessage = [
       'status' => 'OK',
       'text' => 'Товар был отредактирован успешно'
     ];
-
+    
+    return $resultMessage;
+  }
+  public function createProduct() {
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $category = $_POST['category'];
+    $art = $_POST['art'];
+    $unit = $_POST['unit'];
+    $upakMal = $_POST['upakMal'];
+    $upakKrup = $_POST['upakKrup'];
+    $description = $_POST['description'];
+    $details = $_POST['details'];
+    $slug = slugify($name);
+    $galleryImgsOrdered = $_POST['galleryImgsOrdered'];
+    
+    $imgPath = $_FILES['mainImg'];
+    if ($_FILES['mainImg']['error'] !== ERR_NO_FILE_UPLOADED) {
+      $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
+      move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
+    }
+    $galleryImgPathsStr = '';
+    if (!empty($galleryImgsOrdered)) {
+      $galleryImgPaths = [];
+      if ($_FILES['galleryImgs']['error'][0] !== ERR_NO_FILE_UPLOADED) {  // bad
+        foreach ($_FILES['galleryImgs']['name'] as $idx => $galImg) {
+          $galleryImgPaths[] = '/data/product-imgs/downloaded/' . $_FILES['galleryImgs']['name'][$idx];
+          move_uploaded_file($_FILES['galleryImgs']['tmp_name'][$idx], 'data/product-imgs/downloaded/' . $_FILES['galleryImgs']['name'][$idx]);
+        }
+      }
+      $galleryImgPathsStr = implode(', ', $galleryImgPaths);
+    }
+    
+    try {
+      $this->repository->exec(
+        "INSERT INTO products (name, price, img, galleryImgs, category_id, art, unit, upakMal, upakKrup, isHit, description, details, slug, hidden, is_deleted)
+        VALUES ('$name', '$price', '$imgPath', '$galleryImgPathsStr', '$category', '$art', '$unit', '$upakMal', '$upakKrup', 0, '$description', '$details', '$slug', 0, 0)"
+      );
+    } catch (Exception $e) {
+      $resultMessage = [
+        'status' => 'Err',
+        'text' => 'Возникла ошибка базы данных при создании товара. ' . $this->contactsIfError,
+      ];
+      return $resultMessage;
+    }
+    
+    $resultMessage = [
+      'status' => 'OK',
+      'text' => 'Товар был создан успешно'
+    ];
+    
     return $resultMessage;
   }
 }
