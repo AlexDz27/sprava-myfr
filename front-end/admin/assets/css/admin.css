@@ -319,6 +319,16 @@ select {
 .products-grid__product:hover .btn {
   background-color: #eaca16;
 }
+.products-grid__product--hidden {}
+.products-grid__product--hidden__img {
+  opacity: .6;
+}
+.products-grid__product--hidden__name {
+  opacity: .6;
+}
+.products-grid__product--hidden__art {
+  opacity: .6;
+}
 .products-grid__product__btn--admin {
   margin-top: auto;
 }

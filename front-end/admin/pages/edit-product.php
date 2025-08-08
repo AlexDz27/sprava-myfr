@@ -1,4 +1,4 @@
-<?php var_dump(get_defined_vars()); die(); ?>
+<?php // var_dump(get_defined_vars()); die(); ?>
 
 <?php require 'front-end/admin/parts/header.php' ?>
 
@@ -18,7 +18,7 @@
   <section class="product-name-cont">
     <div class="product-name <?= $product['hidden'] ? 'category-name--hidden' : '' ?> <?= $product['cat_hidden'] ? 'category-name--hidden' : '' ?>">
       <?= $product['name'] ?> <span class="text--smaller">(<?= $product['art'] ?>) <?= $product['hidden'] ? '(товар скрыт)' : '' ?> <?= $product['cat_hidden'] ? '(товар скрыт, т.к. его категория скрыта)' : '' ?></span>
-      <a href="/catalog" title="Открыть страницу товара"><svg class="product-name__open-link-icon__svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><use href="#open-link"></use></svg></a>
+      <a target="_blank" href="<?= $product['uri'] ?>" title="Открыть страницу товара"><svg class="product-name__open-link-icon__svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><use href="#open-link"></use></svg></a>
     </div>
 
     <div class="product-name-cont__actions">

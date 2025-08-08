@@ -52,7 +52,7 @@ class AdminViewDataProvider {
     $productsTransformed = $dataProvider->getProductsForAdmin();
 
     foreach ($productsTransformed as &$p) {
-      $p['slug'] = '/catalog/' . '123/' . $p['slug'];
+      $p['uri'] = '/catalog/' . $p['cat_slug'] . '/' . $p['slug'];
     }
 
     return $productsTransformed;
