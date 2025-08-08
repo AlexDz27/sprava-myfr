@@ -46,4 +46,15 @@ class AdminViewDataProvider {
 
     return $productsTransformed;
   }
+
+  public function getProductsForAdmin() {
+    $dataProvider = new DataProvider();
+    $productsTransformed = $dataProvider->getProductsForAdmin();
+
+    foreach ($productsTransformed as &$p) {
+      $p['slug'] = '/catalog/' . '123/' . $p['slug'];
+    }
+
+    return $productsTransformed;
+  }
 }
