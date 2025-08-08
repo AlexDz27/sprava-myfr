@@ -1,7 +1,7 @@
 <?php
 
 use app\Presenters\AdminPresenter;
-use app\Data\DataProvider;
+use app\ViewData\AdminViewDataProvider;
 
 $adminPresenter = new AdminPresenter();
 
@@ -54,8 +54,8 @@ $adminRoutes = [
 
 if (str_contains($_SERVER['REQUEST_URI'], 'edit-product')) {
   $myF = function(&$adminRoutes) use ($adminPresenter) {
-  $dataProvider = new DataProvider();
-  $ps = $dataProvider->getProductsForAdmin();
+  $viewDataProvider = new AdminViewDataProvider();
+  $ps = $viewDataProvider->getProductsForAdmin();
 
   foreach ($ps as $p) {
     $adminRoutes['/admin-9kasu/edit-product/' . $p['art']] = [$adminPresenter, 'editProduct', [
