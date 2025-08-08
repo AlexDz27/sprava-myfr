@@ -51,44 +51,6 @@ select {
   padding: .35em;
 }
 
-/** STYLES **/
-.db {
-  display: block;
-}
-
-.js-dn {
-  display: none;
-}
-.js-db {
-  display: block;
-}
-
-.mb-1em {
-  margin-bottom: 1em;
-}
-
-.mb-7-5rem {
-  margin-bottom: 7.5rem;
-}
-
-.fz-init {
-  font-size: initial;
-}
-
-.d-flex-ai-center {
-  display: flex;
-  align-items: center;
-}
-
-.pos-fix-1 {
-  position: relative;
-  top: 1px;
-}
-
-.cp {
-  cursor: pointer;
-}
-
 /** COMPONENTS **/
 .text--smaller {
   font-size: 0.75em;
@@ -294,6 +256,9 @@ select {
 .category-name--manage-products {  /* bad naming, category-name should be called differently) */
   border-bottom: 1px solid rgb(50, 50, 50);
 }
+.category-name--manage-products:hover {
+  text-decoration: underline;
+}
 .js-category-name {
   cursor: pointer;
 }
@@ -464,4 +429,45 @@ select {
 }
 .bs-like-btn--danger {
   background-color: #dc3545;
+}
+
+/** STYLES **/
+.db {
+  display: block;
+}
+
+.js-dn {
+  display: none;
+}
+.js-db {
+  display: block;
+}
+
+.mb-1em {
+  margin-bottom: 1em;
+}
+
+.mb-2rem {
+  margin-bottom: 2rem;
+}
+.mb-7-5rem {
+  margin-bottom: 7.5rem;
+}
+
+.fz-init {
+  font-size: initial;
+}
+
+.d-flex-ai-center {
+  display: flex;
+  align-items: center;
+}
+
+.pos-fix-1 {
+  position: relative;
+  top: 1px;
+}
+
+.cp {
+  cursor: pointer;
 }

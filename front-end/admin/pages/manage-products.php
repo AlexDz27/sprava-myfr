@@ -21,13 +21,13 @@ function getCurrentUrl() {
 
 <main class="main cont">
   <?php foreach ($productGroups as $catName => $ps): ?>
-    <section class="mb-7-5rem">
-      <h3 class="category-name category-name--manage-products <?= $ps['isCatHidden'] ? 'category-name--hidden' : '' ?>">
+    <section class="js-category-section mb-2rem">
+      <h3 class="js-category-name category-name category-name--manage-products <?= $ps['isCatHidden'] ? 'category-name--hidden' : '' ?>">
         <span class="category-name__num">#<?= $ps['count'] ?></span>
         <?= $catName ?> <?= $ps['isCatHidden'] ? '(скрыта)' : '' ?>
       </h3>
 
-      <div class="products-grid fz-init">
+      <div class="js-products-grid js-dn products-grid fz-init">
         <?php foreach ($ps['products'] as $p): ?>
           <a href="/admin-9kasu/edit-product/<?= $p['art'] ?? $p['id'] ?>" class="products-grid__product <?= $p['hidden'] ? 'products-grid__product--hidden' : '' ?>">
             <img class="products-grid__product__img <?= $p['hidden'] ? 'products-grid__product--hidden__img' : '' ?>" src="<?= $p['img'] ?>">
