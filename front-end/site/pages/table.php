@@ -34,18 +34,36 @@
       <tr>
         <td class="category <?= $c === 0 ? 'category--first' : '' ?>" colspan="7"><?= $catName ?></td>
         <?php foreach ($modelsProducts as $modelName => $ps): ?>
-          <?php // var_dump($idx); ?>
-          <?php // var_dump($modelName); ?>
           <?php foreach ($ps['products'] as $idx => $p): ?>
             <tr class="<?= $idx === 0 ? 'first-product-in-model' : '' ?>">
               <?php if ($ps['view']['needsOtherRows']): ?>
-                <td><?= $p['art'] ?></td>
-                <td><?= $p['name'] ?></td>
-                <td><?= $p['variant'] ?></td>
-                <td><?= $p['price'] ?></td>
-                <td><?= $p['unit'] ?></td>
-                <td><?= $p['upakMal'] ?></td>
-                <td><?= $p['upakKrup'] ?></td>
+                <?php if ($idx === 0): ?>
+                  <td><?= $p['art'] ?></td>
+                  <td><?= $p['model'] ?></td>
+                  <td><?= $p['variant'] ?></td>
+                  <td><?= $p['price'] ?></td>
+                  <td><?= $p['unit'] ?></td>
+                  <td><?= $p['upakMal'] ?></td>
+                  <td><?= $p['upakKrup'] ?></td>
+                <?php elseif ($idx === 1): ?>
+                  <td><?= $p['art'] ?></td>
+                  <td class="td--holding-img" rowspan="<?= $ps['view']['howMany'] ?>">
+                    <img class="td--holding-img__img" src="<?= $p['img'] ?>">
+                  </td>
+                  <td><?= $p['variant'] ?></td>
+                  <td><?= $p['price'] ?></td>
+                  <td><?= $p['unit'] ?></td>
+                  <td><?= $p['upakMal'] ?></td>
+                  <td><?= $p['upakKrup'] ?></td>
+                <?php else: ?>
+                  <td><?= $p['art'] ?></td>
+
+                  <td><?= $p['variant'] ?></td>
+                  <td><?= $p['price'] ?></td>
+                  <td><?= $p['unit'] ?></td>
+                  <td><?= $p['upakMal'] ?></td>
+                  <td><?= $p['upakKrup'] ?></td>
+                <?php endif ?>
               <?php else: ?>
                 <td><?= $p['art'] ?></td>
                 <td class="td--model--imgs-needs-only-one-row">
