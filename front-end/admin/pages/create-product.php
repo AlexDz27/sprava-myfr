@@ -10,6 +10,10 @@
       <span class="field-section__title"><span class="field-section--required__title">Название</span>:</span>
       <input name="name" required placeholder="Миксер для смесей оцинкованный SDS-plus, 100х600мм">
     </section>
+    <section class="field-section field-section--required field-section--full-w">
+      <span class="field-section__title"><span class="field-section--required__title"><abbr title="Модель – это &quot;групировочное&quot; название товара. Оно используется, чтобы сгруппировать товары на веб-странице прайс-листа. Обычно это название товара без его деталей.">Модель</abbr></span>:</span>
+      <input name="model" required placeholder="Миксер для смесей оцинкованный SDS-plus">
+    </section>
     <section class="field-section field-section--required field-section--short">
       <span class="field-section__title"><span class="field-section--required__title">Цена</span>:</span>
       <input name="price" required placeholder="10.00">
@@ -21,6 +25,14 @@
         <option value="">-- Пожалуйста, выберите категорию --</option>
         <?php foreach ($categories as $cat): ?>
           <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
+        <?php endforeach ?>
+      </select>
+    </section>
+    <section class="field-section field-section--required field-section--full-w">
+      <span class="field-section__title"><span class="field-section--required__title">Принадлежит к компании</span>:</span>
+      <select name="company" required>
+        <?php foreach ($companies as $comp): ?>
+          <option value="<?= $comp['id'] ?>"><?= $comp['name'] ?></option>
         <?php endforeach ?>
       </select>
     </section>
@@ -42,7 +54,7 @@
     </section>
     <section class="field-section field-section--textarea">
       <span class="field-section__title">Вкладка "Описание":</span>
-      <textarea name="description" placeholder="Для работ со всеми видами лакокрасочных материалов."></textarea>
+      <textarea name="description" placeholder="Для смешивания тяжелых строительных масс."></textarea>
     </section>
     <section class="field-section field-section--textarea">
       <span class="field-section__title">Вкладка "Детали":</span>

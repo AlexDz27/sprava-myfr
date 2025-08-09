@@ -78,6 +78,10 @@ class DataProvider {
     return $categories;
   }
 
+  public function getCompaniesForManagingProduct() {
+    return $this->repository->query("SELECT id, name FROM companies")->fetchAll();
+  }
+
   public function getProduct($id) {
     $stmtProduct = $this->repository->query("SELECT * FROM products WHERE id = $id");
     $product = $stmtProduct->fetch();
@@ -91,7 +95,7 @@ class DataProvider {
     return $products;
   }
   public function getProductsForAdmin() {
-    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.hidden, p.description, p.category_id, p.price, p.slug, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, p.is_deleted, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0");
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.hidden, p.description, p.category_id, p.company_id, p.price, p.slug, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, p.is_deleted, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0");
     $products = $stmtProducts->fetchAll();
 
     return $products;
@@ -123,7 +127,9 @@ class DataProvider {
     $categories = $stmtCategories->fetchAll();
     $stmtProducts = $this->repository->query("SELECT id, art, model, img, variant, name, price, unit, upakMal, upakKrup, category_id FROM products WHERE hidden = 0 AND is_deleted = 0 ORDER BY category_id");
     $products = $stmtProducts->fetchAll();
+    $stmtProductsRoshma = $this->repository->query("SELECT id, art, model, img, variant, name, price, unit, upakMal, upakKrup, category_id FROM products WHERE company_id = 2 AND hidden = 0 AND is_deleted = 0 ORDER BY category_id");
+    $productsRoshma = $stmtProductsRoshma->fetchAll();
     
-    return [$date, $categories, $products];
+    return [$date, $categories, $products, $productsRoshma];
   }
 }

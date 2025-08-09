@@ -83,9 +83,13 @@ class AdminPresenter extends BasePresenter {
 
     $dataProvider = new DataProvider();
     $categories = $dataProvider->getCategoriesForManagingProduct();
+    $companies = $dataProvider->getCompaniesForManagingProduct();
 
     $this->page(
-      ['categories' => $categories],
+      [
+        'categories' => $categories,
+        'companies' => $companies,
+      ],
       ...$pageArgs
     );
   }
@@ -100,9 +104,15 @@ class AdminPresenter extends BasePresenter {
 
     $dataProvider = new DataProvider();
     $categories = $dataProvider->getCategoriesForManagingProduct();
+    $companies = $dataProvider->getCompaniesForManagingProduct();
+    // var_dump($companies);
+    // die();
 
     $this->page(
-      ['categories' => $categories],
+      [
+        'categories' => $categories,
+        'companies' => $companies,
+      ],
       ...$pageArgs
     );
   }

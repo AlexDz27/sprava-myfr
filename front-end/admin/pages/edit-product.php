@@ -51,6 +51,10 @@
         <input name="price" value="<?= $product['price'] ?>">
         &nbsp;<span class="text--smaller">бел. рублей</span>
       </p>
+      <section class="field-section field-section--full-w">
+        <span class="field-section__title"><span class="field-section--required__title">Артикул</span>:</span>
+        <input name="art" placeholder="1051-0000-75" value="<?= $product['art'] ?>">
+      </section>
       <p class="d-flex-ai-center">
         <span>Принадлежит к категории:</span> &nbsp;&nbsp;
         <select name="category">
@@ -59,6 +63,14 @@
           <?php endforeach ?>
         </select>
       </p>
+      <section class="field-section field-section--required field-section--full-w">
+        <span class="field-section__title"><span class="field-section--required__title">Принадлежит к компании</span>:</span>
+        <select name="company" required>
+          <?php foreach ($companies as $comp): ?>
+            <option value="<?= $comp['id'] ?>" <?= $product['company_id'] == $comp['id'] ? 'selected' : '' ?>><?= $comp['name'] ?></option>
+          <?php endforeach ?>
+        </select>
+      </section>
       <p class="d-flex-ai-center">
         <span>Является хитом:</span> &nbsp;&nbsp;
         <label class="text--smaller-2 pos-fix-1" for="no">Нет</label>

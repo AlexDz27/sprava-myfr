@@ -105,6 +105,7 @@ class ViewDataProvider {
     $curPriceListDate = $data[0]['text'];
     $categories = $data[1];
     $products = $data[2];
+    $productsRoshma = $data[3];
 
     $catalog = [];
     foreach ($categories as $cat) {
@@ -136,9 +137,37 @@ class ViewDataProvider {
       }
     }
 
-    // var_dump($catalogWithModels);
-    // die();
+    // roshma
+    $catalogRoshma = [];
+    foreach ($categories as $cat) {
+      $catalogRoshma[$cat['name']] = [];
+      foreach ($productsRoshma as $p) {
+        if ($p['category_id'] === $cat['id']) $catalogRoshma[$cat['name']][] = $p;
+      }
+    }
+    $catalogWithModelsRoshma = [];
+    foreach ($catalogRoshma as $catName => $productsInCat) {
+      $catalogWithModelsRoshma[$catName] = [];
+      foreach ($productsInCat as $p) {
+        if (!isset($catalogWithModelsRoshma[$catName][$p['model']])) {
+          $catalogWithModelsRoshma[$catName][$p['model']]['products'] = [];
+        }
+        $catalogWithModelsRoshma[$catName][$p['model']]['products'][] = $p;
+      }
+    }
+    foreach ($categories as $cat) {
+      $catGroup = &$catalogWithModelsRoshma[$cat['name']];
+      foreach ($catGroup as &$group) {
+        $needsOtherRows = count($group['products']) > 1;
+        $howMany = $needsOtherRows ? count($group['products']) - 1 : null;
 
-    return [$curPriceListDate, $catalogWithModels];
+        $group['view'] = [
+          'needsOtherRows' => $needsOtherRows,
+          'howMany' => $howMany,
+        ];
+      }
+    }
+
+    return [$curPriceListDate, $catalogWithModels, $catalogWithModelsRoshma];
   }
 }

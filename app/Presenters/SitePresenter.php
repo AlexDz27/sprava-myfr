@@ -64,6 +64,7 @@ class SitePresenter extends BasePresenter {
       [
         'curPriceListDate' => $data[0],
         'catalogWithModels' => $data[1],
+        'catalogWithModelsRoshma' => $data[2],
       ],
       ...$pageArgs
     );

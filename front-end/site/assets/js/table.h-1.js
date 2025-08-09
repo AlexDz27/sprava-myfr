@@ -20,5 +20,6 @@ Array.from([btnSprava, btnRoshma]).forEach(i => {
 
     document.querySelector('.table-switcher-pane__btn--active').classList.remove('table-switcher-pane__btn--active')
     i.classList.add('table-switcher-pane__btn--active')
+    window.scrollTo(0, 0)
   })
 })
