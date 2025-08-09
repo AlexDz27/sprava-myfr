@@ -36,21 +36,28 @@
         <?php foreach ($modelsProducts as $modelName => $ps): ?>
           <?php // var_dump($idx); ?>
           <?php // var_dump($modelName); ?>
-          <?php $trSpans = count($modelsProducts[$modelName]) > 1 ? true : false; ?>
-          <?php $trSpansHowMany = count($modelsProducts[$modelName]) - 1; ?>
-          <?php foreach ($ps as $idx => $p): ?>
+          <?php foreach ($ps['products'] as $idx => $p): ?>
             <tr class="<?= $idx === 0 ? 'first-product-in-model' : '' ?>">
-              <td><?= $p['art'] ?></td>
-              <?php if ($trSpans): ?>
-                <td><?= $p['model'] ?></td>
+              <?php if ($ps['view']['needsOtherRows']): ?>
+                <td><?= $p['art'] ?></td>
+                <td><?= $p['name'] ?></td>
+                <td><?= $p['variant'] ?></td>
+                <td><?= $p['price'] ?></td>
+                <td><?= $p['unit'] ?></td>
+                <td><?= $p['upakMal'] ?></td>
+                <td><?= $p['upakKrup'] ?></td>
               <?php else: ?>
-                <td><?= $p['model'] ?></td>
+                <td><?= $p['art'] ?></td>
+                <td class="td--model--imgs-needs-only-one-row">
+                  <p class="td--model--imgs-needs-only-one-row__text"><?= $p['model'] ?></p>
+                  <p class="td--model--imgs-needs-only-one-row__img__cont"><img class="td--holding-img__img" src="<?= $p['img'] ?>" alt=""></p>
+                </td>
+                <td><?= $p['variant'] ?></td>
+                <td><?= $p['price'] ?></td>
+                <td><?= $p['unit'] ?></td>
+                <td><?= $p['upakMal'] ?></td>
+                <td><?= $p['upakKrup'] ?></td>
               <?php endif ?>
-              <td><?= $p['variant'] ?></td>
-              <td><?= $p['price'] ?></td>
-              <td><?= $p['unit'] ?></td>
-              <td><?= $p['upakMal'] ?></td>
-              <td><?= $p['upakKrup'] ?></td>
             </tr>
           <?php endforeach ?>
         <?php endforeach ?>
