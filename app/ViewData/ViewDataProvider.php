@@ -97,4 +97,48 @@ class ViewDataProvider {
 
     return [$productsTransformed, $countsTransformed];
   }
+
+  public function getDataForTable() {
+    $dataProvider = new DataProvider();
+    $data = $dataProvider->getDataForTable();
+
+    $curPriceListDate = $data[0]['text'];
+    $categories = $data[1];
+    $products = $data[2];
+
+    $catalog = [];
+    foreach ($categories as $cat) {
+      $catalog[$cat['name']] = [];
+      foreach ($products as $p) {
+        if ($p['category_id'] === $cat['id']) $catalog[$cat['name']][] = $p;
+      }
+    }
+    $catalogWithModels = [];
+    foreach ($catalog as $catName => $productsInCat) {
+      $catalogWithModels[$catName] = [];
+      foreach ($productsInCat as $p) {
+        if (!isset($catalogWithModels[$catName][$p['model']])) {
+          $catalogWithModels[$catName][$p['model']]['products'] = [];
+        }
+        $catalogWithModels[$catName][$p['model']]['products'][] = $p;
+      }
+    }
+    foreach ($categories as $cat) {
+      $catGroup = &$catalogWithModels[$cat['name']];
+      foreach ($catGroup as &$group) {
+        $needsOtherRows = count($group['products']) > 1;
+        $howMany = $needsOtherRows ? count($group['products']) - 1 : null;
+
+        $group['view'] = [
+          'needsOtherRows' => $needsOtherRows,
+          'howMany' => $howMany,
+        ];
+      }
+    }
+
+    // var_dump($catalogWithModels);
+    // die();
+
+    return [$curPriceListDate, $catalogWithModels];
+  }
 }

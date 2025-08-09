@@ -1,3 +1,5 @@
+// TODO: window.scroll to top (0, 0) добавить
+
 const tableSprava = document.getElementById('tableSprava')
 const tableRoshma = document.getElementById('tableRoshma')
 const btnSprava = document.getElementById('SPRAVA')

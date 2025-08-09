@@ -74,6 +74,10 @@ thead th, thead td {
   font-weight: bold;
   padding-top: 32px;
   padding-bottom: 32px;
+  border-top: 2px solid black;
+}
+.category--first {
+  border-top: none;
 }
 .first-product-in-model {
   border-top: 2px solid black;

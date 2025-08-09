@@ -115,4 +115,15 @@ class DataProvider {
 
     return $routes;
   }
+
+  public function getDataForTable() {
+    $stmtDate = $this->repository->query("SELECT text FROM texts_tech WHERE name_internal = 'current_price_list_date'");
+    $date = $stmtDate->fetch();
+    $stmtCategories = $this->repository->query("SELECT id, name FROM categories WHERE hidden = 0 AND is_deleted = 0");
+    $categories = $stmtCategories->fetchAll();
+    $stmtProducts = $this->repository->query("SELECT id, art, model, variant, name, price, unit, upakMal, upakKrup, category_id FROM products WHERE hidden = 0 AND is_deleted = 0 ORDER BY category_id");
+    $products = $stmtProducts->fetchAll();
+    
+    return [$date, $categories, $products];
+  }
 }
