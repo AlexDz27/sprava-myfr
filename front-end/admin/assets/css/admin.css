@@ -204,8 +204,8 @@ select {
   height: 11.5rem;
 }
 .textarea--small {
-  width: 18rem;
-  height: 5rem;
+  width: 18rem !important;
+  height: 5rem !important;
 }
 .textarea--w-code {
   font-family: monospace;

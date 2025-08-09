@@ -35,6 +35,14 @@ $adminRoutes = [
     ],
     'pageName' => 'create-product',
   ]],
+  '/admin-9kasu/create-category' => [$adminPresenter, 'createCategory', [
+    'path' => 'front-end/admin/pages/create-category.php',
+    'title' => 'Панель администратора - создать категорию',
+    'extraAssets' => [
+      '<script src="/front-end/admin/assets/js/createCategory.js" defer></script>',
+    ],
+    'pageName' => 'create-category',
+  ]],
 
   '/admin-9kasu/manage-categories' => [$adminPresenter, 'manageCategories', [
     'path' => 'front-end/admin/pages/manage-categories.php',

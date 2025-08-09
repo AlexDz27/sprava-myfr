@@ -21,6 +21,8 @@
     $url = null;
     if ((isset($pageName) && $pageName === 'edit-product') || (isset($pageName) && $pageName === 'create-product')) {
       $url = '/admin-9kasu/manage-products';
+    } elseif ((isset($pageName) && $pageName === 'create-category')) {
+      $url = '/admin-9kasu/manage-categories';
     } else {
       $url = '/admin-9kasu';
     }
@@ -30,7 +32,9 @@
         <svg class="back-home-icon"><use href="#arrow-left"></use></svg>
         <?php if ((isset($pageName) && $pageName === 'edit-product') || (isset($pageName) && $pageName === 'create-product')): ?>
           Назад ко всем товарам
-        <?php else: ?>
+        <?php elseif ((isset($pageName) && $pageName === 'create-category')): ?>
+          Назад к категориям
+        <?php else: ?>  
           Назад на главную
         <?php endif ?>
       </header>

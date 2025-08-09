@@ -123,6 +123,15 @@ class AdminPresenter extends BasePresenter {
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
 
+  public function createCategory(...$pageArgs) {
+    guard();
+
+    $this->page(
+      [],
+      ...$pageArgs
+    );
+  }
+
   public function guardedPage($vars = [], ...$pageArgs) {
     guard();
     parent::page($vars, ...$pageArgs);
