@@ -19,6 +19,10 @@
       <input name="price" required placeholder="10.00">
       &nbsp;<span class="text--smaller">бел. рублей</span>
     </section>
+    <section class="field-section field-section--short">
+      <span class="field-section__title"><span class="field-section--required__title"><abbr title="Вариант размера товара">Размер</abbr></span>:</span>
+      <input name="variant" required placeholder="5/40мм">
+    </section>
     <section class="field-section field-section--required field-section--full-w">
       <span class="field-section__title"><span class="field-section--required__title">Принадлежит к категории</span>:</span>
       <select name="category" required>
@@ -64,6 +68,8 @@
     <section style="display: block;" class="form__section form__section--imgs">
         <div>
           <h2>Добавить главную картинку:</h2>
+
+          <p style="position: relative; top: -5px;" class="hint">Рекомендуемый размер картинок: ≈714 пикселей в ширину и ≈952 пикселя в высоту (≈714 на ≈952)</p>
 
           <label style="display: inline-block;" class="btn-edit edit-form__btn-edit edit-form__btn-edit--w-auto" for="changeMainImg">Нажмите, чтобы добавить главную картинку:</label>
           <p><input type="file" id="changeMainImg" name="mainImg" accept="image/png, image/jpeg"></p>

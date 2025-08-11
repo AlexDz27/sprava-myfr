@@ -59,6 +59,7 @@
           </label>
           <div class="mb-1em">
             Поменять картинку:
+            <p style="position: relative; top: -5px;" class="hint">Рекомендуемый размер картинки: ≈714 пикселей в ширину и ≈952 пикселя в высоту (≈714 на ≈952)</p>
             <div class="editable-entity__imgs-grid">
               <div>
                 <p style="font-size: .8em;">Текущая:</p>

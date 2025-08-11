@@ -51,6 +51,10 @@
         <input name="price" value="<?= $product['price'] ?>">
         &nbsp;<span class="text--smaller">бел. рублей</span>
       </p>
+      <section class="field-section field-section--short">
+        <span class="field-section__title"><span class="field-section--required__title"><abbr title="Вариант размера товара">Размер</abbr></span>:</span>
+        <input name="variant" required placeholder="5/40мм">
+      </section>
       <section class="field-section field-section--full-w">
         <span class="field-section__title"><span class="field-section--required__title">Артикул</span>:</span>
         <input name="art" placeholder="1051-0000-75" value="<?= $product['art'] ?>">
@@ -95,6 +99,7 @@
         <div>
           <h2>Добавить картинки:</h2>
 
+          <p style="position: relative; top: -5px;" class="hint">Рекомендуемый размер картинок: ≈714 пикселей в ширину и ≈952 пикселя в высоту (≈714 на ≈952)</p>
           <label style="display: inline-block;" class="btn-edit edit-form__btn-edit edit-form__btn-edit--w-auto" for="changeMainImg">Поменять главную картинку:</label>
           <p><input type="file" id="changeMainImg" name="mainImg" accept="image/png, image/jpeg"></p>
           <div style="margin-bottom: 55px;" id="changeMainImgHolder" class="img-holder img-holder--smaller"></div>

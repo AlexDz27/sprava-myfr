@@ -71,10 +71,15 @@ class AdminPresenter extends BasePresenter {
   public function manageProducts(...$pageArgs) {
     guard();
     
-    $productGroups = $this->viewDataProvider->getProductGroups();
+    $data = $this->viewDataProvider->getProductGroups();
+    $categories = $data[0];
+    $productGroups = $data[1];
 
     $this->page(
-      ['productGroups' => $productGroups],
+      [
+        'categories' => $categories,
+        'productGroups' => $productGroups,
+      ],
       ...$pageArgs
     );
   }

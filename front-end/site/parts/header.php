@@ -48,7 +48,7 @@
       <img class="btn--dropdown__icon" src="/front-end/site/assets/img/icons/arrow-down.svg" width="17" height="10">
       <div class="btn--dropdown__list">
         <a class="btn--dropdown__list__item" href="/download-price"><b>Скачать прайс</b></a>
-        <a class="btn--dropdown__list__item" target="_blank" href="/table"><b>Посмотреть прайс</b></a>
+        <a class="btn--dropdown__list__item btn--dropdown__list__item--last" target="_blank" href="/table"><b>Посмотреть прайс</b></a>
       </div>
     </button>
     <button id="btnNav" class="btn-burger"><img src="/front-end/site/assets/img/icons/burger.svg" width="36" height="26"></button>

@@ -170,6 +170,10 @@ input {
   background-color: #FEDE32;
   color: #494547;
 }
+.btn--dropdown__list__item--last {
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
 
 .btn-slider {
   border: none;

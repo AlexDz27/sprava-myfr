@@ -198,6 +198,7 @@ class DataUpdater {
     $name = $_POST['name'];
     $slug = slugify($name);
     $price = $_POST['price'];
+    $variant = $_POST['variant'];
     $category = intval($_POST['category']);
     $company = intval($_POST['company']);
     $hit = $_POST['hit'];
@@ -232,6 +233,7 @@ class DataUpdater {
         "UPDATE products SET
         name = '$name',
         price = '$price',
+        variant = '$variant'
         img = '$imgPath',
         galleryImgs = '$galleryImgPathsStr',
         category_id = $category,
@@ -263,6 +265,7 @@ class DataUpdater {
   public function createProduct() {
     $name = $_POST['name'];
     $price = $_POST['price'];
+    $price = $_POST['variant'];
     $model = $_POST['model'];
     $category = $_POST['category'];
     $company = $_POST['company'];
@@ -294,8 +297,8 @@ class DataUpdater {
     
     try {
       $this->repository->exec(
-        "INSERT INTO products (name, price, model, img, galleryImgs, category_id, company_id, art, unit, upakMal, upakKrup, isHit, description, details, slug, hidden, is_deleted)
-        VALUES ('$name', '$price', '$model', '$imgPath', '$galleryImgPathsStr', '$category', '$company', '$art', '$unit', '$upakMal', '$upakKrup', 0, '$description', '$details', '$slug', 0, 0)"
+        "INSERT INTO products (name, price, variant, model, img, galleryImgs, category_id, company_id, art, unit, upakMal, upakKrup, isHit, description, details, slug, hidden, is_deleted)
+        VALUES ('$name', '$price', '$variant' '$model', '$imgPath', '$galleryImgPathsStr', '$category', '$company', '$art', '$unit', '$upakMal', '$upakKrup', 0, '$description', '$details', '$slug', 0, 0)"
       );
     } catch (Exception $e) {
       $resultMessage = [

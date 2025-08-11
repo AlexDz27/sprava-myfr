@@ -22,6 +22,7 @@ class AdminViewDataProvider {
   public function getProductGroups() {
     $dataProvider = new DataProvider();
     $products = $dataProvider->getProductsForAdmin();
+    $categories = $dataProvider->getCategoriesForAdmin();
 
     $productsTransformed = [];
     foreach ($products as $p) {
@@ -44,7 +45,7 @@ class AdminViewDataProvider {
       $productsTransformed[$catName]['count'] = ++$count;
     }
 
-    return $productsTransformed;
+    return [$categories, $productsTransformed];
   }
 
   public function getProductsForAdmin() {
