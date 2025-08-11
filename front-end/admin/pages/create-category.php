@@ -21,7 +21,7 @@
     </section>
     <section class="field-section field-section--textarea">
       <span class="field-section__title">Перенос строк в названии категории (если нужно):</span>
-      <textarea name="description" placeholder="Базовый строительный
+      <textarea name="name_view" placeholder="Базовый строительный
 инструмент" class="textarea textarea--small textarea--w-code"></textarea>
     </section>
 

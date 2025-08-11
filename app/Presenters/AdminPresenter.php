@@ -131,6 +131,12 @@ class AdminPresenter extends BasePresenter {
       ...$pageArgs
     );
   }
+  public function createCategoryApi() {
+    $dataUpdater = new DataUpdater();
+    $resultMessage = $dataUpdater->createCategory();
+
+    echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+  }
 
   public function guardedPage($vars = [], ...$pageArgs) {
     guard();

@@ -127,7 +127,7 @@ class DataProvider {
     $categories = $stmtCategories->fetchAll();
     $stmtProducts = $this->repository->query("SELECT id, art, model, img, variant, name, price, unit, upakMal, upakKrup, category_id FROM products WHERE hidden = 0 AND is_deleted = 0 ORDER BY category_id");
     $products = $stmtProducts->fetchAll();
-    $stmtProductsRoshma = $this->repository->query("SELECT id, art, model, img, variant, name, price, unit, upakMal, upakKrup, category_id FROM products WHERE company_id = 2 AND hidden = 0 AND is_deleted = 0 ORDER BY category_id");
+    $stmtProductsRoshma = $this->repository->query("SELECT id, art, model, img, variant, name, price, unit, upakMal, upakKrup, category_id FROM products_roshma WHERE hidden = 0 AND is_deleted = 0 ORDER BY category_id");
     $productsRoshma = $stmtProductsRoshma->fetchAll();
     
     return [$date, $categories, $products, $productsRoshma];

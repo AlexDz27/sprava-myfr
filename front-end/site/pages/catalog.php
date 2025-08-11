@@ -4,7 +4,7 @@
 <style>
   .t__img {
     width: 100%;
-    height: 100%;
+    height: 96%;
     object-fit: contain;
   }
   .t__img--fix-bad-first-valik {

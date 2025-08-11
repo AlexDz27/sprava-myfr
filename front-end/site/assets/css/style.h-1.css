@@ -245,11 +245,11 @@ the buttons will not be shown. TODO: maybe i can make it better */
   column-gap: 10px;
   margin: 0 auto;
 }
-.slider__dots--cat {
+/* .slider__dots--cat {
   width: 116px;
   justify-content: center;
   gap: 15px;
-}
+} */
 .slider__dots__dot {
   width: 15px;
   height: 15px;
@@ -270,13 +270,14 @@ the buttons will not be shown. TODO: maybe i can make it better */
   width: 60px;
   border-radius: 20px;
 }
-.slider__btns {
-  width: 284px;
+.t-list__slider-btns {
   display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
+  justify-content: center;
+}
+.slider__btns {
+  display: flex;
   align-items: center;
-  padding-bottom: 10px;
+  column-gap: 1.3rem;
 }
 .slider__btns--hidden {
   display: none;

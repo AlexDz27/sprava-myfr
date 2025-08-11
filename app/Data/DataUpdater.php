@@ -312,6 +312,46 @@ class DataUpdater {
     
     return $resultMessage;
   }
+
+  public function createCategory() {
+    $resultMessage = [
+      'status' => null,
+      'payload' => null,
+    ];
+
+    $name = $_POST['name'];
+    $nameTech = $_POST['name_tech'];
+    $description = $_POST['description'];
+    $slug = slugify($name);
+    $nameView = $_POST['name_view'];
+    $img = $_FILES['mainImg'];
+
+    try {
+      $imgPath = null;
+      if ($img['error'] === 0) {
+        $imgPath = '/data/product-imgs/downloaded/' . $img['name'];
+        move_uploaded_file($img['tmp_name'], ltrim($imgPath, '/'));
+      }
+
+      $this->repository->exec("
+      INSERT INTO categories (name, description, img, hidden, name_tech, name_view, slug, is_deleted) 
+      VALUES ('$name', '$description', '$imgPath', 0, '$nameTech', '$nameView', '$slug', 0)
+      ");
+    } catch (Exception $e) {
+      $resultMessage = [
+        'status' => 'Err',
+        'text' => 'Возникла ошибка базы данных при создании категории. ' . $this->contactsIfError,
+      ];
+      return $resultMessage;
+    }
+
+    $resultMessage = [
+      'status' => 'OK',
+      'text' => 'Категория была создана успешно',
+    ];
+    
+    return $resultMessage;
+  }
 }
 
 
