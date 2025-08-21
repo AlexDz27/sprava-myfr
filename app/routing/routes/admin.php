@@ -64,8 +64,14 @@ if (str_contains($_SERVER['REQUEST_URI'], 'edit-product')) {
   $myF = function(&$adminRoutes) use ($adminPresenter) {
   $viewDataProvider = new AdminViewDataProvider();
   $ps = $viewDataProvider->getProductsForAdmin();
+  $psRoshma = $viewDataProvider->getProductsForAdminRoshma();
+  // var_dump($ps);
+  // die();
+  $arr = array_merge($ps, $psRoshma);
+  // var_dump($arr);
+  // die();
 
-  foreach ($ps as $p) {
+  foreach ($arr as $p) {
     $res = null;
     if (is_null($p['art'])) {
       $res = $p['id'];

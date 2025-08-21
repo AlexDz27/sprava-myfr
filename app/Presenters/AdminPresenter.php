@@ -74,11 +74,13 @@ class AdminPresenter extends BasePresenter {
     $data = $this->viewDataProvider->getProductGroups();
     $categories = $data[0];
     $productGroups = $data[1];
+    $productGroupsRoshma = $data[2];
 
     $this->page(
       [
         'categories' => $categories,
         'productGroups' => $productGroups,
+        'productGroupsRoshma' => $productGroupsRoshma,
       ],
       ...$pageArgs
     );

@@ -233,7 +233,7 @@ class DataUpdater {
         "UPDATE products SET
         name = '$name',
         price = '$price',
-        variant = '$variant'
+        variant = '$variant',
         img = '$imgPath',
         galleryImgs = '$galleryImgPathsStr',
         category_id = $category,

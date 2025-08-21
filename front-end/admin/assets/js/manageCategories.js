@@ -10,7 +10,7 @@ for (const category of categories) {
   const idInput = category.querySelector('input[name$="[id]"]')
   const hideBtn = category.querySelector('.js-hide-btn')
   if (hideBtn) hideBtn.onclick = () => {
-    if (confirm('Вы уверены, что хотите скрыть эту категорию с сайта?')) {
+    if (confirm('Вы уверены, что хотите скрыть эту категорию с сайта? В админ. панели она останется, и её можно будет вернуть на сайт.')) {
       fetch('/admin-9kasu/api/manage-categories', {
         method: 'POST',
         body: JSON.stringify({justHidden: true, id: idInput.value, hidden: 1})

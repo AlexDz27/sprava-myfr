@@ -154,9 +154,7 @@ select {
   margin-right: 1em;
 }
 
-.editable-entity {
-  margin-bottom: 4rem;
-}
+.editable-entity {}
 .editable-entity__name-and-btns {
   display: flex;
   justify-content: space-between;
@@ -415,6 +413,32 @@ select {
   padding: .3em;
   font-weight: 600;
   border-radius: .4em;
+}
+
+.table-switcher-pane {
+  position: fixed;
+  bottom: 0;
+  left: 10vw;
+  z-index: 50;
+}
+.table-switcher-pane__btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 13px;
+  background-color: #eee;
+}
+.table-switcher-pane__btn--active {
+  font-weight: bold;
+  border: 2px solid black;
+  border-bottom: 5px solid black;
+  opacity: 1;
+}
+.table-switcher-pane__btn--sprava {
+  background-color: #FEDE32;
+}
+.table-switcher-pane__btn--roshma {
+  background-color: rgb(134 209 134);
 }
 
 /** BOOTSTRAP-LIKE COMPONENTS **/

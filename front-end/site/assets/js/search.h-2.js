@@ -1,32 +1,18 @@
-// TODO: правильное (а не руками) подтягивание search -- потом доделаю
-
-// Load search data if needed
-// TODO: UNCOMMENT
-// let products = null
-// let searchData = localStorage.getItem('search')
-// if (!searchData) {
-//   fetch('/search.json')
-//     .then(r => r.text())
-//     .then(r => {
-//       localStorage.setItem('search', r)
-//       searchData = JSON.parse(r)
-//       products = searchData.products
-//     })
-// } else {
-//   searchData = JSON.parse(searchData)
-//   products = searchData.products
-//   const h = searchData.h
-//   const hFromServer = Number(document.getElementById('searchH').text)
-//   if (h !== hFromServer) {
-//     fetch('/search.json')
-//       .then(r => r.text())
-//       .then(r => {
-//         localStorage.setItem('search', r)
-//         searchData = JSON.parse(r)
-//         products = searchData.products
-//       })
-//   }
-// }
+// Load search data if not already loaded
+let products = null
+let searchData = localStorage.getItem('search')
+if (!searchData) {
+  fetch('/search')
+    .then(r => r.text())
+    .then(r => {
+      localStorage.setItem('search', r)
+      searchData = JSON.parse(r)
+      products = searchData.products
+    })
+} else {
+  searchData = JSON.parse(searchData)
+  products = searchData.products
+}
 
 // Use search data
 /** SEARCH **/
@@ -46,13 +32,15 @@ searchInput.oninput = (e) => {
     clearTimeout(timeoutId)
     timeoutId = setTimeout(() => {
       products.forEach(p => {
-        const modelAndVariant = p.model + ' ' + p.variant
+        const split = p.name.split(',')
+        const lastPart = split.pop()
+        const glued = split.join(',')
 
-        if (modelAndVariant.toLowerCase().includes(searchInput.value.toLowerCase())) {
+        if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
           searchResults.innerHTML += `
-            <a href="${p.uri}" class="search__results__item">
-              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${modelAndVariant}">
-              <span>${p.model}, <span class="search__results__item__text--gray">${p.variant}</span></span>
+            <a href="${p.slug}" class="search__results__item">
+              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+              <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
             </a>
           `
         }
@@ -61,13 +49,15 @@ searchInput.oninput = (e) => {
   } else {
     clearTimeout(timeoutId)
     products.forEach(p => {
-      const modelAndVariant = p.model + ' ' + p.variant
+      const split = p.name.split(',')
+      const lastPart = split.pop()
+      const glued = split.join(',')
 
-      if (modelAndVariant.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
         searchResults.innerHTML += `
           <a href="${p.uri}" class="search__results__item">
-            <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${modelAndVariant}">
-            <span>${p.model}, <span class="search__results__item__text--gray">${p.variant}</span></span>
+            <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+            <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
           </a>
         `
       }
@@ -81,13 +71,15 @@ searchInput.onfocus = () => {
   if (searchInput.value === '') return
 
   products.forEach(p => {
-    const modelAndVariant = p.model + ' ' + p.variant
+    if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
+      const split = p.name.split(',')
+      const lastPart = split.pop()
+      const glued = split.join(',')
 
-    if (modelAndVariant.toLowerCase().includes(searchInput.value.toLowerCase())) {
       searchResults.innerHTML += `
         <a href="${p.uri}" class="search__results__item">
           <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="Кисть">
-          <span>${p.model}, <span class="search__results__item__text--gray">${p.variant}</span></span>
+          <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
         </a>
       `
     }
@@ -151,13 +143,15 @@ searchInputMob.oninput = (e) => {
     clearTimeout(timeoutId)
     timeoutId = setTimeout(() => {
       products.forEach(p => {
-        const modelAndVariant = p.model + ' ' + p.variant
+        if (p.name.toLowerCase().includes(input.toLowerCase())) {
+          const split = p.name.split(',')
+          const lastPart = split.pop()
+          const glued = split.join(',')
 
-        if (modelAndVariant.toLowerCase().includes(input.toLowerCase())) {
           navMobContSearchResultsReal.innerHTML += `
             <a href="${p.uri}" class="search__results__item">
-              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${modelAndVariant}">
-              <span>${p.model}, <span class="search__results__item__text--gray">${p.variant}</span></span>
+              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+              <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
             </a>
           `
         }
@@ -166,13 +160,15 @@ searchInputMob.oninput = (e) => {
   } else {
     clearTimeout(timeoutId)
     products.forEach(p => {
-      const modelAndVariant = p.model + ' ' + p.variant
+      if (p.name.toLowerCase().includes(input.toLowerCase())) {
+        const split = p.name.split(',')
+        const lastPart = split.pop()
+        const glued = split.join(',')
 
-      if (modelAndVariant.toLowerCase().includes(input.toLowerCase())) {
         navMobContSearchResultsReal.innerHTML += `
           <a href="${p.uri}" class="search__results__item">
-            <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${modelAndVariant}">
-            <span>${p.model}, <span class="search__results__item__text--gray">${p.variant}</span></span>
+            <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+            <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
           </a>
         `
       }

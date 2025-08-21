@@ -85,6 +85,14 @@ class SitePresenter extends BasePresenter {
     exit;
   }
 
+  public function search() {
+    $dataProvider = new DataProvider();
+    $search = $dataProvider->getSearch();
+    // $search = '{"some-field": true, "some-field-2": "zxczxc", "h": 42, "products": [1, 2, 3]}';
+
+    echo '{"h": ' . $search['h'] . ', "products": ' . $search['products'] . '}';
+  }
+
   public function page($vars = [], ...$pageArgs) {
     parent::page($this->texts + $vars, ...$pageArgs);
   }

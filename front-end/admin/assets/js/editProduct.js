@@ -52,7 +52,7 @@ form.onsubmit = (e) => {
 const idInput = document.querySelector('input[name=id]')
 const hideBtn = document.querySelector('.js-hide-btn')
 if (hideBtn) hideBtn.onclick = () => {
-  if (confirm('Вы уверены, что хотите скрыть этот товар с сайта?')) {
+  if (confirm('Вы уверены, что хотите скрыть этот товар с сайта? В админ. панели он останется, и его можно будет вернуть на сайт.')) {
     fetch('/admin-9kasu/api/edit-product', {
       method: 'POST',
       body: JSON.stringify({id: idInput.value, hidden: 1})

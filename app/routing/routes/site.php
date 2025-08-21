@@ -31,6 +31,7 @@ $siteRoutes = [
     'title' => $sitePresenter->companyName. ' | Прайс-лист',
   ]],
   '/download-price' => [$sitePresenter, 'downloadPrice', []],
+  '/search' => [$sitePresenter, 'search', []],
 
   '404' => [$sitePresenter, 'page', [
     'path' => 'front-end/site/pages/404.php',
