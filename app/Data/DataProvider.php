@@ -13,12 +13,16 @@ class DataProvider {
     $stmtPhones = $this->repository->query("SELECT * FROM texts WHERE name_internal LIKE '%phone%'");
     $phones = $stmtPhones->fetchAll();
 
-    $stmtAddress = $this->repository->query("SELECT * FROM texts WHERE name = 'Адрес'");
+    $stmtAddress = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'address'");
     $address = $stmtAddress->fetch();
+
+    $stmtWorkingHours = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours'");
+    $workingHours = $stmtWorkingHours->fetch();
 
     $texts = [
       'phones' => $phones,
       'address' => $address,
+      'workingHours' => $workingHours,
     ];
 
     return $texts;
@@ -27,12 +31,16 @@ class DataProvider {
     $stmtPhones = $this->repository->query("SELECT * FROM texts WHERE name_internal LIKE '%phone%'");
     $phones = $stmtPhones->fetchAll();
 
-    $stmtAddress = $this->repository->query("SELECT * FROM texts WHERE name = 'Адрес'");
+    $stmtAddress = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'address'");
     $address = $stmtAddress->fetch();
+
+    $stmtWorkingHours = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours'");
+    $workingHours = $stmtWorkingHours->fetch();
 
     $texts = [
       'phones' => $phones,
       'address' => $address,
+      'workingHours' => $workingHours,
     ];
     
     return $texts;

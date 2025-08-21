@@ -16,7 +16,7 @@
             <img src="/front-end/site/assets/img/icons/telegram.svg" width="30" height="30" alt="Ссылка на Telegram">
           </a>
         </div>
-        <div class="footer__copyright hide-below-800">© 2025 Все права защищены</div>
+        <div class="footer__copyright hide-below-800">© <?= date('Y') ?> Все права защищены</div>
       </div>
 
       <div class="footer__col-2">
@@ -28,7 +28,7 @@
       </div>
 
       <div class="footer__col-4 show-below-800">
-        <div class="footer__copyright" style="color: #707070;">© 2025 Все права защищены</div>
+        <div class="footer__copyright" style="color: #707070;">© <?= date('Y') ?> Все права защищены</div>
       </div>
     </div>
   </div>

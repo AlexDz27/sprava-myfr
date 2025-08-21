@@ -7,7 +7,7 @@
       <a class="link--no-underline text--small" href="https://yandex.by/maps/29630/minsk-district/house/Zk4YcwBmSUYEQFtpfXRxeXxnYg==/?ll=27.576034%2C53.808047&z=16.62"><?= $address ?></a>
     </div>
   </div>
-  <span class="header__text">Режим работы: Пн-Пт: 8:30-17:00, вых.: Сб-Вс</span>
+  <span class="header__text"><?= $workingHours ?></span>
   <div class="header__row-2-col header__row-2-col--1">
     <a class="header__row-2-col__logo" href="/">
       <img src="/front-end/site/assets/img/logo.svg" width="148" height="20" alt="Логотип Sprava">

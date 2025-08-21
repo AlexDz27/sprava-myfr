@@ -108,8 +108,8 @@ form.onsubmit = (e) => {
     
     submitBtn.disabled = false
     
-    // location.reload()
-    // window.scrollTo(0, 0)
+    location.reload()
+    window.scrollTo(0, 0)
   })
 }
 

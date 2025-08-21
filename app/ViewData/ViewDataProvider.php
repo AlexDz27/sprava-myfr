@@ -35,6 +35,7 @@ class ViewDataProvider {
         'contacts' => $phonesForContacts,
       ],
       'address' => $texts['address']['text'],
+      'workingHours' => $texts['workingHours']['text'],
       'h' => $searchH,
     ];
 

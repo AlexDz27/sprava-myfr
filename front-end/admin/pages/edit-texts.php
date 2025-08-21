@@ -1,3 +1,5 @@
+<?php // var_dump(get_defined_vars()); die(); ?>
+
 <?php require 'front-end/admin/parts/header.php' ?>
 
 <section class="page-name cont">
@@ -16,6 +18,23 @@
     <section class="delimited-section">
       <h3>Адрес:</h3>
       <textarea name="<?= $address['id'] ?>" class="textarea"><?= $address['text'] ?></textarea>
+    </section>
+
+    <section class="delimited-section">
+      <h3>Режим работы:</h3>
+      <input name="<?= $workingHours['id'] ?>" value="<?= $workingHours['text'] ?>" style="width: 100%;">
+    </section>
+
+    <section class="delimited-section">
+      <h3>Электронная почта:</h3>
+      <input name="" value="todo: e-mail">
+    </section>
+
+    <section class="delimited-section">
+      <h3><abbr style="cursor: help;" title="Если убрать текст из поля, то соцсеть не будет показываться на сайте">Соцсети</abbr> и ссылки на них:</h3>
+      <p>Whatsapp: &nbsp;<input name="" value=""></p>
+      <p>Viber: &nbsp;<input name="" value=""></p>
+      <p>Telegram: &nbsp;<input name="" value=""></p>
     </section>
 
     <button style="width: 100%;" class="btn btn--admin" type="submit">Подтвердить редактирование</button>
