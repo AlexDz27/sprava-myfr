@@ -51,7 +51,7 @@
                 <h3 class="card__title"><?= $c['name'] ?></h3>
               <?php endif ?>
 
-              <ul class="card__list">
+              <ul class="card__list <?= !empty($c['name_view']) ? 'card__list--w-2nd-line' : '' ?>">
                 <?php foreach ($c['description'] as $d): ?>
                   <li class="text--larger"><span class="card__list__item-text"><?= $d ?></span></li>
                 <?php endforeach ?>

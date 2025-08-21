@@ -32,14 +32,6 @@
         <?php endforeach ?>
       </select>
     </section>
-    <section class="field-section field-section--required field-section--full-w">
-      <span class="field-section__title"><span class="field-section--required__title">Принадлежит к компании</span>:</span>
-      <select name="company" required>
-        <?php foreach ($companies as $comp): ?>
-          <option value="<?= $comp['id'] ?>"><?= $comp['name'] ?></option>
-        <?php endforeach ?>
-      </select>
-    </section>
     <section class="field-section field-section--full-w">
       <span class="field-section__title"><span class="field-section--required__title">Артикул</span>:</span>
       <input name="art" placeholder="1051-0000-75">

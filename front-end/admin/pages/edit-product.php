@@ -15,7 +15,7 @@
 
   <section class="product-name-cont">
     <div class="product-name <?= $product['hidden'] ? 'category-name--hidden' : '' ?> <?= $product['cat_hidden'] ? 'category-name--hidden' : '' ?>">
-      <?= $product['name'] ?> <span class="text--smaller">(<?= $product['art'] ?? 'внутр. ключ: ' . $product['id'] ?>) <?= $product['hidden'] ? '(товар скрыт)' : '' ?> <?= $product['cat_hidden'] ? '(товар скрыт, т.к. его категория скрыта)' : '' ?></span>
+      <?= $product['name'] ?> <span class="text--smaller">(<?= empty($product['art']) ? 'внутр. номер: ' . $product['id'] : $product['art'] ?>) <?= $product['hidden'] ? '(товар скрыт)' : '' ?> <?= $product['cat_hidden'] ? '(товар скрыт, т.к. его категория скрыта)' : '' ?></span>
       <?php if (isset($product['uri'])): ?>
         <a target="_blank" href="<?= $product['uri'] ?>" title="Открыть страницу товара"><svg class="product-name__open-link-icon__svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link-icon lucide-external-link"><use href="#open-link"></use></svg></a>
       <?php endif ?>
@@ -59,7 +59,7 @@
       </p>
       <section class="field-section field-section--short">
         <span class="field-section__title"><span class="field-section--required__title"><abbr style="cursor: help;" title="Вариант размера товара или просто вариант товара">Размер</abbr></span>:</span>
-        <input name="variant" value="<?= $product['variant'] ?>" required placeholder="100х600мм">
+        <input name="variant" value="<?= $product['variant'] ?>" placeholder="100х600мм">
       </section>
       <section class="field-section field-section--full-w">
         <span class="field-section__title"><span class="field-section--required__title">Артикул</span>:</span>
@@ -73,14 +73,6 @@
           <?php endforeach ?>
         </select>
       </p>
-      <section class="field-section field-section--required field-section--full-w">
-        <span class="field-section__title"><span class="field-section--required__title">Принадлежит к компании</span>:</span>
-        <select name="company" required>
-          <?php foreach ($companies as $comp): ?>
-            <option value="<?= $comp['id'] ?>" <?= $product['company_id'] == $comp['id'] ? 'selected' : '' ?>><?= $comp['name'] ?></option>
-          <?php endforeach ?>
-        </select>
-      </section>
       <?php if (isset($product['uri'])): ?>
         <p class="d-flex-ai-center">
           <span>Является хитом:</span> &nbsp;&nbsp;

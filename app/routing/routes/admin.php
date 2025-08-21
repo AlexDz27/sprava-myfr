@@ -73,7 +73,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'edit-product')) {
 
   foreach ($arr as $p) {
     $res = null;
-    if (is_null($p['art'])) {
+    if (empty($p['art'])) {
       $res = $p['id'];
       $res = "$res";
     } else {
