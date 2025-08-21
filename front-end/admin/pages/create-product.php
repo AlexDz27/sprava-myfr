@@ -20,8 +20,8 @@
       &nbsp;<span class="text--smaller">бел. рублей</span>
     </section>
     <section class="field-section field-section--short">
-      <span class="field-section__title"><span class="field-section--required__title"><abbr title="Вариант размера товара">Размер</abbr></span>:</span>
-      <input name="variant" required placeholder="100х600мм">
+      <span class="field-section__title"><span class="field-section--required__title"><abbr title="Вариант размера товара или просто вариант товара">Размер</abbr></span>:</span>
+      <input name="variant" placeholder="100х600мм">
     </section>
     <section class="field-section field-section--required field-section--full-w">
       <span class="field-section__title"><span class="field-section--required__title">Принадлежит к категории</span>:</span>
@@ -34,7 +34,7 @@
     </section>
     <section class="field-section field-section--required field-section--full-w">
       <span class="field-section__title"><span class="field-section--required__title">Принадлежит к компании</span>:</span>
-      <select name="company" required disabled>
+      <select name="company" required>
         <?php foreach ($companies as $comp): ?>
           <option value="<?= $comp['id'] ?>"><?= $comp['name'] ?></option>
         <?php endforeach ?>

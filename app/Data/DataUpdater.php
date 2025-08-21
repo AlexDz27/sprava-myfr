@@ -77,7 +77,7 @@ class DataUpdater {
     
     $resultMessage = [
       'status' => 'OK',
-      'text' => 'Прайс-лист был успешно обновлён!',
+      'text' => 'Прайс-лист был успешно обновлён! Данные товаров обновились.',
     ];
     
     return $resultMessage;
@@ -170,6 +170,20 @@ class DataUpdater {
       if (isset($incoming['hidden'])) {
         $hidden = $incoming['hidden'];
         $this->repository->exec("UPDATE products SET hidden = $hidden WHERE id = $id");
+
+        // Обновить поиск
+        $ps = $this->repository->query("SELECT p.id, p.slug, p.img, p.name, p.model, p.variant, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 AND p.hidden = 0")->fetchAll();
+        $psWithUris = [];
+        foreach ($ps as &$p) {
+          $p['uri'] = '/catalog/' . $p['cat_slug'] . '/' . $p['slug'];
+        }
+        $json = json_encode($ps, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        $h = $this->repository->query("SELECT h FROM search")->fetch()['h'];
+        $hPlusOne = $h + 1;
+        $this->repository->exec("UPDATE search SET h = $hPlusOne, products = '$json'");
+        // /Обновить поиск
+
         $resultMessage = [
           'status' => 'OK',
           'text' => $hidden ? 'Товар был скрыт успешно' : 'Товар был возвращён успешно',
@@ -178,6 +192,20 @@ class DataUpdater {
       } else if (isset($incoming['is_deleted'])) {
         $isDeleted = $incoming['is_deleted'];
         $this->repository->exec("UPDATE products SET is_deleted = $isDeleted WHERE id = $id");
+
+        // Обновить поиск
+        $ps = $this->repository->query("SELECT p.id, p.slug, p.img, p.name, p.model, p.variant, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 AND p.hidden = 0")->fetchAll();
+        $psWithUris = [];
+        foreach ($ps as &$p) {
+          $p['uri'] = '/catalog/' . $p['cat_slug'] . '/' . $p['slug'];
+        }
+        $json = json_encode($ps, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        $h = $this->repository->query("SELECT h FROM search")->fetch()['h'];
+        $hPlusOne = $h + 1;
+        $this->repository->exec("UPDATE search SET h = $hPlusOne, products = '$json'");
+        // /Обновить поиск
+
         $resultMessage = [
           'status' => 'OK',
           'text' => 'Товар был удалён успешно',
@@ -218,6 +246,8 @@ class DataUpdater {
     if ($_FILES['mainImg']['error'] !== ERR_NO_FILE_UPLOADED) {
       $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
       move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
+    } else {
+      $imgPath = '/front-end/site/assets/img/no-pic.jpg';
     }
     $galleryImgPaths = empty($currentOrder) ? [] : explode(', ', $currentOrder);
     if ($_FILES['galleryImgs']['error'][0] !== ERR_NO_FILE_UPLOADED) {  // bad
@@ -254,6 +284,19 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
+
+    // Обновить поиск
+    $ps = $this->repository->query("SELECT p.id, p.slug, p.img, p.name, p.model, p.variant, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 AND p.hidden = 0")->fetchAll();
+    $psWithUris = [];
+    foreach ($ps as &$p) {
+      $p['uri'] = '/catalog/' . $p['cat_slug'] . '/' . $p['slug'];
+    }
+    $json = json_encode($ps, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+    $h = $this->repository->query("SELECT h FROM search")->fetch()['h'];
+    $hPlusOne = $h + 1;
+    $this->repository->exec("UPDATE search SET h = $hPlusOne, products = '$json'");
+    // /Обновить поиск
     
     $resultMessage = [
       'status' => 'OK',
@@ -265,7 +308,7 @@ class DataUpdater {
   public function createProduct() {
     $name = $_POST['name'];
     $price = $_POST['price'];
-    $price = $_POST['variant'];
+    $variant = $_POST['variant'];
     $model = $_POST['model'];
     $category = $_POST['category'];
     $company = $_POST['company'];
@@ -282,6 +325,8 @@ class DataUpdater {
     if ($_FILES['mainImg']['error'] !== ERR_NO_FILE_UPLOADED) {
       $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
       move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
+    } else {
+      $imgPath = '/front-end/site/assets/img/no-pic.jpg';
     }
     $galleryImgPathsStr = '';
     if (!empty($galleryImgsOrdered)) {
@@ -297,8 +342,7 @@ class DataUpdater {
     
     try {
       $this->repository->exec(
-        "INSERT INTO products (name, price, variant, model, img, galleryImgs, category_id, company_id, art, unit, upakMal, upakKrup, isHit, description, details, slug, hidden, is_deleted)
-        VALUES ('$name', '$price', '$variant' '$model', '$imgPath', '$galleryImgPathsStr', '$category', '$company', '$art', '$unit', '$upakMal', '$upakKrup', 0, '$description', '$details', '$slug', 0, 0)"
+        "INSERT INTO products (name, price, variant, model, img, galleryImgs, category_id, company_id, art, unit, upakMal, upakKrup, isHit, description, details, slug, hidden, is_deleted) VALUES ('$name', '$price', '$variant', '$model', '$imgPath', '$galleryImgPathsStr', '$category', '$company', '$art', '$unit', '$upakMal', '$upakKrup', 0, '$description', '$details', '$slug', 0, 0)"
       );
     } catch (Exception $e) {
       $resultMessage = [
@@ -307,6 +351,19 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
+
+    // Обновить поиск
+    $ps = $this->repository->query("SELECT p.id, p.slug, p.img, p.name, p.model, p.variant, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 AND p.hidden = 0")->fetchAll();
+    $psWithUris = [];
+    foreach ($ps as &$p) {
+      $p['uri'] = '/catalog/' . $p['cat_slug'] . '/' . $p['slug'];
+    }
+    $json = json_encode($ps, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+    $h = $this->repository->query("SELECT h FROM search")->fetch()['h'];
+    $hPlusOne = $h + 1;
+    $this->repository->exec("UPDATE search SET h = $hPlusOne, products = '$json'");
+    // /Обновить поиск
     
     $resultMessage = [
       'status' => 'OK',

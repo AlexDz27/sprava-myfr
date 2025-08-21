@@ -98,5 +98,7 @@
   </div>
 </nav>
 
+<script id="searchH" type="text/plain"><?= $h ?></script>
+
 </body>
 </html>

@@ -38,6 +38,12 @@ class DataProvider {
     return $texts;
   }
 
+  public function getSearchH() {
+    $h = $this->repository->query("SELECT h FROM search")->fetch()['h'];
+    
+    return $h;
+  }
+
   public function getPriceListTexts() {
     $stmtPriceList = $this->repository->query("SELECT * FROM texts_tech WHERE name_internal = 'current_price_list'");
     $priceList = $stmtPriceList->fetch();

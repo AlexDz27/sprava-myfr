@@ -23,3 +23,29 @@
 
 - why .htacccess
 Он нужен, чтобы при загрузке на какой-нибудь хостинг сразу поддерживался правильный раутинг.
+
+- Поиск
+Когда в базе меняем hidden или is_deleted, надо вручную пересоздавать поиск, т.к. иначе изменения в видимости не отобразятся - данные будут старыми.
+Например, админ удалил товар из базы и решил его восстановить. Программист восстанавливает, устанавливая 0 в is_deleted. Но поиск не отобразит этот товар, т.к. данные
+берутся из галимого джейсона, а не из sqlite.
+Хотя по идее можно сделать и как-то так: в нужном товаре два раза нажать на кнопку "Скрыть" - таким образом код по обновлению поиска сработает.
+
+- check to see if there any diffs in incoming new price list and current products in db
+Put this in DataUpdater->updatePrice() somewhere on line 71:
+$dbArts = $this->repository->query("SELECT art FROM products")->fetchAll(PDO::FETCH_COLUMN);
+$diff = array_diff($fileArts, $dbArts);
+var_dump($diff);
+die();
+
+And to check if everything's fine before really updating the data, put this code somewhere also after line 71 (note the commenting of the UPDATE):
+$differentPs = [];
+foreach ($excelProducts as $p) {
+  $dbP = $this->repository->query("SELECT * from products WHERE art = '{$p['art']}'")->fetch();
+  if (!($dbP['price'] == $p['price'] && $dbP['variant'] == $p['variant'] && $dbP['unit'] == $p['unit'] && $dbP['upakMal'] == $p['upakMal'] && $dbP['upakKrup'] == $p['upakKrup'])) {
+    $differentPs[] = $p;
+  }
+
+  // $this->repository->exec("UPDATE products SET price = '{$p['price']}', variant = '{$p['variant']}', unit = '{$p['unit']}', upakMal = '{$p['upakMal']}', upakKrup = '{$p['upakMal']}' WHERE art = '{$p['art']}'");
+}
+var_dump($differentPs);
+die();

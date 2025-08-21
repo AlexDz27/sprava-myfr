@@ -9,6 +9,7 @@ class ViewDataProvider {
   public function getTexts() {
     $dataProvider = new DataProvider();
     $texts = $dataProvider->getTexts();
+    $searchH = $dataProvider->getSearchH();
 
     $textsTransformed = [
       'phones' => [
@@ -16,6 +17,7 @@ class ViewDataProvider {
         'contacts' => [],
       ],
       'address' => '',
+      'h' => $searchH,
     ];
 
     $phonesForHeader = array_map(function($phone) {
@@ -33,6 +35,7 @@ class ViewDataProvider {
         'contacts' => $phonesForContacts,
       ],
       'address' => $texts['address']['text'],
+      'h' => $searchH,
     ];
 
     // var_dump($textsTransformed);

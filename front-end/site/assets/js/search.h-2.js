@@ -12,6 +12,17 @@ if (!searchData) {
 } else {
   searchData = JSON.parse(searchData)
   products = searchData.products
+  const h = searchData.h
+  const hFromServer = Number(document.getElementById('searchH').text)
+  if (h !== hFromServer) {
+    fetch('/search')
+      .then(r => r.text())
+      .then(r => {
+        localStorage.setItem('search', r)
+        searchData = JSON.parse(r)
+        products = searchData.products
+      })
+  }
 }
 
 // Use search data
@@ -38,7 +49,7 @@ searchInput.oninput = (e) => {
 
         if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
           searchResults.innerHTML += `
-            <a href="${p.slug}" class="search__results__item">
+            <a href="${p.uri}" class="search__results__item">
               <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
               <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
             </a>
