@@ -247,7 +247,9 @@ class DataUpdater {
       $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
       move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
     } else {
-      $imgPath = '/front-end/site/assets/img/no-pic.jpg';
+      if (empty($imgPath)) {
+        $imgPath = '/front-end/site/assets/img/no-pic.jpg';
+      }
     }
     $galleryImgPaths = empty($currentOrder) ? [] : explode(', ', $currentOrder);
     if ($_FILES['galleryImgs']['error'][0] !== ERR_NO_FILE_UPLOADED) {  // bad
@@ -325,7 +327,9 @@ class DataUpdater {
       $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
       move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
     } else {
-      $imgPath = '/front-end/site/assets/img/no-pic.jpg';
+      if (empty($imgPath)) {
+        $imgPath = '/front-end/site/assets/img/no-pic.jpg';
+      }
     }
     $galleryImgPathsStr = '';
     if (!empty($galleryImgsOrdered)) {
@@ -391,7 +395,9 @@ class DataUpdater {
         $imgPath = '/data/product-imgs/downloaded/' . $img['name'];
         move_uploaded_file($img['tmp_name'], ltrim($imgPath, '/'));
       } else {
-        $imgPath = '/front-end/site/assets/img/no-pic.jpg';
+        if (empty($imgPath)) {
+          $imgPath = '/front-end/site/assets/img/no-pic.jpg';
+        }
       }
 
       $this->repository->exec("
