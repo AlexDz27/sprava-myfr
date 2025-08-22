@@ -28,7 +28,12 @@ class AdminPresenter extends BasePresenter {
       [
         'phones' => $editableTexts['phones'],
         'address' => $editableTexts['address'],
-        'workingHours' => $editableTexts['workingHours'],
+        'workingHoursHeader' => $editableTexts['workingHoursHeader'],
+        'workingHoursContacts' => $editableTexts['workingHoursContacts'],
+        'email' => $editableTexts['email'],
+        'whatsapp' => $editableTexts['whatsapp'],
+        'viber' => $editableTexts['viber'],
+        'telegram' => $editableTexts['telegram'],
       ],
       ...$pageArgs
     );

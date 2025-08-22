@@ -17,17 +17,35 @@ class ViewDataProvider {
         'contacts' => [],
       ],
       'address' => '',
+      'workingHoursHeader' => '',
+      'workingHoursContacts' => '',
+      'email' => '',
+      'whatsapp' => '',
+      'viber' => '',
+      'telegram' => '',
       'h' => $searchH,
     ];
 
     $phonesForHeader = array_map(function($phone) {
+      if (empty($phone['text'])) return null;
+
       return [humanReadablePhoneToTel($phone['text']), $phone['text']];
     }, $texts['phones']);
+    $phonesForHeader = array_filter($phonesForHeader, function($p) {
+      if ($p === null) return false;
+      return true;
+    });
 
     addDerivativePhones($texts['phones']);
     $phonesForContacts = array_map(function($phone) {
+      if (empty($phone['text'])) return null;
+
       return [humanReadablePhoneToTel($phone['text']), $phone['text']];
     }, $texts['phones']);
+    $phonesForContacts = array_filter($phonesForContacts, function($p) {
+      if ($p === null) return false;
+      return true;
+    });
 
     $textsTransformed = [
       'phones' => [
@@ -35,7 +53,12 @@ class ViewDataProvider {
         'contacts' => $phonesForContacts,
       ],
       'address' => $texts['address']['text'],
-      'workingHours' => $texts['workingHours']['text'],
+      'workingHoursHeader' => $texts['workingHoursHeader']['text'],
+      'workingHoursContacts' => $texts['workingHoursContacts']['text'],
+      'email' => $texts['email']['text'],
+      'whatsapp' => $texts['whatsapp']['text'],
+      'viber' => $texts['viber']['text'],
+      'telegram' => $texts['telegram']['text'],
       'h' => $searchH,
     ];
 

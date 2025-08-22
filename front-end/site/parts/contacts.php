@@ -15,7 +15,7 @@
       <div class="text-with-icon">
         <img class="text-with-icon__icon" src="/front-end/site/assets/img/icons/clock.svg" width="20" height="20">
         <div class="text-with-icon__text-cont text-with-icon--pin__text-cont">
-          <span class="text--larger"><b>Пн-пт</b>: 8:30-17:00, <b>выходные</b>: суббота, воскресенье</span>
+          <span class="text--larger"><?= $workingHoursContacts ?></span>
         </div>
       </div>
       <p class="text--big p--lower-margin">Телефоны:</p>
@@ -34,19 +34,25 @@
       <div class="text-with-icon">
         <img class="text-with-icon__icon text-with-icon__icon--envelope--larger" src="/front-end/site/assets/img/icons/envelope--larger.svg" width="24" height="18">
         <div class="text-with-icon__text-cont text-with-icon--pin__text-cont">
-          <a href="mailto:office@roshma.by" class="link--no-underline text--larger">office@roshma.by</a>
+          <a href="mailto:<?= $email ?>" class="link--no-underline text--larger"><?= $email ?></a>
         </div>
       </div>
       <p class="link-social-cont link-social-cont--farther">
-        <a href="https://wa.me/375445006080" class="link-social link-social--whatsapp link-social--mob">
-          <img src="/front-end/site/assets/img/icons/whatsapp.svg" width="24" height="24" alt="Ссылка на Whatsapp">
-        </a>
-        <a href="viber://chat?number=%2B375445006080" class="link-social link-social--viber link-social--mob">
-          <img src="/front-end/site/assets/img/icons/viber.svg" width="13" height="14" alt="Ссылка на Viber">
-        </a>
-        <a href="https://t.me/+375445006080" class="link-social link-social--telegram link-social--mob">
-          <img src="/front-end/site/assets/img/icons/telegram.svg" width="24" height="24" alt="Ссылка на Telegram">
-        </a>
+        <?php if (!empty($whatsapp)): ?>
+          <a href="<?= $whatsapp ?>" class="link-social link-social--whatsapp link-social--mob">
+            <img src="/front-end/site/assets/img/icons/whatsapp.svg" width="24" height="24" alt="Ссылка на Whatsapp">
+          </a>
+        <?php endif ?>
+        <?php if (!empty($viber)): ?>
+          <a href="<?= $viber ?>" class="link-social link-social--viber link-social--mob">
+            <img src="/front-end/site/assets/img/icons/viber.svg" width="13" height="14" alt="Ссылка на Viber">
+          </a>
+        <?php endif ?>
+        <?php if (!empty($telegram)): ?>
+          <a href="<?= $telegram ?>" class="link-social link-social--telegram link-social--mob">
+            <img src="/front-end/site/assets/img/icons/telegram.svg" width="24" height="24" alt="Ссылка на Telegram">
+          </a>
+        <?php endif ?>
       </p>
     </div>
     <div class="map__cont cont contacts__col-right">

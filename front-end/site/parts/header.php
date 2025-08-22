@@ -7,7 +7,7 @@
       <a class="link--no-underline text--small" href="https://yandex.by/maps/29630/minsk-district/house/Zk4YcwBmSUYEQFtpfXRxeXxnYg==/?ll=27.576034%2C53.808047&z=16.62"><?= $address ?></a>
     </div>
   </div>
-  <span class="header__text"><?= $workingHours ?></span>
+  <span class="header__text"><?= $workingHoursHeader ?></span>
   <div class="header__row-2-col header__row-2-col--1">
     <a class="header__row-2-col__logo" href="/">
       <img src="/front-end/site/assets/img/logo.svg" width="148" height="20" alt="Логотип Sprava">
@@ -20,7 +20,7 @@
     <div class="text-with-icon header__text-with-icon--row-2-col-1">
       <img class="text-with-icon__icon" src="/front-end/site/assets/img/icons/envelope.svg" width="19" height="14">
       <div class="text-with-icon__text-cont">
-        <a href="mailto:office@roshma.by" class="link--no-underline text--semibold">office@roshma.by</a>
+        <a href="mailto:<?= $email ?>" class="link--no-underline text--semibold"><?= $email ?></a>
       </div>  
     </div>
   </div>
@@ -30,18 +30,30 @@
       <div class="text-with-icon__text-cont">
         <a href="tel:<?= $phones['header'][0][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][0][1] ?></a><br>
         <a href="tel:<?= $phones['header'][1][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][1][1] ?></a>
+        <?php if (!empty($phones['header'][2][0])): ?>
+          <br><a href="tel:<?= $phones['header'][2][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][2][1] ?></a>
+        <?php endif ?>
+        <?php if (!empty($phones['header'][3][0])): ?>
+          <br><a href="tel:<?= $phones['header'][3][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][3][1] ?></a>
+        <?php endif ?>
       </div>
     </div>
     <div class="link-social-cont">
-      <a href="https://wa.me/375445006080" class="link-social link-social--whatsapp">
-        <img src="/front-end/site/assets/img/icons/whatsapp.svg" width="24" height="24" alt="Ссылка на Whatsapp">
-      </a>
-      <a href="viber://chat?number=%2B375445006080" class="link-social link-social--viber">
-        <img src="/front-end/site/assets/img/icons/viber.svg" width="13" height="14" alt="Ссылка на Viber">
-      </a>
-      <a href="https://t.me/+375445006080" class="link-social link-social--telegram">
-        <img src="/front-end/site/assets/img/icons/telegram.svg" width="24" height="24" alt="Ссылка на Telegram">
-      </a>
+      <?php if (!empty($whatsapp)): ?>
+        <a href="<?= $whatsapp ?>" class="link-social link-social--whatsapp">
+          <img src="/front-end/site/assets/img/icons/whatsapp.svg" width="24" height="24" alt="Ссылка на Whatsapp">
+        </a>
+      <?php endif ?>
+      <?php if (!empty($viber)): ?>
+        <a href="<?= $viber ?>" class="link-social link-social--viber">
+          <img src="/front-end/site/assets/img/icons/viber.svg" width="13" height="14" alt="Ссылка на Viber">
+        </a>
+      <?php endif ?>
+      <?php if (!empty($telegram)): ?>
+        <a href="<?= $telegram ?>" class="link-social link-social--telegram">
+          <img src="/front-end/site/assets/img/icons/telegram.svg" width="24" height="24" alt="Ссылка на Telegram">
+        </a>
+      <?php endif ?>
     </div>
     <button id="btnDownloadPrice" class="btn btn--dropdown" type="button">
       <b>СКАЧАТЬ ПРАЙС</b>

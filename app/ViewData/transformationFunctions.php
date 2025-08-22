@@ -15,6 +15,11 @@ function addDerivativePhones(&$phonesRaw) {
   $alreadyFoundFirstPhone = false;
 
   foreach ($phonesRaw as $phone) {
+    if (empty($phone['text'])) {
+      $phonesRawWithDerivatives[] = $phone;
+      continue;
+    }
+    
     if (str_ends_with($phone['text'], ')') && !$alreadyFoundFirstPhone) {
       $numberPairs = explodePhoneLastParentheses($phone['text']);
 

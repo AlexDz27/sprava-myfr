@@ -16,13 +16,30 @@ class DataProvider {
     $stmtAddress = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'address'");
     $address = $stmtAddress->fetch();
 
-    $stmtWorkingHours = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours'");
-    $workingHours = $stmtWorkingHours->fetch();
+    $stmtWorkingHoursHeader = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours_header'");
+    $workingHoursHeader = $stmtWorkingHoursHeader->fetch();
+    $stmtWorkingHoursContacts = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours_contacts'");
+    $workingHoursContacts = $stmtWorkingHoursContacts->fetch();
+
+    $stmtEmail = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'email'");
+    $email = $stmtEmail->fetch();
+
+    $stmtWhatsapp = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'whatsapp'");
+    $whatsapp = $stmtWhatsapp->fetch();
+    $stmtViber = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'viber'");
+    $viber = $stmtViber->fetch();
+    $stmtTelegram = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'telegram'");
+    $telegram = $stmtTelegram->fetch();
 
     $texts = [
       'phones' => $phones,
       'address' => $address,
-      'workingHours' => $workingHours,
+      'workingHoursHeader' => $workingHoursHeader,
+      'workingHoursContacts' => $workingHoursContacts,
+      'email' => $email,
+      'whatsapp' => $whatsapp,
+      'viber' => $viber,
+      'telegram' => $telegram,
     ];
 
     return $texts;
@@ -34,13 +51,30 @@ class DataProvider {
     $stmtAddress = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'address'");
     $address = $stmtAddress->fetch();
 
-    $stmtWorkingHours = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours'");
-    $workingHours = $stmtWorkingHours->fetch();
+    $stmtWorkingHoursHeader = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours_header'");
+    $workingHoursHeader = $stmtWorkingHoursHeader->fetch();
+    $stmtWorkingHoursContacts = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'working_hours_contacts'");
+    $workingHoursContacts = $stmtWorkingHoursContacts->fetch();
+
+    $stmtEmail = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'email'");
+    $email = $stmtEmail->fetch();
+
+    $stmtWhatsapp = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'whatsapp'");
+    $whatsapp = $stmtWhatsapp->fetch();
+    $stmtViber = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'viber'");
+    $viber = $stmtViber->fetch();
+    $stmtTelegram = $this->repository->query("SELECT * FROM texts WHERE name_internal = 'telegram'");
+    $telegram = $stmtTelegram->fetch();
 
     $texts = [
       'phones' => $phones,
       'address' => $address,
-      'workingHours' => $workingHours,
+      'workingHoursHeader' => $workingHoursHeader,
+      'workingHoursContacts' => $workingHoursContacts,
+      'email' => $email,
+      'whatsapp' => $whatsapp,
+      'viber' => $viber,
+      'telegram' => $telegram,
     ];
     
     return $texts;
