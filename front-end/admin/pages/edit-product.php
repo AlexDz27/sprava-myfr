@@ -58,7 +58,7 @@
         &nbsp;<span class="text--smaller">бел. рублей</span>
       </p>
       <section class="field-section field-section--short">
-        <span class="field-section__title"><span class="field-section--required__title"><abbr style="cursor: help;" title="Вариант размера товара или просто вариант товара">Размер</abbr></span>:</span>
+        <span class="field-section__title"><span class="field-section--required__title"><abbr style="cursor: help;" title="Вариант размера товара или просто вариант товара. Это поле используется на странице таблицы прайс-листа в колонке 'Размер'">Размер</abbr></span>:</span>
         <input name="variant" value="<?= $product['variant'] ?>" placeholder="100х600мм">
       </section>
       <section class="field-section field-section--full-w">

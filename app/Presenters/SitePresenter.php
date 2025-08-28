@@ -24,6 +24,10 @@ class SitePresenter extends BasePresenter {
     );
   }
 
+  public function busDoc(...$pageArgs) {
+    $this->page([], ...$pageArgs);
+  }
+
   public function catalog($bodyClass, ...$pageArgs) {
     $viewDataProvider = new ViewDataProvider();
     $categories = $viewDataProvider->getCategoriesForCatalog();

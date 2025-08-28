@@ -33,6 +33,10 @@ $siteRoutes = [
   '/download-price' => [$sitePresenter, 'downloadPrice', []],
   '/search' => [$sitePresenter, 'search', []],
 
+  '/bus-doc' => [$sitePresenter, 'busDoc', [
+    'path' => 'bus-doc/index.html'
+  ]],
+
   '404' => [$sitePresenter, 'page', [
     'path' => 'front-end/site/pages/404.php',
     'title' => $sitePresenter->companyName. ' | Страница не найдена',
