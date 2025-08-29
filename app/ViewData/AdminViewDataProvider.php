@@ -22,6 +22,8 @@ class AdminViewDataProvider {
   public function getProductGroups() {
     $dataProvider = new DataProvider();
     $products = $dataProvider->getProductsForAdmin();
+    // var_dump($products);
+    // die();
     $productsRoshma = $dataProvider->getProductsForAdminRoshma();
     $categories = $dataProvider->getCategoriesForAdmin();
 

@@ -1,4 +1,4 @@
-<?php // var_dump($productGroupsRoshma); die(); ?>
+<?php // var_dump(get_defined_vars()); die(); ?>
 
 <?php
 
@@ -37,13 +37,15 @@ function getCurrentUrl() {
           </div>
         <?php else: ?>
           <div class="js-products-grid js-dn products-grid fz-init">
+            <?php $idx = 0; ?>
             <?php foreach ($productGroups[$cat['name']]['products'] as $p): ?>
-              <a href="/admin-9kasu/edit-product/<?= empty($p['art']) ? $p['id'] : $p['art'] ?>" class="products-grid__product <?= $p['hidden'] ? 'products-grid__product--hidden' : '' ?>">
+              <a href="/admin-9kasu/edit-product/<?= empty($p['art']) ? $p['id'] : $p['art'] ?>" data-order-id="<?= $idx ?>" data-id="<?= $p['id'] ?>" class="products-grid__product <?= $p['hidden'] ? 'products-grid__product--hidden' : '' ?>">
                 <img class="products-grid__product__img <?= $p['hidden'] ? 'products-grid__product--hidden__img' : '' ?>" src="<?= $p['img'] ?>">
                 <b class="<?= $p['hidden'] ? 'products-grid__product--hidden__name' : '' ?>"><?= $p['name'] ?> <?= $p['hidden'] ? '(скрыт)' : '' ?></b>
                 <span class="products-grid__product__art <?= $p['hidden'] ? 'products-grid__product--hidden__art' : '' ?>">(<?= empty($p['art']) ? 'внутр. номер: ' . $p['id'] : $p['art'] ?>)</span>
                 <button class="btn btn--admin products-grid__product__btn--admin">Редактировать</button>
               </a>
+              <?php $idx++; ?>
             <?php endforeach ?>
           </div>
         <?php endif ?>
@@ -78,7 +80,9 @@ function getCurrentUrl() {
         <?php endif ?>
       </section>
     <?php endforeach ?>
-  </div>  
+  </div>
+
+  <button id="orderSubmitBtn" style="width: 100%;" class="btn btn--admin" type="submit" disabled>Подтвердить редактирование порядка</button>
 </main>
 
 <?php require 'front-end/admin/parts/footer.php' ?>

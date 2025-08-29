@@ -137,13 +137,13 @@ class DataProvider {
     return $product;
   }
   public function getProductsForCatalog() {
-    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, p.slug, c.name_tech AS cat_name_tech, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 AND p.hidden = 0");
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.price, p.unit, p.isHit, p.img, p.slug, c.name_tech AS cat_name_tech, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 AND p.hidden = 0 ORDER BY order_id");
     $products = $stmtProducts->fetchAll();
 
     return $products;
   }
   public function getProductsForAdmin() {
-    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.variant, p.hidden, p.description, p.category_id, p.company_id, p.price, p.slug, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, p.is_deleted, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0");
+    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.variant, p.hidden, p.description, p.category_id, p.company_id, p.price, p.slug, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, p.is_deleted, p.order_id, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 ORDER BY order_id");
     $products = $stmtProducts->fetchAll();
 
     return $products;

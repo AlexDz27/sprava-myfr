@@ -91,6 +91,12 @@ class AdminPresenter extends BasePresenter {
       ...$pageArgs
     );
   }
+  public function manageProductsApi() {
+    $dataUpdater = new DataUpdater();
+    $resultMessage = $dataUpdater->manageProducts();
+
+    echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+  }
   public function editProduct(...$pageArgs) {
     guard();
 

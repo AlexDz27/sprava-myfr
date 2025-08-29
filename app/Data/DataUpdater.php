@@ -162,6 +162,35 @@ class DataUpdater {
     
     return $resultMessage;
   }
+
+  public function manageProducts() {
+    $orderIds = json_decode(file_get_contents('php://input'), true);
+    try {
+      $dbIds = $this->repository->query("SELECT id FROM products")->fetchAll(PDO::FETCH_COLUMN);
+      // var_dump($dbIds);
+      // var_dump($orderIds);
+      // die();
+      foreach ($dbIds as $idx => $dbId) {
+        $orderId = $orderIds[$idx];
+        // var_dump($dbId . ' - ' . $orderId);
+        $this->repository->exec("UPDATE products SET order_id = $orderId WHERE id = $dbId");
+      }
+      // die();
+    } catch (Exception $e) {
+      $resultMessage = [
+        'status' => 'Err',
+        'text' => 'Возникла ошибка базы данных при редактировании порядка товаров. ' . $this->contactsIfError,
+      ];
+      return $resultMessage;
+    }
+    
+    $resultMessage = [
+      'status' => 'OK',
+      'text' => 'Порядок товаров был отредактирован успешно'
+    ];
+    
+    return $resultMessage;
+  }
   
   public function editProduct() {
     if (empty($_POST)) {

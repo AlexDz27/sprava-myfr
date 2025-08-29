@@ -239,6 +239,13 @@ select {
 .btn--admin--loading {
   background-color: #eaca16;
 }
+.btn--admin[disabled] {
+  opacity: .5;
+}
+.btn--admin[disabled]:hover {
+  background-color: #FEDE32;
+  cursor: not-allowed;
+}
 
 .attention {
   background-color: #e1e94a;

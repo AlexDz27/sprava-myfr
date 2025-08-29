@@ -23,6 +23,7 @@ $adminRoutes = [
     'path' => 'front-end/admin/pages/manage-products.php',
     'title' => 'Панель администратора - управлять товарами',
     'extraAssets' => [
+      '<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>',
       '<script src="/front-end/admin/assets/js/manageProducts.js" defer></script>',
     ],
   ]],
