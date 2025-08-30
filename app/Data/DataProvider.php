@@ -148,12 +148,6 @@ class DataProvider {
 
     return $products;
   }
-   public function getProductsForAdminRig() {
-    $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.variant, p.hidden, p.description, p.category_id, p.company_id, p.price, p.slug, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, p.is_deleted, p.order_id, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden, c.slug AS cat_slug FROM products p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0 ORDER BY order_id LIMIT 40");
-    $products = $stmtProducts->fetchAll();
-
-    return $products;
-  }
   public function getProductsForAdminRoshma() {
     $stmtProducts = $this->repository->query("SELECT p.id, p.name, p.art, p.hidden, p.description, p.category_id, p.company_id, p.price, p.slug, p.unit, p.isHit, p.img, p.galleryImgs, p.upakMal, p.upakKrup, p.details, p.is_deleted, c.name_tech AS cat_name_tech, c.name AS cat_name, c.hidden AS cat_hidden, c.slug AS cat_slug FROM products_roshma p JOIN categories c ON category_id = c.id WHERE p.is_deleted = 0");
     $products = $stmtProducts->fetchAll();

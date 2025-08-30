@@ -72,12 +72,6 @@ class AdminViewDataProvider {
 
     return [$categories, $productsTransformed, $productsTransformedRoshma];
   }
-  public function getProductsRig() {
-    $dataProvider = new DataProvider();
-    $products = $dataProvider->getProductsForAdminRig();
-
-    return $products;
-  }
 
   public function getProductsForAdmin() {
     $dataProvider = new DataProvider();

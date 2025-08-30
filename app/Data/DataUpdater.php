@@ -186,29 +186,6 @@ class DataUpdater {
     
     return $resultMessage;
   }
-  public function manageProductsRig() {
-    $orderIds = json_decode(file_get_contents('php://input'), true);
-    try {
-      foreach ($orderIds as $idToOrderId) {
-        $id = key($idToOrderId);
-        $orderId = current($idToOrderId);
-        $this->repository->exec("UPDATE products SET order_id = $orderId WHERE id = $id");
-      }
-    } catch (Exception $e) {
-      $resultMessage = [
-        'status' => 'Err',
-        'text' => 'Возникла ошибка базы данных при редактировании порядка товаров. ' . $this->contactsIfError,
-      ];
-      return $resultMessage;
-    }
-    
-    $resultMessage = [
-      'status' => 'OK',
-      'text' => 'Порядок товаров был отредактирован успешно'
-    ];
-    
-    return $resultMessage;
-  }
   
   public function editProduct() {
     if (empty($_POST)) {

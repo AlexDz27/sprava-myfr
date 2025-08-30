@@ -91,18 +91,6 @@ class AdminPresenter extends BasePresenter {
       ...$pageArgs
     );
   }
-  public function manageProductsRig(...$pageArgs) {
-    guard();
-    
-    $products = $this->viewDataProvider->getProductsRig();
-
-    $this->page(
-      [
-        'products' => $products,
-      ],
-      ...$pageArgs
-    );
-  }
   public function manageProductsApi() {
     $dataUpdater = new DataUpdater();
     $resultMessage = $dataUpdater->manageProducts();
