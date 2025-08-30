@@ -105,7 +105,7 @@ class AdminPresenter extends BasePresenter {
   }
   public function manageProductsApi() {
     $dataUpdater = new DataUpdater();
-    $resultMessage = $dataUpdater->manageProductsRig();
+    $resultMessage = $dataUpdater->manageProducts();
 
     echo json_encode($resultMessage, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   }
