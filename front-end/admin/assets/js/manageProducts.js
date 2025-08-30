@@ -38,7 +38,11 @@ for (const jsProductsGrid of jsProductsGrids) {
       orderSubmitBtn.disabled = false
 
       const ps = Array.from(document.querySelectorAll('#spravaSection .products-grid__product'))
-      orderIds = ps.map(p => Number(p.dataset.orderId))
+      orderIds = ps.map((p, idx) => {
+        const obj = {[Number(p.dataset.id)]: idx + 1}
+        return obj
+      })
+      console.log(orderIds)
     }
   })
 }
