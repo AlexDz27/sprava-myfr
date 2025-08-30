@@ -37,15 +37,13 @@ function getCurrentUrl() {
           </div>
         <?php else: ?>
           <div class="js-products-grid js-dn products-grid fz-init">
-            <?php $idx = 0; ?>
             <?php foreach ($productGroups[$cat['name']]['products'] as $p): ?>
-              <a href="/admin-9kasu/edit-product/<?= empty($p['art']) ? $p['id'] : $p['art'] ?>" data-order-id="<?= $idx ?>" data-id="<?= $p['id'] ?>" class="products-grid__product <?= $p['hidden'] ? 'products-grid__product--hidden' : '' ?>">
+              <a href="/admin-9kasu/edit-product/<?= empty($p['art']) ? $p['id'] : $p['art'] ?>" data-order-id="<?= $p['order_id'] ?>" data-id="<?= $p['id'] ?>" class="products-grid__product <?= $p['hidden'] ? 'products-grid__product--hidden' : '' ?>">
                 <img class="products-grid__product__img <?= $p['hidden'] ? 'products-grid__product--hidden__img' : '' ?>" src="<?= $p['img'] ?>">
                 <b class="<?= $p['hidden'] ? 'products-grid__product--hidden__name' : '' ?>"><?= $p['name'] ?> <?= $p['hidden'] ? '(скрыт)' : '' ?></b>
                 <span class="products-grid__product__art <?= $p['hidden'] ? 'products-grid__product--hidden__art' : '' ?>">(<?= empty($p['art']) ? 'внутр. номер: ' . $p['id'] : $p['art'] ?>)</span>
                 <button class="btn btn--admin products-grid__product__btn--admin">Редактировать</button>
               </a>
-              <?php $idx++; ?>
             <?php endforeach ?>
           </div>
         <?php endif ?>
