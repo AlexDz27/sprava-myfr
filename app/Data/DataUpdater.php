@@ -345,13 +345,15 @@ class DataUpdater {
     $details = $_POST['details'];
     $slug = slugify($name);
     $galleryImgsOrdered = $_POST['galleryImgsOrdered'];
+    $maxOrderId = $this->repository->query("SELECT MAX(order_id) FROM products")->fetch(PDO::FETCH_COLUMN);
+    $newOrderId = $maxOrderId++;
     
     $imgPath = $_FILES['mainImg'];
     if ($_FILES['mainImg']['error'] !== ERR_NO_FILE_UPLOADED) {
       $imgPath = '/data/product-imgs/downloaded/' . $_FILES['mainImg']['name'];
       move_uploaded_file($_FILES['mainImg']['tmp_name'], ltrim($imgPath, '/'));
     } else {
-      if (empty($imgPath)) {
+      if (empty($imgPath) || $imgPath['name'] === '') {
         $imgPath = '/front-end/site/assets/img/no-pic.jpg';
       }
     }
@@ -366,10 +368,13 @@ class DataUpdater {
       }
       $galleryImgPathsStr = implode(', ', $galleryImgPaths);
     }
+
+    // var_dump(get_defined_vars());
+    // die();
     
     try {
       $this->repository->exec(
-        "INSERT INTO products (name, price, variant, model, img, galleryImgs, category_id, company_id, art, unit, upakMal, upakKrup, isHit, description, details, slug, hidden, is_deleted) VALUES ('$name', '$price', '$variant', '$model', '$imgPath', '$galleryImgPathsStr', '$category', 1, '$art', '$unit', '$upakMal', '$upakKrup', 0, '$description', '$details', '$slug', 0, 0)"
+        "INSERT INTO products (name, price, variant, model, img, galleryImgs, category_id, company_id, art, unit, upakMal, upakKrup, isHit, description, details, slug, hidden, is_deleted, order_id) VALUES ('$name', '$price', '$variant', '$model', '$imgPath', '$galleryImgPathsStr', '$category', 1, '$art', '$unit', '$upakMal', '$upakKrup', 0, '$description', '$details', '$slug', 0, 0, $newOrderId)"
       );
     } catch (Exception $e) {
       $resultMessage = [
@@ -419,7 +424,7 @@ class DataUpdater {
         $imgPath = '/data/product-imgs/downloaded/' . $img['name'];
         move_uploaded_file($img['tmp_name'], ltrim($imgPath, '/'));
       } else {
-        if (empty($imgPath)) {
+        if (empty($imgPath) || $imgPath['name'] === '') {
           $imgPath = '/front-end/site/assets/img/no-pic.jpg';
         }
       }
