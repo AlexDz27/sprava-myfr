@@ -25,11 +25,15 @@
     </div>
   </div>
   <div class="header__row-2-col">
-    <div class="text-with-icon header__text-with-icon--row-2-col-2">
+    <div class="text-with-icon <?= (empty($phones['header'][0]) || empty($phones['header'][1])) ? '' : 'header__text-with-icon--row-2-col-2' ?>">
       <img class="text-with-icon__icon" src="/front-end/site/assets/img/icons/phone.svg" width="18" height="18">
       <div class="text-with-icon__text-cont">
-        <a href="tel:<?= $phones['header'][0][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][0][1] ?></a><br>
-        <a href="tel:<?= $phones['header'][1][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][1][1] ?></a>
+        <?php if (!empty($phones['header'][0])): ?>
+          <a href="tel:<?= $phones['header'][0][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][0][1] ?></a><br>
+        <?php endif ?>
+        <?php if (!empty($phones['header'][1])): ?>
+          <a href="tel:<?= $phones['header'][1][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][1][1] ?></a>
+        <?php endif ?>
         <?php if (!empty($phones['header'][2][0])): ?>
           <br><a href="tel:<?= $phones['header'][2][0] ?>" class="link--no-underline text--bold"><?= $phones['header'][2][1] ?></a>
         <?php endif ?>
