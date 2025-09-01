@@ -5,15 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow,noarchive">
 
-  <meta name="description" content="SPRAVA | Оптовые поставки строительных материалов">
   <?php if ($pageName == 'about-company'): ?>
-    <meta property="og:title" content="О нас | SPRAVA | Оптовые поставки строительных материалов">
+    <meta name="description" content="О нас | SPRAVA | Оптовые поставки строительных материалов">
   <?php elseif ($pageName == 'catalog'): ?>
-    <meta property="og:title" content="Каталог | SPRAVA | Оптовые поставки строительных материалов">
+    <meta name="description" content="Каталог | SPRAVA | Оптовые поставки строительных материалов">
   <?php elseif ($pageName == 'table'): ?>
-    <meta property="og:title" content="Прайс-лист | SPRAVA | Оптовые поставки строительных материалов">
+    <meta name="description" content="Прайс-лист | SPRAVA | Оптовые поставки строительных материалов">
   <?php else: ?>
-    <meta property="og:title" content="SPRAVA | Оптовые поставки строительных материалов">
+    <meta name="description" content="SPRAVA | Оптовые поставки строительных материалов">
   <?php endif ?>
 
   <link rel="stylesheet" href="/front-end/site/assets/css/style.h-1.css">

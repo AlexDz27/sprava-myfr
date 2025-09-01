@@ -74,14 +74,7 @@ if (str_contains($_SERVER['REQUEST_URI'], 'edit-product')) {
   // die();
 
   foreach ($arr as $p) {
-    $res = null;
-    if (empty($p['art'])) {
-      $res = $p['id'];
-      $res = "$res";
-    } else {
-      $res = $p['art'];
-    }
-    $adminRoutes['/admin-9kasu/edit-product/' . $res] = [$adminPresenter, 'editProduct', [
+    $adminRoutes['/admin-9kasu/edit-product/' . $p['id']] = [$adminPresenter, 'editProduct', [
       'path' => 'front-end/admin/pages/edit-product.php',
       'title' =>  'Редактирование продукта',
       'extraAssets' => [
