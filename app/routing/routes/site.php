@@ -17,6 +17,7 @@ $siteRoutes = [
   '/about-company' => [$sitePresenter, 'page', [
     'path' => 'front-end/site/pages/about-company.php',
     'title' => $sitePresenter->companyName. ' | О нас',
+    'pageName' => 'about-company',
   ]],
   '/catalog' => [$sitePresenter, 'catalog', [
     'path' => 'front-end/site/pages/catalog.php',
@@ -25,17 +26,15 @@ $siteRoutes = [
       '<script src="/front-end/site/assets/js/slider-2.h-2.js" defer></script>',
     ],
     'bodyClass' => 'catalog',
+    'pageName' => 'catalog',
   ]],
   '/table' => [$sitePresenter, 'table', [
     'path' => 'front-end/site/pages/table.php',
     'title' => $sitePresenter->companyName. ' | Прайс-лист',
+    'pageName' => 'table',
   ]],
   '/download-price' => [$sitePresenter, 'downloadPrice', []],
   '/search' => [$sitePresenter, 'search', []],
-
-  '/bus-doc' => [$sitePresenter, 'busDoc', [
-    'path' => 'bus-doc/index.html'
-  ]],
 
   '404' => [$sitePresenter, 'page', [
     'path' => 'front-end/site/pages/404.php',
