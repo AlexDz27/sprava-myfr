@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow,noarchive">
 
+  <meta name="description" content="SPRAVA | Оптовые поставки строительных материалов">
   <?php if ($pageName == 'about-company'): ?>
     <meta property="og:title" content="О нас | SPRAVA | Оптовые поставки строительных материалов">
   <?php elseif ($pageName == 'catalog'): ?>
