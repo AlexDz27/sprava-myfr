@@ -441,6 +441,8 @@ class DataUpdater {
     $slug = slugify($name);
     $nameView = $_POST['name_view'];
     $img = $_FILES['mainImg'];
+    $maxOrderId = $this->repository->query("SELECT MAX(order_id) FROM products")->fetch(PDO::FETCH_COLUMN);
+    $newOrderId = $maxOrderId++;
 
     try {
       $imgPath = null;
@@ -454,8 +456,8 @@ class DataUpdater {
       }
 
       $this->repository->exec("
-      INSERT INTO categories (name, description, img, hidden, name_tech, name_view, slug, is_deleted) 
-      VALUES ('$name', '$description', '$imgPath', 0, '$nameTech', '$nameView', '$slug', 0)
+      INSERT INTO categories (name, description, img, hidden, name_tech, name_view, slug, is_deleted, order_id) 
+      VALUES ('$name', '$description', '$imgPath', 0, '$nameTech', '$nameView', '$slug', 0, $newOrderId)
       ");
     } catch (Exception $e) {
       $resultMessage = [

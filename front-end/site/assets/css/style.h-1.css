@@ -1319,6 +1319,7 @@ the buttons will not be shown. TODO: maybe i can make it better */
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .t__text {
   font-size: 24px;
