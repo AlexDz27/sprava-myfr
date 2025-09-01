@@ -129,6 +129,25 @@ class DataUpdater {
       ];
       return $resultMessage;
     }
+
+    if ($_POST['orderIds'] !== '[]') {
+      $orderIds = json_decode($_POST['orderIds'], true);
+      // var_dump($orderIds);
+      // die();
+      try {
+        foreach ($orderIds as $idToOrderId) {
+          $id = key($idToOrderId);
+          $orderId = current($idToOrderId);
+          $this->repository->exec("UPDATE categories SET order_id = $orderId WHERE id = $id");
+        }
+      } catch (Exception $e) {
+        $resultMessage = [
+          'status' => 'Err',
+          'text' => 'Возникла ошибка базы данных при редактировании порядка категорий. ' . $this->contactsIfError,
+        ];
+        return $resultMessage;
+      }
+    }
     
     $postImgsErrors = [];
     foreach ($_FILES as $catId => $postImg) {
@@ -141,9 +160,14 @@ class DataUpdater {
         $postImgsErrors[] = 'ОШИБКА: Не удалось загрузить картинку с названием "' . $postImg['name']['img'] . '"';
       }
     }
+
+    // var_dump($_POST);
+    // die();
     
     try {
-      foreach ($_POST as $c) {
+      foreach ($_POST as $key => $c) {
+        if ($key === 'orderIds') continue;
+
         $this->repository->exec("UPDATE categories SET name = '{$c['name']}', description = '{$c['description']}', hidden = {$c['hidden']}, name_tech = '{$c['name_tech']}', name_view = '{$c['name_view']}' WHERE id = {$c['id']}");
       }
     } catch (Exception $e) {

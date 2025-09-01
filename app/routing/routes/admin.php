@@ -49,6 +49,7 @@ $adminRoutes = [
     'path' => 'front-end/admin/pages/manage-categories.php',
     'title' => 'Панель администратора - управлять категориями',
     'extraAssets' => [
+      '<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>',
       '<script src="/front-end/admin/assets/js/manageCategories.js" defer></script>',
     ],
   ]],

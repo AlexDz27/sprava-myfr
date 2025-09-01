@@ -26,7 +26,7 @@ function getCurrentUrl() {
     <?php foreach ($categories as $idx => $cat): ?>
       <section  class="js-category-section mb-2rem">
         <h3 class="js-category-name category-name category-name--manage-products <?= $cat['hidden'] ? 'category-name--hidden' : '' ?>">
-          <span class="category-name__num">#<?= $idx + 1 ?></span>
+          <span class="category-name__num">#<?= $cat['id'] ?></span>
           <?= $cat['name'] ?> <?= $cat['hidden'] ? '(скрыта)' : '' ?>
         </h3>
 

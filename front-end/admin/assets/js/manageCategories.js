@@ -80,6 +80,21 @@ for (const category of categories) {
   }
 }
 
+/** SORTABLE JS FOR ORDER_ID **/
+const categoriesCont = document.querySelector('form')
+let orderIds = []
+new Sortable(categoriesCont, {
+  animation: 150,
+  onEnd: (e) => {
+    const ps = Array.from(document.querySelectorAll('.js-editable-entity'))
+    orderIds = ps.map((p, idx) => {
+      const obj = {[Number(p.dataset.id)]: idx + 1}
+      return obj
+    })
+    console.log(orderIds)
+  }
+})
+
 const form = document.querySelector('form')
 const submitBtn = document.querySelector('button[type=submit]')
 form.onsubmit = (e) => {
@@ -88,6 +103,7 @@ form.onsubmit = (e) => {
   submitBtn.disabled = true
   
   const formData = new FormData(form)
+  formData.append('orderIds', JSON.stringify(orderIds))
   fetch('/admin-9kasu/api/manage-categories', {
     method: 'POST',
     body: formData
