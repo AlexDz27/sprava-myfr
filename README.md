@@ -9,6 +9,5 @@
 4. open the browser on localhost
 
 # Questions about architecture?
-Read the project code. I am too lazy to draw shit for you.    
 Read 'Notes on project and architecture.txt'.  
 Also there is todos.txt  
