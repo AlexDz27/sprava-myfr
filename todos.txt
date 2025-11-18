@@ -1,5 +1,3 @@
 TODOS
 
-- 
-<!-- TODO: r this -->
-<meta name="robots" content="noindex,nofollow,noarchive">
+
