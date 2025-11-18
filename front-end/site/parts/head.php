@@ -11,7 +11,11 @@
   <?php elseif ($pageName == 'catalog'): ?>
     <meta name="description" content="Каталог | SPRAVA | Оптовые поставки строительных материалов">
     <meta property="og:site_name" content="Компания SPRAVA">
-    <meta property="og:title" content="Каталог | SPRAVA | product_descr">
+    <meta property="og:title" content="Каталог | SPRAVA | Оптовые поставки строительных материалов">
+  <?php elseif ($pageName == 'product'): ?>
+    <meta name="description" content="Каталог | SPRAVA | Оптовые поставки строительных материалов">
+    <meta property="og:site_name" content="Компания SPRAVA">
+    <meta property="og:title" content="<?= $product['name'] ?> | SPRAVA | Оптовые поставки строительных материалов">
   <?php elseif ($pageName == 'table'): ?>
     <meta name="description" content="Прайс-лист | SPRAVA | Оптовые поставки строительных материалов">
     <meta property="og:site_name" content="Компания SPRAVA">
