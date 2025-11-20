@@ -18,18 +18,7 @@
           <span class="text--larger"><?= $workingHoursContacts ?></span>
         </div>
       </div>
-      <p class="text--big p--lower-margin">Телефоны:</p>
-      <div class="text-with-icon">
-        <img class="text-with-icon__icon" src="/front-end/site/assets/img/icons/phone--larger.svg" width="24" height="22">
-        <div class="text-with-icon__text-cont text-with-icon--pin__text-cont">
-          <span class="text--larger"><a class="link--no-underline" href="tel:<?= $phones['contacts'][0][0] ?>"><?= $phones['contacts'][0][1] ?></a>,<br class="show-below-577"> <a class="link--no-underline" href="tel:<?= $phones['contacts'][1][0] ?>"><?= $phones['contacts'][1][1] ?></a>,
-            <br>
-            <?php for ($i = 2; $i < count($phones['contacts']); $i++): ?>
-              <a class="link--no-underline" href="tel:<?= $phones['contacts'][$i][0] ?>"><?= $phones['contacts'][$i][1] ?></a><?php if ($i + 1 < count($phones['contacts'])) echo ', <br class="show-below-577">' ?>
-            <?php endfor ?>
-          </span>
-        </div>
-      </div>
+      <?php require 'front-end/site/parts/excerpts/phones-in-contacts.php' ?>
       <p class="text--big p--lower-margin">E-mail:</p>
       <div class="text-with-icon">
         <img class="text-with-icon__icon text-with-icon__icon--envelope--larger" src="/front-end/site/assets/img/icons/envelope--larger.svg" width="24" height="18">
