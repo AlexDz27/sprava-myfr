@@ -23,3 +23,9 @@ Array.from([btnSprava, btnRoshma]).forEach(i => {
     window.scrollTo(0, 0)
   })
 })
+
+// Dirty fix for unneeded cat in Roshma table
+const qwe = document.querySelectorAll('.category')
+const shouldBeHiddenCat = Array.from(qwe).filter(q => q.textContent === 'Ленты и пленки')
+shouldBeHiddenCat[1].style.display = 'none'
+console.log(shouldBeHiddenCat)
