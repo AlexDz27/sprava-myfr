@@ -3,12 +3,12 @@ let products = null
 let searchData = localStorage.getItem('search')
 if (!searchData) {
   fetch('/search')
-    .then(r => r.text())
-    .then(r => {
-      localStorage.setItem('search', r)
-      searchData = JSON.parse(r)
-      products = searchData.products
-    })
+  .then(r => r.text())
+  .then(r => {
+    localStorage.setItem('search', r)
+    searchData = JSON.parse(r)
+    products = searchData.products
+  })
 } else {
   searchData = JSON.parse(searchData)
   products = searchData.products
@@ -16,12 +16,12 @@ if (!searchData) {
   const hFromServer = Number(document.getElementById('searchH').text)
   if (h !== hFromServer) {
     fetch('/search')
-      .then(r => r.text())
-      .then(r => {
-        localStorage.setItem('search', r)
-        searchData = JSON.parse(r)
-        products = searchData.products
-      })
+    .then(r => r.text())
+    .then(r => {
+      localStorage.setItem('search', r)
+      searchData = JSON.parse(r)
+      products = searchData.products
+    })
   }
 }
 
@@ -38,15 +38,53 @@ searchInput.oninput = (e) => {
     searchResults.innerHTML = ''
     return
   }
-
+  
   if (input.length <= 2) {
     clearTimeout(timeoutId)
     timeoutId = setTimeout(() => {
       products.forEach(p => {
         const split = p.name.split(',')
+        if (split.length < 2) {
+          if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
+            searchResults.innerHTML += `
+              <a href="${p.uri}" class="search__results__item">
+                <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+                <span>${split}</span>
+              </a>
+            `
+          }
+        } else {
+          const lastPart = split.pop()
+          const glued = split.join(',')
+          
+          if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
+            searchResults.innerHTML += `
+              <a href="${p.uri}" class="search__results__item">
+                <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+                <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
+              </a>
+            `
+          }
+        }
+      })
+    }, 500)
+  } else {
+    clearTimeout(timeoutId)
+    products.forEach(p => {
+      const split = p.name.split(',')
+      if (split.length < 2) {
+        if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
+          searchResults.innerHTML += `
+            <a href="${p.uri}" class="search__results__item">
+              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+              <span>${split}</span>
+            </a>
+          `
+        }
+      } else {
         const lastPart = split.pop()
         const glued = split.join(',')
-
+        
         if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
           searchResults.innerHTML += `
             <a href="${p.uri}" class="search__results__item">
@@ -55,47 +93,44 @@ searchInput.oninput = (e) => {
             </a>
           `
         }
-      })
-    }, 500)
-  } else {
-    clearTimeout(timeoutId)
-    products.forEach(p => {
-      const split = p.name.split(',')
-      const lastPart = split.pop()
-      const glued = split.join(',')
-
-      if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
-        searchResults.innerHTML += `
-          <a href="${p.uri}" class="search__results__item">
-            <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
-            <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
-          </a>
-        `
       }
     })
   }
-
+  
   search.classList.add('search--active')
 }
 searchInput.onfocus = () => {
   searchResults.innerHTML = ''
   if (searchInput.value === '') return
-
+  
   products.forEach(p => {
     if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
       const split = p.name.split(',')
-      const lastPart = split.pop()
-      const glued = split.join(',')
-
-      searchResults.innerHTML += `
-        <a href="${p.uri}" class="search__results__item">
-          <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="Кисть">
-          <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
-        </a>
-      `
+      if (split.length < 2) {
+        if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
+          searchResults.innerHTML += `
+            <a href="${p.uri}" class="search__results__item">
+              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+              <span>${split}</span>
+            </a>
+          `
+        }
+      } else {
+        const lastPart = split.pop()
+        const glued = split.join(',')
+        
+        if (p.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
+          searchResults.innerHTML += `
+            <a href="${p.uri}" class="search__results__item">
+              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+              <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
+            </a>
+          `
+        }
+      }
     }
   })
-
+  
   search.classList.add('search--active')
 }
 window.addEventListener('click', (e) => {
@@ -156,6 +191,40 @@ searchInputMob.oninput = (e) => {
       products.forEach(p => {
         if (p.name.toLowerCase().includes(input.toLowerCase())) {
           const split = p.name.split(',')
+          if (split.length < 2) {
+            navMobContSearchResultsReal.innerHTML += `
+              <a href="${p.uri}" class="search__results__item">
+                <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+                <span>${glued}</span>
+              </a>
+            `
+          } else {
+            const lastPart = split.pop()
+            const glued = split.join(',')
+
+            navMobContSearchResultsReal.innerHTML += `
+              <a href="${p.uri}" class="search__results__item">
+                <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+                <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
+              </a>
+            `
+          }
+        }
+      })
+    }, 850)
+  } else {
+    clearTimeout(timeoutId)
+    products.forEach(p => {
+      if (p.name.toLowerCase().includes(input.toLowerCase())) {
+        const split = p.name.split(',')
+        if (split.length < 2) {
+          navMobContSearchResultsReal.innerHTML += `
+            <a href="${p.uri}" class="search__results__item">
+              <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
+              <span>${glued}</span>
+            </a>
+          `
+        } else {
           const lastPart = split.pop()
           const glued = split.join(',')
 
@@ -166,22 +235,6 @@ searchInputMob.oninput = (e) => {
             </a>
           `
         }
-      })
-    }, 850)
-  } else {
-    clearTimeout(timeoutId)
-    products.forEach(p => {
-      if (p.name.toLowerCase().includes(input.toLowerCase())) {
-        const split = p.name.split(',')
-        const lastPart = split.pop()
-        const glued = split.join(',')
-
-        navMobContSearchResultsReal.innerHTML += `
-          <a href="${p.uri}" class="search__results__item">
-            <img class="search__results__item__img" src="${p.img}" width="35" height="35" alt="${p.name}">
-            <span>${glued}, <span class="search__results__item__text--gray">${lastPart}</span></span>
-          </a>
-        `
       }
     })
   }
