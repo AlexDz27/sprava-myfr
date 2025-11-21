@@ -31,6 +31,6 @@
     <?= $asset . "\n" ?>
   <?php endforeach ?>
   <script src="/front-end/site/assets/js/main.h-2.js" defer></script>
-  <script src="/front-end/site/assets/js/search.h-2.js" defer></script>
+  <script src="/front-end/site/assets/js/search.h-3.js" defer></script>
   <title><?= $title ?></title>
 </head>
