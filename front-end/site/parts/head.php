@@ -15,7 +15,7 @@
   <?php elseif ($pageName == 'product'): ?>
     <meta name="description" content="Каталог | SPRAVA | Оптовые поставки строительных материалов">
     <meta property="og:site_name" content="Компания SPRAVA">
-    <meta property="og:title" content="<?= $product['name'] ?> | SPRAVA | Оптовые поставки строительных материалов">
+    <meta property="og:title" content="<?= htmlspecialchars($product['name'], ENT_QUOTES | ENT_HTML5) ?> | SPRAVA | Оптовые поставки строительных материалов">
   <?php elseif ($pageName == 'table'): ?>
     <meta name="description" content="Прайс-лист | SPRAVA | Оптовые поставки строительных материалов">
     <meta property="og:site_name" content="Компания SPRAVA">
