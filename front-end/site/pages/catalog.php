@@ -201,12 +201,7 @@
     collapseBtn = document.getElementById('collapse')
     collapseDeskBtns = document.querySelectorAll('.js-collapseDesk')
 
-    // console.log(collapseDeskBtns)
-    // console.log('should be', Array.from(collapseDeskBtns).flat())
-    // console.log('->', Array.from([collapseBtn, Array.from(collapseDeskBtns).flat()]))
-    // console.log('->2', Array.from([collapseBtn, collapseDeskBtns], bArr => bArr.flat()))
     const combinedCollapseBtnMobAndDesk = Array.from([collapseBtn, ...collapseDeskBtns])
-    console.log(combinedCollapseBtnMobAndDesk)
 
     Array.from(combinedCollapseBtnMobAndDesk).forEach(i => {
       i.onclick = () => {
@@ -266,9 +261,7 @@
   function tListManipulations() {
     const fragment = document.createDocumentFragment()
     const firstTList = document.querySelector('.t-list')
-    console.log('firstTList', firstTList)
     const otherTLists = document.querySelectorAll('.t-list--no-stretch')
-    console.log('otherTLists', otherTLists)
     for (const otherTList of otherTLists) {
       for (const t of otherTList.querySelector('.t-list__ts').children) {
         const clone = t.cloneNode(true)
