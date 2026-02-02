@@ -88,7 +88,7 @@
               </div>
             </div>
             <div class="t-list__open-full-list-btn-cont">
-              <button id="collapseDesk" class="btn product__btn btn-collapse btn-collapse--desk btn-collapse--show" style=""><b>ОТКРЫТЬ ВЕСЬ СПИСОК</b></button>
+              <button id="collapseDesk" class="js-collapseDesk btn product__btn btn-collapse btn-collapse--desk btn-collapse--show" style=""><b>ОТКРЫТЬ ВЕСЬ СПИСОК</b></button>
             </div>
           </div>
         <?php endfor ?>
@@ -142,7 +142,7 @@
           </div>
         </div>
         <div class="t-list__open-full-list-btn-cont">
-          <button id="collapseDesk" class="btn product__btn btn-collapse btn-collapse--desk btn-collapse--show" style=""><b>ОТКРЫТЬ ВЕСЬ СПИСОК</b></button>
+          <button id="collapseDesk" class="js-collapseDesk btn product__btn btn-collapse btn-collapse--desk btn-collapse--show" style=""><b>ОТКРЫТЬ ВЕСЬ СПИСОК</b></button>
         </div>
       </div>
     <?php endfor ?>
@@ -186,7 +186,7 @@
   let listViewState = LIST_VIEW_STATE.SHOW_IN_SLIDER
 
   let collapseBtn = document.getElementById('collapse')
-  let collapseDeskBtn = document.getElementById('collapseDesk')
+  let collapseDeskBtns = document.querySelectorAll('.js-collapseDesk')
   let CATALOG_sliderBtns = document.querySelector('.slider__btns')
   let firstTList = document.querySelector('.t-list')
   let otherTLists = document.querySelectorAll('.t-list--no-stretch')
@@ -199,26 +199,39 @@
 
     CATALOG_sliderBtns = document.querySelector('.slider__btns')
     collapseBtn = document.getElementById('collapse')
-    collapseDeskBtn = document.getElementById('collapseDesk')
+    collapseDeskBtns = document.querySelectorAll('.js-collapseDesk')
 
-    Array.from([collapseBtn, collapseDeskBtn]).forEach(i => {
+    // console.log(collapseDeskBtns)
+    // console.log('should be', Array.from(collapseDeskBtns).flat())
+    // console.log('->', Array.from([collapseBtn, Array.from(collapseDeskBtns).flat()]))
+    // console.log('->2', Array.from([collapseBtn, collapseDeskBtns], bArr => bArr.flat()))
+    const combinedCollapseBtnMobAndDesk = Array.from([collapseBtn, ...collapseDeskBtns])
+    console.log(combinedCollapseBtnMobAndDesk)
+
+    Array.from(combinedCollapseBtnMobAndDesk).forEach(i => {
       i.onclick = () => {
         listViewState = listViewState === LIST_VIEW_STATE.SHOW_IN_SLIDER ? LIST_VIEW_STATE.SHOW_FULL_LIST : LIST_VIEW_STATE.SHOW_IN_SLIDER
+
+        if (slider.currentSlideIdx > 0) slider.currentSlideIdx = 0
 
         if (listViewState === LIST_VIEW_STATE.SHOW_FULL_LIST) {
           if (window.innerWidth > 670) tListManipulations()
           firstTList.querySelector('.t-list__ts').classList.add('t-list--return')
           CATALOG_sliderBtns.classList.add('slider__btns--hidden')
-          i.innerHTML = '<b>СВЕРНУТЬ СПИСОК</b>'
-          i.classList.remove('btn-collapse--show')
-          i.classList.add('btn-collapse--collapse')
+          Array.from(combinedCollapseBtnMobAndDesk).forEach(b => {
+            b.innerHTML = '<b>СВЕРНУТЬ СПИСОК</b>'
+            b.classList.remove('btn-collapse--show')
+            b.classList.add('btn-collapse--collapse')
+          })
         } else if (listViewState === LIST_VIEW_STATE.SHOW_IN_SLIDER) {
           if (window.innerWidth > 670) undoTListManipulations()
           firstTList.querySelector('.t-list__ts').classList.remove('t-list--return')
           CATALOG_sliderBtns.classList.remove('slider__btns--hidden')
-          i.innerHTML = '<b>ОТКРЫТЬ ВЕСЬ СПИСОК</b>'
-          i.classList.remove('btn-collapse--collapse')
-          i.classList.add('btn-collapse--show')
+          Array.from(combinedCollapseBtnMobAndDesk).forEach(b => {
+            b.innerHTML = '<b>ОТКРЫТЬ ВЕСЬ СПИСОК</b>'
+            b.classList.remove('btn-collapse--collapse')
+            b.classList.add('btn-collapse--show')
+          })
           smoothScrollTo(document.getElementById('qs').offsetTop - 30, 800)
         }
       }
@@ -253,7 +266,9 @@
   function tListManipulations() {
     const fragment = document.createDocumentFragment()
     const firstTList = document.querySelector('.t-list')
+    console.log('firstTList', firstTList)
     const otherTLists = document.querySelectorAll('.t-list--no-stretch')
+    console.log('otherTLists', otherTLists)
     for (const otherTList of otherTLists) {
       for (const t of otherTList.querySelector('.t-list__ts').children) {
         const clone = t.cloneNode(true)
