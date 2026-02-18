@@ -239,10 +239,10 @@
       if (window.innerWidth > 670) undoTListManipulations()
       firstTList.querySelector('.t-list__ts').classList.remove('t-list--return')
       CATALOG_sliderBtns.classList.remove('slider__btns--hidden')
-      Array.from([collapseBtn, collapseDeskBtn]).forEach(i => {
-        i.innerHTML = '<b>ОТКРЫТЬ ВЕСЬ СПИСОК</b>'
-        i.classList.remove('btn-collapse--collapse')
-        i.classList.add('btn-collapse--show')
+      Array.from(combinedCollapseBtnMobAndDesk).forEach(b => {
+        b.innerHTML = '<b>ОТКРЫТЬ ВЕСЬ СПИСОК</b>'
+        b.classList.remove('btn-collapse--collapse')
+        b.classList.add('btn-collapse--show')
       })
     }
   }
